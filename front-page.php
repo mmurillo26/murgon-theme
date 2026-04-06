@@ -240,7 +240,7 @@ get_header(); ?>
         </div>
         <div class="about-content">
           <h2>No soy un consultor.<br>Soy el que construye.</h2>
-          <p>Soy desarrollador full stack con experiencia en Node.js, JavaScript y comercio digital. Construí Murgon Agency porque vi que muchos negocios pagaban por "consultoría de IA" a personas que nunca habían escrito una línea de código.</p>
+          <p>Soy desarrollador full stack con 6 años de experiencia en desarrollo de software y comercio digital. Construí Murgon Agency porque vi que muchos negocios pagaban por "consultoría de IA" a personas que nunca habían escrito una línea de código.</p>
           <p>La diferencia: yo implemento. Cada sistema que propongo, lo construyo yo mismo — con herramientas reales, integraciones funcionales y código que puedes auditar.</p>
           <div class="credentials">
             <div class="cred"><span class="cred-icon" aria-hidden="true">⚡</span>Full Stack Developer (Node.js, JS)</div>
@@ -255,13 +255,6 @@ get_header(); ?>
               $tools = ['n8n','Make','Node.js','GPT-4o','Claude API','Twilio','WhatsApp API','ElevenLabs'];
               foreach ( $tools as $t ) echo '<span class="tool">' . esc_html($t) . '</span>';
               ?>
-            </div>
-          </div>
-          <div class="tiktok-badge">
-            <span aria-hidden="true" style="font-size:1.4rem">📱</span>
-            <div>
-              <div class="tiktok-num">280,000</div>
-              <div class="tiktok-label">seguidores en TikTok @mariomurillo.ai — contenido sobre automatización e IA</div>
             </div>
           </div>
         </div>
