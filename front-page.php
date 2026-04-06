@@ -144,12 +144,12 @@ get_header(); ?>
     <div class="container">
       <div class="section-label">Caso Real</div>
       <h2>Resultados con un cliente real</h2>
-      <p class="section-sub">No prometemos — demostramos. Aquí lo que implementamos para Dissá Nails.</p>
+      <p class="section-sub">No prometemos — demostramos. Aquí lo que implementamos para un Salón de Belleza local.</p>
       <div class="case-wrapper">
         <div class="case-header">
           <div>
             <span class="case-tag">Caso de éxito</span>
-            <h3 class="case-client-title">Dissá Nails — Nail Salon, Tepic Nayarit</h3>
+            <h3 class="case-client-title">Salón de Belleza, Tepic Nayarit</h3>
             <p class="case-client-sub">Automatización completa de atención al cliente y captación de citas vía WhatsApp</p>
           </div>
           <div class="case-days">
@@ -166,12 +166,12 @@ get_header(); ?>
           </div>
           <div class="case-story">
             <h3>El problema</h3>
-            <p>Isaías, dueño de Dissá Nails, respondía mensajes de Instagram y WhatsApp manualmente durante todo el día — mientras atendía clientes. Los mensajes fuera de horario quedaban sin respuesta.</p>
+            <p>Rocío, dueña de un Salón de Belleza, respondía mensajes de Instagram y WhatsApp manualmente durante todo el día — mientras atendía clientes. Los mensajes fuera de horario quedaban sin respuesta.</p>
             <h3>La solución</h3>
             <p>Implementamos un bot de WhatsApp con IA que responde automáticamente, califica el tipo de servicio solicitado, y agenda citas directamente en su calendario.</p>
             <blockquote class="case-quote">
               "Antes perdía clientes porque no podía responder a tiempo. Ahora el sistema trabaja solo y yo me enfoco en atender a quien ya está en el salón."
-              <cite>— Isaías, Dissá Nails</cite>
+              <cite>— Rocío, Salón de Belleza</cite>
             </blockquote>
             <div>
               <div class="stack-label">STACK IMPLEMENTADO</div>
@@ -361,7 +361,7 @@ get_header(); ?>
           ['q'=>'¿Necesito conocimientos técnicos para usar el sistema?','a'=>'No. Diseñamos los sistemas para que cualquier persona pueda operarlos sin saber programación. Incluimos capacitación en video y documentación escrita.'],
           ['q'=>'¿Qué diferencia a Murgon de otras agencias de "IA"?',  'a'=>'La mayoría vende consultoría — te dicen qué hacer pero no lo construyen. Nosotros somos desarrolladores: implementamos, integramos APIs reales, escribimos el código y lo ponemos en producción.'],
           ['q'=>'¿La automatización reemplaza a mi equipo?',            'a'=>'No. Automatiza las tareas repetitivas para que tu equipo se enfoque en cerrar ventas y atender bien a los clientes. Los sistemas se encargan de responder, filtrar y organizar.'],
-          ['q'=>'¿Puedo ver el sistema antes de pagar?',               'a'=>'Sí. Antes de que pagues un peso, tendrás una consulta gratuita donde mostramos ejemplos reales funcionando — incluyendo el caso de Dissá Nails.'],
+          ['q'=>'¿Puedo ver el sistema antes de pagar?',               'a'=>'Sí. Antes de que pagues un peso, tendrás una consulta gratuita donde mostramos ejemplos reales funcionando — incluyendo el caso del Salón de Belleza.'],
           ['q'=>'¿Qué pasa después de la implementación?',             'a'=>'Incluimos 7–30 días de soporte post-lanzamiento según el plan. Monitoreamos que todo funcione, ajustamos lo necesario y entregamos documentación completa.'],
         ];
         foreach ( $faqs as $i => $faq ) : ?>
