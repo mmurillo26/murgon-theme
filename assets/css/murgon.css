@@ -770,7 +770,7 @@ section { padding: 96px 0; position: relative; overflow: hidden; }
   .hero-visual { grid-template-columns: 1fr 1fr; }
   .metric-wide { grid-column: span 2; }
 
-  .case-body { grid-template-columns: 1fr; }
+  .case-body { grid-template-columns: 1fr; overflow: auto; }
   .about-grid { grid-template-columns: 1fr; }
   .about-photo { aspect-ratio: 4/3; }
   .steps { grid-template-columns: 1fr; }
