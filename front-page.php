@@ -71,11 +71,13 @@ get_header(); ?>
         </div>
         <div class="metric-card metric-wide">
           <div class="metric-label">Bot WhatsApp — Conversación activa</div>
-          <div class="bot-demo">
-            <div class="msg msg-in">Hola, ¿cuánto cuesta el servicio de automatización?</div>
-            <div class="msg msg-out">¡Hola! Gracias por contactarnos 👋 Tenemos 3 planes desde $8,500 MXN. ¿Me dices en qué área quieres automatizar?</div>
-            <div class="msg msg-in">En atención al cliente por WhatsApp</div>
-            <div class="msg msg-out">Perfecto. ¿Te parece si agendamos una llamada de 20 min esta semana?</div>
+          <div class="bot-demo" id="botDemo" aria-live="polite">
+            <div class="msg msg-in  msg--hidden">Hola, ¿cuánto cuesta el servicio de automatización?</div>
+            <div class="msg msg-typing msg--hidden" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="msg msg-out msg--hidden">¡Hola! Gracias por contactarnos 👋 Tenemos 3 planes desde $8,500 MXN. ¿Me dices en qué área quieres automatizar?</div>
+            <div class="msg msg-in  msg--hidden">En atención al cliente por WhatsApp</div>
+            <div class="msg msg-typing msg--hidden" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="msg msg-out msg--hidden">Perfecto. ¿Te parece si agendamos una llamada de 20 min esta semana?</div>
           </div>
         </div>
         <div class="metric-card">

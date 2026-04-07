@@ -9,7 +9,6 @@
   /* ── NAV: Scroll behavior ── */
   const navbar = document.getElementById('navbar');
   if (navbar) {
-    let lastY = 0;
     window.addEventListener('scroll', () => {
       const y = window.scrollY;
       if (y > 80) {
@@ -17,7 +16,6 @@
       } else {
         navbar.style.background = 'rgba(7,9,16,0.85)';
       }
-      lastY = y;
     }, { passive: true });
   }
 
@@ -162,6 +160,55 @@
     document.querySelectorAll('.cm-val, .sp-num').forEach(el => {
       counterObs.observe(el);
     });
+  }
+
+  /* ── BOT DEMO: conversación animada (una sola vez al entrar en viewport) ── */
+  const botDemo = document.getElementById('botDemo');
+  if (botDemo && 'IntersectionObserver' in window) {
+    // Secuencia: [índice del elemento, delay en ms desde el inicio]
+    // Orden: msg-in → typing → msg-out → msg-in → typing → msg-out
+    const sequence = [
+      { index: 0, delay: 300  },   // msg-in  #1
+      { index: 1, delay: 900  },   // typing  #1 aparece
+      { index: 2, delay: 1800 },   // msg-out #1 + typing #1 desaparece
+      { index: 3, delay: 2500 },   // msg-in  #2
+      { index: 4, delay: 3100 },   // typing  #2 aparece
+      { index: 5, delay: 4000 },   // msg-out #2 + typing #2 desaparece
+    ];
+
+    function show(el) {
+      el.classList.remove('msg--hidden');
+    }
+    function hide(el) {
+      el.classList.add('msg--hidden');
+    }
+
+    function runBotAnimation() {
+      const msgs = botDemo.querySelectorAll('.msg');
+      sequence.forEach(({ index, delay }) => {
+        setTimeout(() => {
+          const el = msgs[index];
+          if (!el) return;
+          show(el);
+          // Si es un typing indicator, ocultarlo cuando llegue el mensaje siguiente
+          if (el.classList.contains('msg-typing')) {
+            const nextDelay = (sequence.find(s => s.index === index + 1)?.delay ?? delay + 900) - delay;
+            setTimeout(() => hide(el), nextDelay);
+          }
+        }, delay);
+      });
+    }
+
+    const botObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          runBotAnimation();
+          botObs.unobserve(botDemo); // solo una vez
+        }
+      });
+    }, { threshold: 0.5 });
+
+    botObs.observe(botDemo);
   }
 
 })();
