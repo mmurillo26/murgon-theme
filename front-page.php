@@ -39,7 +39,7 @@ get_header(); ?>
           <span class="sp-label">Tiempo promedio de implementación</span>
         </div>
         <div class="sp-item">
-          <span class="sp-num">4H<span class="sp-unit">al día</span></span>
+          <span class="sp-num">4H<span class="sp-unit"> al día</span></span>
           <span class="sp-label">Ahorradas por tareas automatizadas</span>
         </div>
         <div class="sp-item">
