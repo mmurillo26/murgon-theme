@@ -17,8 +17,7 @@ get_header(); ?>
         Sistemas de Automatización con IA
       </div>
       <h1 class="fade-up">
-        Construido por un <em>desarrollador.</em><br>
-        No por un consultor.
+        Tu negocio trabajando en <em>Piloto Automático.</em>
       </h1>
       <p class="hero-sub fade-up delay-1">
         Implementamos sistemas reales de automatización — WhatsApp, CRM, captación de leads e IA — en 7 a 14 días. Código propio, sin middlemen, con resultados medibles.
@@ -40,8 +39,8 @@ get_header(); ?>
           <span class="sp-label">Tiempo promedio de implementación</span>
         </div>
         <div class="sp-item">
-          <span class="sp-num">280<span class="sp-unit">K</span></span>
-          <span class="sp-label">Seguidores en TikTok @mariomurillo.ai</span>
+          <span class="sp-num">4H<span class="sp-unit">al día</span></span>
+          <span class="sp-label">Ahorradas por tareas automatizadas</span>
         </div>
         <div class="sp-item">
           <span class="sp-num">24<span class="sp-unit">/7</span></span>
@@ -62,7 +61,7 @@ get_header(); ?>
         </div>
         <div class="metric-card">
           <div class="metric-label">Tiempo de respuesta</div>
-          <div class="metric-value">&lt; 2 min</div>
+          <div class="metric-value">&lt; 1 min</div>
           <div class="metric-delta">Automático 24/7</div>
         </div>
         <div class="metric-card">
