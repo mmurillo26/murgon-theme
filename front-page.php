@@ -140,6 +140,109 @@ get_header(); ?>
     </div>
   </section>
 
+  <!-- ══ ROI CALCULATOR ══ -->
+  <section id="roi-calculator" class="section-alt">
+    <div class="container">
+      <div class="section-label">Calculadora</div>
+      <h2 class="text-center">¿Cuánto estás dejando ir cada mes?</h2>
+      <p class="section-sub text-center">Ajusta los datos de tu negocio y ve en tiempo real cuánto valor está perdiendo sin automatización.</p>
+
+      <div class="roi-wrap">
+
+        <!-- INPUTS -->
+        <div class="roi-inputs">
+
+          <div class="roi-field">
+            <div class="roi-field-header">
+              <label for="roi-msgs">Mensajes / consultas por día</label>
+              <span class="roi-val" id="roi-msgs-val">30</span>
+            </div>
+            <input type="range" id="roi-msgs" min="5" max="200" value="30" step="1">
+            <div class="roi-range-labels"><span>5</span><span>200</span></div>
+          </div>
+
+          <div class="roi-field">
+            <div class="roi-field-header">
+              <label for="roi-response">Tiempo de respuesta actual</label>
+            </div>
+            <div class="roi-radio-group" id="roi-response">
+              <label class="roi-radio"><input type="radio" name="response" value="0.25"> &lt; 15 min</label>
+              <label class="roi-radio"><input type="radio" name="response" value="1.5" checked> 1–2 hrs</label>
+              <label class="roi-radio"><input type="radio" name="response" value="4"> 2–6 hrs</label>
+              <label class="roi-radio"><input type="radio" name="response" value="12"> +6 hrs</label>
+            </div>
+          </div>
+
+          <div class="roi-field">
+            <div class="roi-field-header">
+              <label for="roi-conv">Tasa de conversión actual</label>
+              <span class="roi-val" id="roi-conv-val">15%</span>
+            </div>
+            <input type="range" id="roi-conv" min="1" max="60" value="15" step="1">
+            <div class="roi-range-labels"><span>1%</span><span>60%</span></div>
+          </div>
+
+          <div class="roi-field">
+            <div class="roi-field-header">
+              <label for="roi-ticket">Valor promedio por cliente (MXN)</label>
+              <span class="roi-val" id="roi-ticket-val">$1,500</span>
+            </div>
+            <input type="range" id="roi-ticket" min="200" max="20000" value="1500" step="100">
+            <div class="roi-range-labels"><span>$200</span><span>$20k</span></div>
+          </div>
+
+          <div class="roi-field">
+            <div class="roi-field-header">
+              <label for="roi-hours">Horas/semana en tareas repetitivas</label>
+              <span class="roi-val" id="roi-hours-val">10 hrs</span>
+            </div>
+            <input type="range" id="roi-hours" min="1" max="40" value="10" step="1">
+            <div class="roi-range-labels"><span>1 hr</span><span>40 hrs</span></div>
+          </div>
+
+        </div><!-- /.roi-inputs -->
+
+        <!-- RESULTS -->
+        <div class="roi-results">
+
+          <div class="roi-result-card roi-loss">
+            <div class="roi-result-label">Ingresos perdidos por mes</div>
+            <div class="roi-result-num" id="res-lost">$0</div>
+            <div class="roi-result-sub">Leads que no convierten por respuesta lenta</div>
+          </div>
+
+          <div class="roi-result-card roi-hours-card">
+            <div class="roi-result-label">Horas liberadas por mes</div>
+            <div class="roi-result-num" id="res-hours">0 hrs</div>
+            <div class="roi-result-sub">Con automatización de tareas repetitivas</div>
+          </div>
+
+          <div class="roi-result-card roi-gain">
+            <div class="roi-result-label">Ingresos recuperables / mes</div>
+            <div class="roi-result-num" id="res-gain">$0</div>
+            <div class="roi-result-sub">Estimado con tiempo de respuesta &lt; 1 min</div>
+          </div>
+
+          <div class="roi-result-card roi-payback">
+            <div class="roi-result-label">Meses para recuperar la inversión</div>
+            <div class="roi-result-num" id="res-payback">— </div>
+            <div class="roi-result-sub">Plan Starter desde $8,500 MXN</div>
+          </div>
+
+          <div class="roi-cta">
+            <p>Estos números son tuyos. La automatización no es un gasto — es la diferencia entre crecer o seguir igual.</p>
+            <a href="https://wa.me/523332512917?text=Hola%2C%20vi%20la%20calculadora%20de%20ROI%20y%20quiero%20una%20consulta%20gratuita"
+               class="btn-primary" target="_blank" rel="noopener noreferrer">
+              <span aria-hidden="true">💬</span> Quiero estos resultados
+            </a>
+          </div>
+
+        </div><!-- /.roi-results -->
+
+      </div><!-- /.roi-wrap -->
+    </div>
+  </section>
+
   <!-- ══ CASE STUDY ══ -->
   <section id="caso" class="section-alt">
     <div class="container">

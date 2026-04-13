@@ -162,6 +162,95 @@
     });
   }
 
+  /* ── ROI CALCULATOR ── */
+  (function () {
+    const sliders = {
+      msgs:   document.getElementById('roi-msgs'),
+      conv:   document.getElementById('roi-conv'),
+      ticket: document.getElementById('roi-ticket'),
+      hours:  document.getElementById('roi-hours'),
+    };
+    const vals = {
+      msgs:   document.getElementById('roi-msgs-val'),
+      conv:   document.getElementById('roi-conv-val'),
+      ticket: document.getElementById('roi-ticket-val'),
+      hours:  document.getElementById('roi-hours-val'),
+    };
+
+    if (!sliders.msgs) return; // no está en esta página
+
+    function fmt(n) {
+      return '$' + Math.round(n).toLocaleString('es-MX');
+    }
+
+    function updateSliderFill(input) {
+      const min = +input.min, max = +input.max, val = +input.value;
+      const pct = ((val - min) / (max - min)) * 100;
+      input.style.backgroundSize = pct + '% 100%';
+    }
+
+    function getResponseHours() {
+      const checked = document.querySelector('input[name="response"]:checked');
+      return checked ? +checked.value : 1.5;
+    }
+
+    function calculate() {
+      const msgsDay    = +sliders.msgs.value;
+      const convRate   = +sliders.conv.value / 100;
+      const ticket     = +sliders.ticket.value;
+      const hoursWeek  = +sliders.hours.value;
+      const respHours  = getResponseHours();
+
+      const daysMonth  = 22;
+      const msgsMonth  = msgsDay * daysMonth;
+
+      // Leads perdidos: respuesta lenta reduce conversión proporcional al retraso
+      // Base: si respuesta < 15min = pérdida 5%, escala hasta 60% a +6hrs
+      const lostFactor = Math.min(0.60, respHours * 0.05);
+      const leadsLost  = msgsMonth * convRate * lostFactor;
+      const revLost    = leadsLost * ticket;
+
+      // Con automatización: respuesta < 1 min → lostFactor baja a 0.02
+      const leadsRecovered = msgsMonth * convRate * (lostFactor - 0.02);
+      const revGain = Math.max(0, leadsRecovered * ticket);
+
+      // Horas liberadas: automatización cubre ~70% de tareas repetitivas
+      const hoursFreed = hoursWeek * 4 * 0.70;
+
+      // Payback: inversión starter / ganancia mensual
+      const totalGain  = revGain + (hoursFreed * 150); // $150/hr valor hora
+      const payback    = totalGain > 0 ? (8500 / totalGain) : null;
+
+      // Actualizar resultados
+      document.getElementById('res-lost').textContent    = fmt(revLost);
+      document.getElementById('res-hours').textContent   = Math.round(hoursFreed) + ' hrs';
+      document.getElementById('res-gain').textContent    = fmt(revGain);
+      document.getElementById('res-payback').textContent = payback
+        ? (payback < 1 ? '< 1 mes' : payback.toFixed(1) + ' meses')
+        : '—';
+    }
+
+    // Sliders
+    Object.entries(sliders).forEach(([key, input]) => {
+      updateSliderFill(input);
+      input.addEventListener('input', () => {
+        updateSliderFill(input);
+        if (key === 'msgs')   vals.msgs.textContent   = input.value;
+        if (key === 'conv')   vals.conv.textContent   = input.value + '%';
+        if (key === 'ticket') vals.ticket.textContent = '$' + (+input.value).toLocaleString('es-MX');
+        if (key === 'hours')  vals.hours.textContent  = input.value + ' hrs';
+        calculate();
+      });
+    });
+
+    // Radio buttons
+    document.querySelectorAll('input[name="response"]').forEach(r => {
+      r.addEventListener('change', calculate);
+    });
+
+    calculate(); // render inicial
+  })();
+
   /* ── BOT DEMO: conversación animada (una sola vez al entrar en viewport) ── */
   const botDemo = document.getElementById('botDemo');
   if (botDemo && 'IntersectionObserver' in window) {
