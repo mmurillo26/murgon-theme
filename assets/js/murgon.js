@@ -210,8 +210,8 @@
       const leadsLost  = msgsMonth * convRate * lostFactor;
       const revLost    = leadsLost * ticket;
 
-      // Con automatización: respuesta < 1 min → lostFactor baja a 0.02
-      const leadsRecovered = msgsMonth * convRate * (lostFactor - 0.02);
+      // Con automatización: respuesta < 1 min → lostFactor baja a 0.005
+      const leadsRecovered = msgsMonth * convRate * (lostFactor - 0.005);
       const revGain = Math.max(0, leadsRecovered * ticket);
 
       // Horas liberadas: automatización cubre ~70% de tareas repetitivas
