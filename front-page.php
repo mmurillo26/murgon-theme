@@ -23,7 +23,7 @@ get_header(); ?>
         Implementamos sistemas reales de automatización — WhatsApp, CRM, captación de leads e IA — en 7 a 14 días. Código propio, sin middlemen, con resultados medibles.
       </p>
       <div class="hero-ctas fade-up delay-2">
-        <a href="https://wa.me/523332512917?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita"
+        <a href="https://wa.me/523117406927?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita"
            class="btn-primary"
            target="_blank"
            rel="noopener noreferrer">
@@ -231,7 +231,7 @@ get_header(); ?>
 
           <div class="roi-cta">
             <p>Estos números son tuyos. La automatización no es un gasto — es la diferencia entre crecer o seguir igual.</p>
-            <a href="https://wa.me/523332512917?text=Hola%2C%20vi%20la%20calculadora%20de%20ROI%20y%20quiero%20una%20consulta%20gratuita"
+            <a href="https://wa.me/523117406927?text=Hola%2C%20vi%20la%20calculadora%20de%20ROI%20y%20quiero%20una%20consulta%20gratuita"
                class="btn-primary" target="_blank" rel="noopener noreferrer">
               <span aria-hidden="true">💬</span> Quiero estos resultados
             </a>
@@ -318,7 +318,7 @@ get_header(); ?>
         <?php endforeach; ?>
       </div>
       <div class="text-center" style="margin-top:48px">
-        <a href="https://wa.me/523332512917?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita"
+        <a href="https://wa.me/523117406927?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita"
            class="btn-primary"
            target="_blank" rel="noopener noreferrer">
           Empieza el proceso →
@@ -410,7 +410,7 @@ get_header(); ?>
             <li>Flujo de seguimiento automático</li>
             <li>Capacitación y documentación</li>
           </ul>
-          <a href="https://wa.me/523332512917?text=Hola%2C%20me%20interesa%20el%20plan%20Starter" class="price-btn" target="_blank" rel="noopener">Empezar con Starter →</a>
+          <a href="https://wa.me/523117406927?text=Hola%2C%20me%20interesa%20el%20plan%20Starter" class="price-btn" target="_blank" rel="noopener">Empezar con Starter →</a>
         </div>
 
         <div class="price-card featured">
@@ -425,7 +425,7 @@ get_header(); ?>
             <li>Automatizaciones de seguimiento multi-canal</li>
             <li>30 días de soporte post-lanzamiento</li>
           </ul>
-          <a href="https://wa.me/523332512917?text=Hola%2C%20me%20interesa%20el%20plan%20Sistema%20Completo" class="price-btn" target="_blank" rel="noopener">El más popular →</a>
+          <a href="https://wa.me/523117406927?text=Hola%2C%20me%20interesa%20el%20plan%20Sistema%20Completo" class="price-btn" target="_blank" rel="noopener">El más popular →</a>
         </div>
 
         <div class="price-card">
@@ -439,7 +439,7 @@ get_header(); ?>
             <li>Equipo dedicado de desarrollo</li>
             <li>Mantenimiento y evolución continua</li>
           </ul>
-          <a href="https://wa.me/523332512917?text=Hola%2C%20quiero%20informaci%C3%B3n%20del%20plan%20Enterprise" class="price-btn" target="_blank" rel="noopener">Agendar llamada →</a>
+          <a href="https://wa.me/523117406927?text=Hola%2C%20quiero%20informaci%C3%B3n%20del%20plan%20Enterprise" class="price-btn" target="_blank" rel="noopener">Agendar llamada →</a>
         </div>
 
       </div>
@@ -483,7 +483,7 @@ get_header(); ?>
       <h2 class="text-center">Tu negocio puede operar<br>de forma inteligente</h2>
       <p class="section-sub text-center">Agenda una llamada de 20 minutos. Sin compromiso. Analizamos tu negocio y te decimos exactamente qué automatizar primero y qué ROI puedes esperar.</p>
       <div class="cta-actions">
-        <a href="https://wa.me/523332512917?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita"
+        <a href="https://wa.me/523117406927?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita"
            class="btn-primary"
            target="_blank" rel="noopener noreferrer">
           <span aria-hidden="true">💬</span> Agendar consulta gratuita
