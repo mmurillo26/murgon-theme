@@ -13,7 +13,11 @@
   <div class="nav-inner">
 
     <a href="<?php echo esc_url( home_url('/') ); ?>" class="nav-logo" aria-label="Murgon Agency - Inicio">
-      M<span>·</span>Agency
+      <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/murgonagency_logo.png' ); ?>"
+           alt="Murgon Agency"
+           class="nav-logo__img"
+           width="36" height="36">
+      <span class="nav-logo__text">M<span>·</span>Agency</span>
     </a>
 
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu">

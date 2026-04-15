@@ -5,7 +5,11 @@
 
       <div class="footer-brand">
         <a href="<?php echo esc_url( home_url('/') ); ?>" class="nav-logo" style="font-size:1.2rem">
-          M<span style="color:var(--accent)">·</span>Agency
+          <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/murgonagency_logo.png' ); ?>"
+               alt="Murgon Agency"
+               class="nav-logo__img"
+               width="32" height="32">
+          <span class="nav-logo__text">M<span style="color:var(--accent)">·</span>Agency</span>
         </a>
         <p>Sistemas de automatización con IA para pequeñas y medianas empresas.<br>Construidos por desarrolladores, no consultores.</p>
         <div class="footer-social">

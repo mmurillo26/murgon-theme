@@ -126,8 +126,18 @@ section { padding: 96px 0; position: relative; overflow: hidden; }
   color: var(--text);
   white-space: nowrap;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .nav-logo span { color: var(--accent); }
+.nav-logo__img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+.nav-logo__text { line-height: 1; }
 
 .nav-links {
   display: flex;
