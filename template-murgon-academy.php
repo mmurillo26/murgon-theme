@@ -63,8 +63,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-hei
 
 /* ── TYPOGRAPHY ── */
 .label{font-family:var(--font-mono);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
-h1{font-family:var(--font-display);font-size:clamp(52px,11vw,80px);line-height:.92;letter-spacing:-.01em;margin-bottom:20px;font-weight:800}
-h2{font-family:var(--font-display);font-size:clamp(36px,8vw,56px);line-height:.94;letter-spacing:-.01em;margin-bottom:16px;font-weight:800}
+h1{font-family:var(--font-display);font-size:clamp(34px,9vw,80px);line-height:.95;letter-spacing:-.01em;margin-bottom:20px;font-weight:800}
+h2{font-family:var(--font-display);font-size:clamp(26px,7.5vw,56px);line-height:.98;letter-spacing:-.01em;margin-bottom:16px;font-weight:800}
 .hl{color:var(--accent)}
 .sub{font-size:15px;color:var(--muted);line-height:1.65;margin-bottom:28px}
 
@@ -223,6 +223,23 @@ h2{font-family:var(--font-display);font-size:clamp(36px,8vw,56px);line-height:.9
 .cta-note{font-family:var(--font-mono);font-size:10px;color:var(--muted);margin-top:14px;line-height:1.6}
 
 .divider{height:1px;background:var(--border);margin:28px 0}
+
+@media (max-width:480px){
+  .wrap{padding:80px 18px 110px}
+  h1{line-height:1}
+  h2{line-height:1.02}
+  .res-title{font-size:24px}
+  .cta-price{font-size:44px}
+  .cta-price-old{font-size:24px}
+  .c-title{font-size:20px}
+  .stats{grid-template-columns:1fr 1fr 1fr;gap:7px}
+  .stat .n{font-size:24px}
+  .pair{grid-template-columns:1fr 32px 1fr;gap:6px}
+  .pbox{padding:10px}
+  .pbox .px{font-size:11px}
+  .step-nav{padding:5px 10px}
+  .top-nav{padding:0 16px}
+}
 </style>
 </head>
 <body>
