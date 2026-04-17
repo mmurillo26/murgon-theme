@@ -476,6 +476,25 @@ get_header(); ?>
     </div>
   </section>
 
+  <!-- ══ ACADEMY TEASER ══ -->
+  <section id="academia" class="section-alt">
+    <div class="container">
+      <div class="academy-teaser">
+        <div class="section-label">Murgon Academy</div>
+        <h2>¿Prefieres aprender a<br>implementarlo tú mismo?</h2>
+        <p class="section-sub">Curso práctico de automatización con IA. Sin código, desde cero, con casos reales de negocios en México. Empieza con el tutorial gratuito interactivo.</p>
+        <div class="academy-meta">
+          <span class="academy-badge">5 módulos</span>
+          <span class="academy-badge">Acceso de por vida</span>
+          <span class="academy-badge">Sin experiencia previa</span>
+        </div>
+        <a href="<?php echo esc_url( home_url('/murgon-academy') ); ?>" class="btn-primary academy-cta">
+          Quiero aprender a hacerlo →
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- ══ CTA FINAL ══ -->
   <section id="cta" class="section-cta">
     <div class="container">
