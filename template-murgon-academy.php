@@ -547,7 +547,7 @@ h2{font-family:var(--font-display);font-size:clamp(36px,8vw,56px);line-height:.9
         <div class="cta-price-old">$1,497</div>
         <div class="cta-price"><span>$</span>797<span> MXN</span></div>
       </div>
-      <a href="https://wa.me/523117406927?text=Hola%2C%20quiero%20acceder%20a%20Murgon%20Academy"
+      <a href="https://wa.me/523332512917?text=Hola%2C%20quiero%20acceder%20a%20Murgon%20Academy"
          class="btn-main full"
          style="font-size:15px;padding:18px"
          target="_blank" rel="noopener">
