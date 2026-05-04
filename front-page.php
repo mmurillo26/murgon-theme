@@ -116,7 +116,7 @@ get_header(); ?>
 
         <?php
         $services = [
-          [ 'icon' => '🤖', 'title' => 'Bot de WhatsApp con IA',       'desc' => 'Asistente inteligente que responde, califica y agenda — disponible 24/7 sin intervención humana.',                 'tags' => ['WhatsApp API','GPT-4','n8n','Twilio'] ],
+          [ 'icon' => '🤖', 'title' => 'Bot de WhatsApp con IA',       'desc' => 'Asistente inteligente que responde, califica y agenda — disponible 24/7 sin intervención humana.',                 'tags' => ['WhatsApp API','OpenAI','n8n','Twilio'] ],
           [ 'icon' => '⚡', 'title' => 'Automatización de procesos',    'desc' => 'Eliminamos tareas manuales repetitivas: captura de leads, seguimiento, reportes, notificaciones.',              'tags' => ['Make','n8n','Zapier','API integrations'] ],
           [ 'icon' => '📊', 'title' => 'CRM + Pipeline automatizado',   'desc' => 'Sistema centralizado para gestionar leads, seguimientos y conversiones — sin hojas de cálculo.',                'tags' => ['CRM custom','Dashboard','Notificaciones'] ],
           [ 'icon' => '🌐', 'title' => 'Landing pages de captación',    'desc' => 'Páginas web diseñadas para convertir visitantes en leads, integradas con tu sistema de automatización.',       'tags' => ['Diseño UI','SEO','Lead capture'] ],
@@ -282,7 +282,7 @@ get_header(); ?>
               <div class="tech-stack">
                 <span class="stack-tag">WhatsApp Business API</span>
                 <span class="stack-tag">Twilio</span>
-                <span class="stack-tag">GPT-4o</span>
+                <span class="stack-tag">OpenAI</span>
                 <span class="stack-tag">n8n</span>
                 <span class="stack-tag">Google Calendar</span>
                 <span class="stack-tag">Node.js</span>
@@ -356,7 +356,7 @@ get_header(); ?>
             <div class="tools-title">STACK QUE USO EN PRODUCCIÓN</div>
             <div class="tools-list">
               <?php
-              $tools = ['n8n','Make','Node.js','GPT-4o','Claude API','Twilio','WhatsApp API','ElevenLabs'];
+              $tools = ['n8n','Make','Node.js','OpenAI','Claude API','Twilio','WhatsApp API','ElevenLabs'];
               foreach ( $tools as $t ) echo '<span class="tool">' . esc_html($t) . '</span>';
               ?>
             </div>
