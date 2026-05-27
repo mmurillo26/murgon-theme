@@ -32,7 +32,7 @@
       <a href="#precios">Precios</a>
     </div>
 
-    <a href="https://wa.me/523332512917?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita"
+    <a href="https://wa.me/523117406927?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita"
        class="nav-cta"
        target="_blank"
        rel="noopener noreferrer">

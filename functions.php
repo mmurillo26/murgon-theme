@@ -34,10 +34,10 @@ function murgon_enqueue_assets() {
     $ver = '1.0.0';
     $uri = get_template_directory_uri();
 
-    // Google Fonts
+    // Google Fonts (incluye Space Mono para badges y código)
     wp_enqueue_style(
         'murgon-fonts',
-        'https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap',
+        'https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=Space+Mono:wght@400;700&display=swap',
         [],
         null
     );
@@ -69,6 +69,20 @@ function murgon_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'murgon_enqueue_assets' );
 
 /* ──────────────────────────────────────────
+   CHATBOT AI WIDGET — TASK-06
+────────────────────────────────────────── */
+function murgon_enqueue_chatbot() {
+    wp_enqueue_script(
+        'murgon-chatbot',
+        get_template_directory_uri() . '/assets/js/chatbot.js',
+        [], // sin dependencias
+        '1.0.0',
+        true // cargar en footer
+    );
+}
+add_action( 'wp_enqueue_scripts', 'murgon_enqueue_chatbot' );
+
+/* ──────────────────────────────────────────
    REMOVE WORDPRESS BLOAT
 ────────────────────────────────────────── */
 function murgon_clean_head() {
@@ -87,7 +101,8 @@ add_action( 'init', 'murgon_clean_head' );
 ────────────────────────────────────────── */
 function murgon_meta_description() {
     if ( is_front_page() ) {
-        echo '<meta name="description" content="Sistemas de automatización con IA para negocios. WhatsApp, CRM, captación de leads — implementación real en 7–14 días. Murgon Agency, México.">' . "\n";
+        echo '<meta name="description" content="Implementamos sistemas de automatización con IA en 7–14 días: WhatsApp bot, CRM automatizado y captación de leads. Sin consultores — código real, resultados medibles. Desde $8,500 MXN.">' . "\n";
+        echo '<meta name="robots" content="index, follow">' . "\n";
     } elseif ( is_singular() ) {
         global $post;
         $desc = wp_trim_words( get_the_excerpt( $post ), 25 );
@@ -104,11 +119,15 @@ add_action( 'wp_head', 'murgon_meta_description' );
 function murgon_og_tags() {
     if ( is_front_page() ) : ?>
 <meta property="og:type" content="website">
-<meta property="og:title" content="Murgon Agency – Automatización con IA">
-<meta property="og:description" content="Sistemas de automatización construidos por un desarrollador. WhatsApp, CRM, IA — implementación real en 7–14 días.">
+<meta property="og:locale" content="es_MX">
+<meta property="og:title" content="Murgon Agency — Automatización con IA en 7–14 días | WhatsApp Bot + CRM | México">
+<meta property="og:description" content="Implementamos sistemas de automatización con IA en 7–14 días: WhatsApp bot, CRM automatizado y captación de leads. Sin consultores — código real, resultados medibles. Desde $8,500 MXN.">
 <meta property="og:url" content="<?php echo esc_url( home_url('/') ); ?>">
 <meta property="og:image" content="<?php echo esc_url( get_template_directory_uri() . '/assets/images/og-image.png' ); ?>">
+<meta property="og:site_name" content="Murgon Agency">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Murgon Agency — Automatización con IA en 7–14 días">
+<meta name="twitter:description" content="WhatsApp bot, CRM automatizado y captación de leads. Sin consultores — código real, resultados medibles. Desde $8,500 MXN.">
     <?php endif;
 }
 add_action( 'wp_head', 'murgon_og_tags' );

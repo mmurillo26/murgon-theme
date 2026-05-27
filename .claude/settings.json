@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/mmurillo/Desktop/murgon-theme diff)",
+      "Bash(git -C /Users/mmurillo/Desktop/murgon-theme status)",
+      "Bash(git -C /Users/mmurillo/Desktop/murgon-theme add assets/css/murgon.css)",
+      "Bash(git -C /Users/mmurillo/Desktop/murgon-theme commit -m ' *)",
+      "Bash(git -C /Users/mmurillo/Desktop/murgon-theme push origin develop)",
+      "Bash(git -C /Users/mmurillo/Desktop/murgon-theme add front-page.php)",
+      "Bash(git checkout *)"
+    ]
+  }
+}
