@@ -16,6 +16,13 @@ get_header(); ?>
         <span class="eyebrow-dot" aria-hidden="true"></span>
         Sistemas de Automatización con IA
       </div>
+
+      <!-- TASK-03: Badge diferenciador -->
+      <div class="hero-badge">
+        <span class="hero-badge__dot" aria-hidden="true"></span>
+        Implementado por el desarrollador — no por un consultor
+      </div>
+
       <h1 class="fade-up">
         Tu negocio trabajando en <em>Piloto Automático.</em>
       </h1>
@@ -391,6 +398,9 @@ get_header(); ?>
     </div>
   </section>
 
+  <!-- ══ LEAD MAGNET — Diagnóstico gratuito (TASK-04) ══ -->
+  <?php get_template_part('template-parts/lead-magnet'); ?>
+
   <!-- ══ PRICING ══ -->
   <section id="precios" class="section-alt">
     <div class="container">
@@ -401,7 +411,7 @@ get_header(); ?>
 
         <div class="price-card">
           <div class="price-tier">STARTER</div>
-          <div class="price-amount">$8,500 <span>MXN</span></div>
+          <div class="price-amount">$8,500 <span>MXN</span> <span class="price-usd">~$420 USD</span></div>
           <div class="price-desc">Para negocios que quieren automatizar su primer punto de contacto.</div>
           <ul class="price-features">
             <li>Bot de WhatsApp con IA (respuestas + calificación)</li>
@@ -415,7 +425,7 @@ get_header(); ?>
 
         <div class="price-card featured">
           <div class="price-tier">SISTEMA COMPLETO</div>
-          <div class="price-amount">$18,500 <span>MXN</span></div>
+          <div class="price-amount">$18,500 <span>MXN</span> <span class="price-usd">~$920 USD</span></div>
           <div class="price-desc">El sistema completo para captar, calificar y cerrar más clientes automáticamente.</div>
           <ul class="price-features">
             <li>Todo lo del plan Starter</li>
