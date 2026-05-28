@@ -179,6 +179,10 @@
 
     if (!sliders.msgs) return; // no está en esta página
 
+    // TASK-05: ¿El usuario ya desbloqueó los resultados en esta sesión?
+    let calcRevealed = !!sessionStorage.getItem('murgon_calc_revealed');
+    let calcGateEl   = null;
+
     function fmt(n) {
       return '$' + Math.round(n).toLocaleString('es-MX');
     }
@@ -194,6 +198,16 @@
       return checked ? +checked.value : 1.5;
     }
 
+    // Renderiza los resultados en el DOM (se llama SIEMPRE después de desbloquear)
+    function renderResults(data) {
+      document.getElementById('res-lost').textContent    = fmt(data.revLost);
+      document.getElementById('res-hours').textContent   = Math.round(data.hoursFreed) + ' hrs';
+      document.getElementById('res-gain').textContent    = fmt(data.revGain);
+      document.getElementById('res-payback').textContent = data.payback
+        ? (data.payback < 1 ? '< 1 mes' : data.payback.toFixed(1) + ' meses')
+        : '—';
+    }
+
     function calculate() {
       const msgsDay    = +sliders.msgs.value;
       const convRate   = +sliders.conv.value / 100;
@@ -204,30 +218,103 @@
       const daysMonth  = 22;
       const msgsMonth  = msgsDay * daysMonth;
 
-      // Leads perdidos: respuesta lenta reduce conversión proporcional al retraso
-      // Base: si respuesta < 15min = pérdida 5%, escala hasta 60% a +6hrs
-      const lostFactor = Math.min(0.60, respHours * 0.05);
-      const leadsLost  = msgsMonth * convRate * lostFactor;
-      const revLost    = leadsLost * ticket;
-
-      // Con automatización: respuesta < 1 min → lostFactor baja a 0.005
+      const lostFactor    = Math.min(0.60, respHours * 0.05);
+      const leadsLost     = msgsMonth * convRate * lostFactor;
+      const revLost       = leadsLost * ticket;
       const leadsRecovered = msgsMonth * convRate * (lostFactor - 0.005);
-      const revGain = Math.max(0, leadsRecovered * ticket);
+      const revGain       = Math.max(0, leadsRecovered * ticket);
+      const hoursFreed    = hoursWeek * 4 * 0.70;
+      const totalGain     = revGain + (hoursFreed * 150);
+      const payback       = totalGain > 0 ? (8500 / totalGain) : null;
 
-      // Horas liberadas: automatización cubre ~70% de tareas repetitivas
-      const hoursFreed = hoursWeek * 4 * 0.70;
+      const data = { revLost, revGain, hoursFreed, payback };
 
-      // Payback: inversión starter / ganancia mensual
-      const totalGain  = revGain + (hoursFreed * 150); // $150/hr valor hora
-      const payback    = totalGain > 0 ? (8500 / totalGain) : null;
+      if (calcRevealed) {
+        renderResults(data);
+      } else {
+        // Primera vez: mostrar gate overlay (TASK-05)
+        renderResults(data); // renderizar en background
+        if (!calcGateEl) showCalcGate(data);
+      }
+    }
 
-      // Actualizar resultados
-      document.getElementById('res-lost').textContent    = fmt(revLost);
-      document.getElementById('res-hours').textContent   = Math.round(hoursFreed) + ' hrs';
-      document.getElementById('res-gain').textContent    = fmt(revGain);
-      document.getElementById('res-payback').textContent = payback
-        ? (payback < 1 ? '< 1 mes' : payback.toFixed(1) + ' meses')
-        : '—';
+    // TASK-05: Overlay de captura de email antes de revelar resultados
+    function showCalcGate(data) {
+      const resultsEl = document.querySelector('.roi-results');
+      if (!resultsEl) return;
+
+      calcGateEl = document.createElement('div');
+      calcGateEl.className = 'roi-gate';
+      calcGateEl.setAttribute('role', 'dialog');
+      calcGateEl.setAttribute('aria-label', 'Ver resultados de la calculadora');
+      calcGateEl.innerHTML = `
+        <div class="roi-gate-box">
+          <div class="roi-gate-icon" aria-hidden="true">📊</div>
+          <h3>Tu análisis está listo</h3>
+          <p>Deja tu email y te enviamos el reporte completo con el plan de automatización para tu negocio.</p>
+          <div class="roi-gate-preview" aria-hidden="true">
+            <span>Tu negocio pierde <strong>$???,??? MXN/mes</strong></span>
+            <span>Recuperables con IA: <strong>$???,??? MXN/mes</strong></span>
+          </div>
+          <form class="roi-gate-form" id="roiGateForm" novalidate>
+            <input type="text"  name="nombre" placeholder="Tu nombre"        required class="roi-gate-input" aria-label="Tu nombre">
+            <input type="email" name="email"  placeholder="tu@empresa.com"   required class="roi-gate-input" aria-label="Tu email">
+            <button type="submit" class="roi-gate-btn">Ver mi análisis completo →</button>
+            <button type="button" class="roi-gate-skip" id="roiGateSkip">Prefiero verlo sin guardar</button>
+          </form>
+        </div>
+      `;
+      resultsEl.appendChild(calcGateEl);
+
+      // Submit: guardar email y revelar
+      document.getElementById('roiGateForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const email  = this.querySelector('[name="email"]').value.trim();
+        const nombre = this.querySelector('[name="nombre"]').value.trim();
+        if (!email || !nombre) return;
+
+        sessionStorage.setItem('murgon_calc_revealed', '1');
+        sessionStorage.setItem('murgon_calc_email',    email);
+        sessionStorage.setItem('murgon_calc_nombre',   nombre);
+        calcRevealed = true;
+
+        // Fire-and-forget al webhook n8n
+        // TODO: Reemplaza con tu URL de n8n
+        fetch('https://TU_N8N_INSTANCE/webhook/murgon-calc-capture', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email, nombre,
+            resultados: data,
+            source: 'calculadora-roi',
+            timestamp: new Date().toISOString(),
+            page_url: window.location.href,
+          }),
+        }).catch(() => {});
+
+        // GA4 event
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'calc_gate_submit', { event_category: 'Lead', value: 1 });
+        }
+
+        removeGate();
+        calculate(); // re-render sin gate
+      });
+
+      // Skip
+      document.getElementById('roiGateSkip').addEventListener('click', () => {
+        sessionStorage.setItem('murgon_calc_revealed', '1');
+        calcRevealed = true;
+        removeGate();
+        calculate();
+      });
+    }
+
+    function removeGate() {
+      if (calcGateEl) {
+        calcGateEl.remove();
+        calcGateEl = null;
+      }
     }
 
     // Sliders
@@ -249,6 +336,112 @@
     });
 
     calculate(); // render inicial
+  })();
+
+  /* ── LEAD MAGNET FORM — TASK-04 ── */
+  (function () {
+    const form = document.getElementById('leadMagnetForm');
+    if (!form) return;
+
+    // Toggle campo "¿Cuál herramienta?" según radio
+    const radios    = form.querySelectorAll('[name="usa_herramienta"]');
+    const cualField = document.getElementById('lmHerramientaCual');
+    if (radios.length && cualField) {
+      radios.forEach(function (radio) {
+        radio.addEventListener('change', function () {
+          const mostrar = this.value === 'si';
+          cualField.style.display = mostrar ? 'flex' : 'none';
+          if (!mostrar) {
+            const inp = cualField.querySelector('input');
+            if (inp) inp.value = '';
+          }
+        });
+      });
+    }
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const btn     = document.getElementById('lmSubmitBtn');
+      const btnText = btn.querySelector('.lm-btn-text');
+      const btnLoad = btn.querySelector('.lm-btn-loading');
+
+      const nombre          = form.querySelector('[name="nombre"]').value.trim();
+      const email           = form.querySelector('[name="email"]').value.trim();
+      const industria       = form.querySelector('[name="industria"]').value;
+      const volumen         = form.querySelector('[name="volumen"]').value;
+      const whatsapp        = form.querySelector('[name="whatsapp"]').value.trim();
+      const usaRadio        = form.querySelector('[name="usa_herramienta"]:checked');
+      const usa_herramienta = usaRadio ? usaRadio.value : '';
+      const herramientaInp  = form.querySelector('[name="herramienta_cual"]');
+      const herramienta_cual = herramientaInp ? herramientaInp.value.trim() : '';
+
+      if (!nombre || !email || !industria || !volumen) {
+        alert('Por favor completa todos los campos requeridos.');
+        return;
+      }
+
+      btn.disabled = true;
+      btnText.style.display = 'none';
+      btnLoad.style.display = 'inline';
+
+      // Envío via WordPress AJAX → functions.php → wp_mail()
+      const formData = new FormData();
+      formData.append('action',           'murgon_lead_magnet');
+      formData.append('nonce',            (window.murgonVars && murgonVars.nonce) ? murgonVars.nonce : '');
+      formData.append('nombre',           nombre);
+      formData.append('email',            email);
+      formData.append('whatsapp',         whatsapp);
+      formData.append('industria',        industria);
+      formData.append('volumen',          volumen);
+      formData.append('usa_herramienta',  usa_herramienta);
+      formData.append('herramienta_cual', herramienta_cual);
+      formData.append('page_url',         window.location.href);
+      formData.append('timestamp',        new Date().toISOString());
+
+      const ajaxUrl = (window.murgonVars && murgonVars.ajaxUrl)
+        ? murgonVars.ajaxUrl
+        : '/wp-admin/admin-ajax.php';
+
+      try {
+        const res  = await fetch(ajaxUrl, { method: 'POST', body: formData });
+        const data = await res.json();
+
+        if (!data.success) {
+          console.warn('Lead magnet: respuesta inesperada', data);
+        }
+
+        showSuccess();
+
+        // GA4 event
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'lead_magnet_submit', {
+            event_category: 'Lead',
+            event_label:    industria,
+            value:          1,
+          });
+        }
+
+      } catch (err) {
+        console.error('Lead magnet fetch error:', err);
+        // Fallback: WhatsApp con datos pre-llenados
+        const waMsg = encodeURIComponent(
+          'Hola, quiero el diagnóstico gratuito.\n' +
+          'Nombre: ' + nombre + '\n' +
+          'Industria: ' + industria + '\n' +
+          'Email: ' + email
+        );
+        window.open('https://wa.me/523117406927?text=' + waMsg, '_blank');
+        showSuccess();
+      }
+    });
+
+    function showSuccess() {
+      document.getElementById('lmStep1').style.display = 'none';
+      const step2 = document.getElementById('lmStep2');
+      step2.style.display = 'block';
+      step2.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   })();
 
   /* ── BOT DEMO: conversación animada (una sola vez al entrar en viewport) ── */
