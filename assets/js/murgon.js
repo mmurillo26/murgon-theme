@@ -343,18 +343,38 @@
     const form = document.getElementById('leadMagnetForm');
     if (!form) return;
 
+    // Toggle campo "¿Cuál herramienta?" según radio
+    const radios    = form.querySelectorAll('[name="usa_herramienta"]');
+    const cualField = document.getElementById('lmHerramientaCual');
+    if (radios.length && cualField) {
+      radios.forEach(function (radio) {
+        radio.addEventListener('change', function () {
+          const mostrar = this.value === 'si';
+          cualField.style.display = mostrar ? 'flex' : 'none';
+          if (!mostrar) {
+            const inp = cualField.querySelector('input');
+            if (inp) inp.value = '';
+          }
+        });
+      });
+    }
+
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
 
-      const btn       = document.getElementById('lmSubmitBtn');
-      const btnText   = btn.querySelector('.lm-btn-text');
-      const btnLoad   = btn.querySelector('.lm-btn-loading');
+      const btn     = document.getElementById('lmSubmitBtn');
+      const btnText = btn.querySelector('.lm-btn-text');
+      const btnLoad = btn.querySelector('.lm-btn-loading');
 
-      const nombre    = form.querySelector('[name="nombre"]').value.trim();
-      const email     = form.querySelector('[name="email"]').value.trim();
-      const industria = form.querySelector('[name="industria"]').value;
-      const volumen   = form.querySelector('[name="volumen"]').value;
-      const whatsapp  = form.querySelector('[name="whatsapp"]').value.trim();
+      const nombre          = form.querySelector('[name="nombre"]').value.trim();
+      const email           = form.querySelector('[name="email"]').value.trim();
+      const industria       = form.querySelector('[name="industria"]').value;
+      const volumen         = form.querySelector('[name="volumen"]').value;
+      const whatsapp        = form.querySelector('[name="whatsapp"]').value.trim();
+      const usaRadio        = form.querySelector('[name="usa_herramienta"]:checked');
+      const usa_herramienta = usaRadio ? usaRadio.value : '';
+      const herramientaInp  = form.querySelector('[name="herramienta_cual"]');
+      const herramienta_cual = herramientaInp ? herramientaInp.value.trim() : '';
 
       if (!nombre || !email || !industria || !volumen) {
         alert('Por favor completa todos los campos requeridos.');
@@ -365,22 +385,31 @@
       btnText.style.display = 'none';
       btnLoad.style.display = 'inline';
 
-      const payload = {
-        nombre, email, whatsapp, industria, volumen,
-        source: 'lead-magnet-diagnostico',
-        timestamp: new Date().toISOString(),
-        page_url: window.location.href,
-      };
+      // Envío via WordPress AJAX → functions.php → wp_mail()
+      const formData = new FormData();
+      formData.append('action',           'murgon_lead_magnet');
+      formData.append('nonce',            (window.murgonVars && murgonVars.nonce) ? murgonVars.nonce : '');
+      formData.append('nombre',           nombre);
+      formData.append('email',            email);
+      formData.append('whatsapp',         whatsapp);
+      formData.append('industria',        industria);
+      formData.append('volumen',          volumen);
+      formData.append('usa_herramienta',  usa_herramienta);
+      formData.append('herramienta_cual', herramienta_cual);
+      formData.append('page_url',         window.location.href);
+      formData.append('timestamp',        new Date().toISOString());
 
-      // TODO: Reemplaza con tu URL de webhook n8n
-      const WEBHOOK_URL = 'https://TU_N8N_INSTANCE/webhook/murgon-lead-magnet';
+      const ajaxUrl = (window.murgonVars && murgonVars.ajaxUrl)
+        ? murgonVars.ajaxUrl
+        : '/wp-admin/admin-ajax.php';
 
       try {
-        await fetch(WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
+        const res  = await fetch(ajaxUrl, { method: 'POST', body: formData });
+        const data = await res.json();
+
+        if (!data.success) {
+          console.warn('Lead magnet: respuesta inesperada', data);
+        }
 
         showSuccess();
 
@@ -388,18 +417,22 @@
         if (typeof gtag !== 'undefined') {
           gtag('event', 'lead_magnet_submit', {
             event_category: 'Lead',
-            event_label: industria,
-            value: 1,
+            event_label:    industria,
+            value:          1,
           });
         }
 
       } catch (err) {
-        // Fallback: abrir WhatsApp con datos pre-llenados
+        console.error('Lead magnet fetch error:', err);
+        // Fallback: WhatsApp con datos pre-llenados
         const waMsg = encodeURIComponent(
-          `Hola, quiero el diagnóstico gratuito.\nNombre: ${nombre}\nIndustria: ${industria}\nEmail: ${email}`
+          'Hola, quiero el diagnóstico gratuito.\n' +
+          'Nombre: ' + nombre + '\n' +
+          'Industria: ' + industria + '\n' +
+          'Email: ' + email
         );
-        window.open(`https://wa.me/523117406927?text=${waMsg}`, '_blank');
-        showSuccess(); // mostrar confirmación igualmente
+        window.open('https://wa.me/523117406927?text=' + waMsg, '_blank');
+        showSuccess();
       }
     });
 
@@ -407,7 +440,7 @@
       document.getElementById('lmStep1').style.display = 'none';
       const step2 = document.getElementById('lmStep2');
       step2.style.display = 'block';
-      step2.focus();
+      step2.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   })();
 

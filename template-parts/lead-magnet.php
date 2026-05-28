@@ -68,10 +68,34 @@
           </div>
         </div>
 
-        <div class="lm-field">
-          <label class="lm-label" for="lm-whatsapp">WhatsApp (para enviarte el diagnóstico también)</label>
-          <input class="lm-input" id="lm-whatsapp" type="tel" name="whatsapp" placeholder="+52 333 123 4567">
-          <span class="lm-hint">Opcional — te enviamos el PDF por ambos canales</span>
+        <div class="lm-field-row">
+          <div class="lm-field">
+            <label class="lm-label" for="lm-whatsapp">WhatsApp (para enviarte el diagnóstico también)</label>
+            <input class="lm-input" id="lm-whatsapp" type="tel" name="whatsapp" placeholder="+52 333 123 4567">
+            <span class="lm-hint">Opcional — te enviamos el PDF por ambos canales</span>
+          </div>
+          <div class="lm-field">
+            <label class="lm-label">¿Usas alguna herramienta para gestionar tu negocio?</label>
+            <div class="lm-radio-group" role="radiogroup" aria-label="¿Usas herramienta?">
+              <label class="lm-radio-label">
+                <input type="radio" name="usa_herramienta" value="si" id="lm-herramienta-si">
+                <span class="lm-radio-check" aria-hidden="true"></span>
+                Sí, ya usamos algo
+              </label>
+              <label class="lm-radio-label">
+                <input type="radio" name="usa_herramienta" value="no" id="lm-herramienta-no">
+                <span class="lm-radio-check" aria-hidden="true"></span>
+                No, todo es manual
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="lm-field" id="lmHerramientaCual" style="display:none" aria-live="polite">
+          <label class="lm-label" for="lm-cual">¿Cuál herramienta usan?</label>
+          <input class="lm-input" id="lm-cual" type="text" name="herramienta_cual"
+                 placeholder="Ej: HubSpot, Zoho, Excel, WhatsApp Business, Notion...">
+          <span class="lm-hint">CRM, hoja de cálculo, app de gestión, calendario — lo que sea</span>
         </div>
 
         <button type="submit" class="lm-btn" id="lmSubmitBtn">

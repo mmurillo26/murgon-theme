@@ -170,3 +170,155 @@ function murgon_dashboard_widget() {
     );
 }
 add_action( 'wp_dashboard_setup', 'murgon_dashboard_widget' );
+
+/* ──────────────────────────────────────────
+   LEAD MAGNET — AJAX Handler (TASK-04)
+   Envía email a contacto@murgonagency.com
+   con todos los datos del prospecto
+────────────────────────────────────────── */
+function murgon_lead_magnet_handler() {
+
+    // 1. Verificar nonce
+    if ( ! check_ajax_referer( 'murgon_nonce', 'nonce', false ) ) {
+        wp_send_json_error( [ 'message' => 'Nonce inválido' ], 403 );
+        return;
+    }
+
+    // 2. Sanitizar campos
+    $nombre           = sanitize_text_field( $_POST['nombre']           ?? '' );
+    $email            = sanitize_email(      $_POST['email']            ?? '' );
+    $whatsapp         = sanitize_text_field( $_POST['whatsapp']         ?? '' );
+    $industria        = sanitize_text_field( $_POST['industria']        ?? '' );
+    $volumen          = sanitize_text_field( $_POST['volumen']          ?? '' );
+    $usa_herramienta  = sanitize_text_field( $_POST['usa_herramienta']  ?? '' );
+    $herramienta_cual = sanitize_text_field( $_POST['herramienta_cual'] ?? '' );
+    $page_url         = esc_url_raw(         $_POST['page_url']         ?? '' );
+    $timestamp        = sanitize_text_field( $_POST['timestamp']        ?? '' );
+
+    // 3. Validar campos requeridos
+    if ( ! $nombre || ! is_email( $email ) || ! $industria || ! $volumen ) {
+        wp_send_json_error( [ 'message' => 'Campos requeridos faltantes' ], 400 );
+        return;
+    }
+
+    // 4. Etiquetas legibles
+    $industria_labels = [
+        'clinica'       => 'Clínica / Estética / Salud',
+        'inmobiliaria'  => 'Agencia Inmobiliaria',
+        'ecommerce'     => 'E-commerce / Tienda online',
+        'agencia'       => 'Agencia de Marketing',
+        'negocio_local' => 'Negocio Local / Restaurante',
+        'educacion'     => 'Educación / Cursos',
+        'otro'          => 'Otro',
+    ];
+    $industria_label = $industria_labels[ $industria ] ?? $industria;
+
+    $herramienta_info = 'No — todo manual';
+    if ( $usa_herramienta === 'si' ) {
+        $herramienta_info = 'Sí' . ( $herramienta_cual ? ' — <strong>' . esc_html( $herramienta_cual ) . '</strong>' : ' (no especificó cuál)' );
+    }
+
+    // WA link para el botón de respuesta rápida
+    $wa_msg_encoded = rawurlencode(
+        "Hola {$nombre}, vi que pediste el diagnóstico gratuito de Murgon Agency. ¿Tienes 5 minutos para contarme más sobre tu negocio?"
+    );
+    $wa_number = preg_replace( '/[^0-9]/', '', $whatsapp );
+    $wa_link   = $wa_number
+        ? "https://wa.me/{$wa_number}?text={$wa_msg_encoded}"
+        : "https://wa.me/523117406927?text={$wa_msg_encoded}";
+
+    // 5. Construir email HTML
+    $to      = 'contacto@murgonagency.com';
+    $subject = "\xF0\x9F\x8E\xAF Nuevo diagnóstico gratuito — {$nombre} ({$industria_label})";
+    $headers = [
+        'Content-Type: text/html; charset=UTF-8',
+        "Reply-To: {$nombre} <{$email}>",
+    ];
+
+    $body = '<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body style="margin:0;padding:0;background:#f0f2f5;font-family:Arial,Helvetica,sans-serif;">
+<div style="max-width:580px;margin:32px auto;background:#ffffff;border-radius:10px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.10);">
+
+  <!-- HEADER -->
+  <div style="background:#070910;padding:30px 36px;text-align:center;">
+    <p style="margin:0;font-size:20px;font-weight:700;color:#ffffff;letter-spacing:-0.3px;">Murgon Agency</p>
+    <p style="margin:6px 0 0;font-size:12px;color:rgba(255,255,255,0.45);letter-spacing:1px;text-transform:uppercase;">Nuevo lead · Diagnóstico gratuito</p>
+  </div>
+
+  <!-- ALERTA VERDE -->
+  <div style="background:#00e676;padding:13px 36px;">
+    <p style="margin:0;font-size:13px;font-weight:700;color:#000;">&#x1F3AF; NUEVO DIAGNÓSTICO SOLICITADO — Responde antes de 24h</p>
+  </div>
+
+  <!-- DATOS DEL PROSPECTO -->
+  <div style="padding:32px 36px 20px;">
+    <p style="margin:0 0 20px;font-size:13px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:1.5px;">Datos del prospecto</p>
+
+    <table style="width:100%;border-collapse:collapse;">
+      <tr>
+        <td style="padding:11px 0;border-bottom:1px solid #f0f0f0;font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:0.8px;width:38%;vertical-align:top;">Nombre</td>
+        <td style="padding:11px 0;border-bottom:1px solid #f0f0f0;font-size:15px;font-weight:600;color:#111;">' . esc_html( $nombre ) . '</td>
+      </tr>
+      <tr>
+        <td style="padding:11px 0;border-bottom:1px solid #f0f0f0;font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:0.8px;vertical-align:top;">Email</td>
+        <td style="padding:11px 0;border-bottom:1px solid #f0f0f0;font-size:15px;"><a href="mailto:' . esc_attr( $email ) . '" style="color:#00c853;text-decoration:none;font-weight:600;">' . esc_html( $email ) . '</a></td>
+      </tr>
+      <tr>
+        <td style="padding:11px 0;border-bottom:1px solid #f0f0f0;font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:0.8px;vertical-align:top;">WhatsApp</td>
+        <td style="padding:11px 0;border-bottom:1px solid #f0f0f0;font-size:15px;">' . ( $wa_number ? '<a href="https://wa.me/' . esc_attr( $wa_number ) . '" style="color:#25d366;text-decoration:none;font-weight:600;">' . esc_html( $whatsapp ) . '</a>' : '<span style="color:#ccc;font-size:13px;">No proporcionado</span>' ) . '</td>
+      </tr>
+      <tr>
+        <td style="padding:11px 0;border-bottom:1px solid #f0f0f0;font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:0.8px;vertical-align:top;">Industria</td>
+        <td style="padding:11px 0;border-bottom:1px solid #f0f0f0;font-size:15px;color:#111;font-weight:600;">' . esc_html( $industria_label ) . '</td>
+      </tr>
+      <tr>
+        <td style="padding:11px 0;border-bottom:1px solid #f0f0f0;font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:0.8px;vertical-align:top;">Volumen diario</td>
+        <td style="padding:11px 0;border-bottom:1px solid #f0f0f0;font-size:15px;color:#111;">' . esc_html( $volumen ) . ' mensajes/consultas al día</td>
+      </tr>
+      <tr>
+        <td style="padding:11px 0;font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:0.8px;vertical-align:top;">Herramienta actual</td>
+        <td style="padding:11px 0;font-size:15px;color:#111;">' . $herramienta_info . '</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- BOTONES DE RESPUESTA -->
+  <div style="padding:8px 36px 32px;text-align:center;">
+    <a href="' . $wa_link . '"
+       style="display:inline-block;background:#25d366;color:#fff;text-decoration:none;padding:13px 22px;border-radius:8px;font-weight:700;font-size:14px;margin:6px 5px;">
+      &#x1F4AC; Responder por WhatsApp
+    </a>
+    <a href="mailto:' . esc_attr( $email ) . '?subject=' . rawurlencode( "Re: Tu diagnóstico gratuito — Murgon Agency" ) . '"
+       style="display:inline-block;background:#f4f4f4;color:#333;text-decoration:none;padding:13px 22px;border-radius:8px;font-weight:700;font-size:14px;border:1px solid #ddd;margin:6px 5px;">
+      &#x2709;&#xFE0F; Responder por Email
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="background:#f9f9f9;padding:16px 36px;border-top:1px solid #eee;text-align:center;">
+    <p style="margin:0;font-size:11px;color:#bbb;line-height:1.6;">
+      Recibido desde: <a href="' . esc_attr( $page_url ) . '" style="color:#bbb;">' . esc_html( $page_url ) . '</a><br>
+      ' . ( $timestamp ? 'Fecha: ' . esc_html( $timestamp ) . '<br>' : '' ) . '
+      Murgon Agency · contacto@murgonagency.com
+    </p>
+  </div>
+
+</div>
+</body>
+</html>';
+
+    $sent = wp_mail( $to, $subject, $body, $headers );
+
+    // Respondemos éxito siempre para no bloquear el UX del usuario
+    wp_send_json_success( [
+        'message' => $sent ? 'Email enviado correctamente' : 'Recibido (revisar configuración SMTP)',
+        'sent'    => $sent,
+    ] );
+}
+add_action( 'wp_ajax_murgon_lead_magnet',        'murgon_lead_magnet_handler' );
+add_action( 'wp_ajax_nopriv_murgon_lead_magnet', 'murgon_lead_magnet_handler' );
