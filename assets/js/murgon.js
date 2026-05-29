@@ -375,11 +375,28 @@
       const usa_herramienta = usaRadio ? usaRadio.value : '';
       const herramientaInp  = form.querySelector('[name="herramienta_cual"]');
       const herramienta_cual = herramientaInp ? herramientaInp.value.trim() : '';
+      const consentBox      = form.querySelector('[name="consent"]');
+      const consentWrap     = document.getElementById('lmConsentWrap');
+      const consentError    = document.getElementById('lmConsentError');
 
       if (!nombre || !email || !industria || !volumen) {
         alert('Por favor completa todos los campos requeridos.');
         return;
       }
+
+      // Validación del checkbox de privacidad — obligatorio
+      if (!consentBox || !consentBox.checked) {
+        if (consentWrap) {
+          consentWrap.classList.add('lm-consent-wrap--error');
+          setTimeout(function () {
+            consentWrap.classList.remove('lm-consent-wrap--error');
+          }, 1000);
+        }
+        if (consentError) consentError.style.display = 'block';
+        if (consentBox)   consentBox.focus();
+        return;
+      }
+      if (consentError) consentError.style.display = 'none';
 
       btn.disabled = true;
       btnText.style.display = 'none';

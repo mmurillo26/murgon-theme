@@ -1373,6 +1373,121 @@ input[type="range"]::-webkit-slider-thumb:hover {
   color: #eef0f5;
 }
 
+/* ── Lead Magnet: Consent checkbox ── */
+.lm-consent-wrap {
+  margin-top: 18px;
+  margin-bottom: 4px;
+}
+
+.lm-consent-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.02);
+  transition: border-color 0.2s, background 0.2s;
+  user-select: none;
+}
+
+.lm-consent-label:hover {
+  border-color: rgba(0,230,118,0.2);
+  background: rgba(0,230,118,0.03);
+}
+
+/* Ocultar checkbox nativo */
+.lm-consent-label input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Check visual cuadrado */
+.lm-consent-check {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 4px;
+  margin-top: 1px;
+  transition: border-color 0.2s, background 0.2s;
+  position: relative;
+}
+
+/* Palomita (✓) */
+.lm-consent-check::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 5px;
+  height: 9px;
+  border: 2px solid #000;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg) scale(0.6);
+  opacity: 0;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.lm-consent-label input[type="checkbox"]:checked ~ .lm-consent-check {
+  background: #00e676;
+  border-color: #00e676;
+}
+
+.lm-consent-label input[type="checkbox"]:checked ~ .lm-consent-check::after {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+}
+
+/* Contenedor activo completo */
+.lm-consent-label:has(input[type="checkbox"]:checked) {
+  border-color: rgba(0,230,118,0.3);
+  background: rgba(0,230,118,0.05);
+}
+
+.lm-consent-text {
+  font-size: 12px;
+  color: rgba(238,240,245,0.6);
+  line-height: 1.5;
+}
+
+.lm-consent-link {
+  color: rgba(0,230,118,0.85);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s;
+}
+
+.lm-consent-link:hover {
+  color: #00e676;
+}
+
+/* Estado error — borde rojo cuando no se acepta */
+.lm-consent-wrap--error .lm-consent-label {
+  border-color: rgba(255,82,82,0.45);
+  background: rgba(255,82,82,0.04);
+  animation: lm-shake 0.35s ease;
+}
+
+.lm-consent-error {
+  font-size: 11px;
+  color: #ff5252;
+  margin-top: 6px;
+  padding-left: 2px;
+}
+
+@keyframes lm-shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-5px); }
+  40%       { transform: translateX(5px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
 /* ── TASK-05: CALCULATOR EMAIL GATE ── */
 .roi-results { position: relative; }
 

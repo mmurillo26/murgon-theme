@@ -314,6 +314,16 @@ function murgon_lead_magnet_handler() {
 
     $sent = wp_mail( $to, $subject, $body, $headers );
 
+    // Añadir a Brevo → dispara la automation de nurturing automáticamente
+    murgon_brevo_add_contact( [
+        'email'       => $email,
+        'nombre'      => $nombre,
+        'whatsapp'    => $whatsapp,
+        'industria'   => $industria_label,
+        'volumen'     => $volumen,
+        'herramienta' => strip_tags( $herramienta_info ),
+    ] );
+
     // Respondemos éxito siempre para no bloquear el UX del usuario
     wp_send_json_success( [
         'message' => $sent ? 'Email enviado correctamente' : 'Recibido (revisar configuración SMTP)',
@@ -322,3 +332,63 @@ function murgon_lead_magnet_handler() {
 }
 add_action( 'wp_ajax_murgon_lead_magnet',        'murgon_lead_magnet_handler' );
 add_action( 'wp_ajax_nopriv_murgon_lead_magnet', 'murgon_lead_magnet_handler' );
+
+/* ──────────────────────────────────────────
+   BREVO — Helper: añadir contacto a lista #7
+   Dispara la automation de nurturing
+   automáticamente al añadir el contacto
+────────────────────────────────────────── */
+function murgon_brevo_add_contact( array $contact ) {
+
+    // Leer API key del plugin de Brevo (prueba nombres de opción más comunes)
+    $api_key = get_option( 'sib_api_key_v3', '' );
+    if ( empty( $api_key ) ) {
+        $api_key = get_option( 'brevo_api_key_v3', '' );
+    }
+    if ( empty( $api_key ) ) {
+        // Fallback: constante definida en wp-config.php
+        $api_key = defined( 'BREVO_API_KEY' ) ? BREVO_API_KEY : '';
+    }
+    if ( empty( $api_key ) ) {
+        error_log( '[Murgon] Brevo: API key no encontrada en opciones ni en wp-config.php' );
+        return false;
+    }
+
+    $payload = wp_json_encode( [
+        'email'         => $contact['email'],
+        'updateEnabled' => true,          // actualiza si ya existe
+        'listIds'       => [ 7 ],         // Lista "Diagnóstico Gratuito"
+        'attributes'    => [
+            'FIRSTNAME'   => $contact['nombre'],
+            'WHATSAPP'    => $contact['whatsapp'],
+            'INDUSTRIA'   => $contact['industria'],
+            'VOLUMEN'     => $contact['volumen'],
+            'HERRAMIENTA' => $contact['herramienta'],
+            'FUENTE'      => 'lead-magnet-diagnostico',
+        ],
+    ] );
+
+    $response = wp_remote_post( 'https://api.brevo.com/v3/contacts', [
+        'headers' => [
+            'api-key'      => $api_key,
+            'Content-Type' => 'application/json',
+            'Accept'       => 'application/json',
+        ],
+        'body'    => $payload,
+        'timeout' => 10,
+    ] );
+
+    if ( is_wp_error( $response ) ) {
+        error_log( '[Murgon] Brevo WP_Error: ' . $response->get_error_message() );
+        return false;
+    }
+
+    $code    = wp_remote_retrieve_response_code( $response );
+    $success = in_array( $code, [ 200, 201, 204 ], true );
+
+    if ( ! $success ) {
+        error_log( '[Murgon] Brevo HTTP ' . $code . ': ' . wp_remote_retrieve_body( $response ) );
+    }
+
+    return $success;
+}
