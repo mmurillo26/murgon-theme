@@ -98,6 +98,21 @@
           <span class="lm-hint">CRM, hoja de cálculo, app de gestión, calendario — lo que sea</span>
         </div>
 
+        <!-- Consentimiento de datos (obligatorio) -->
+        <div class="lm-consent-wrap" id="lmConsentWrap">
+          <label class="lm-consent-label" for="lm-consent">
+            <input type="checkbox" id="lm-consent" name="consent" value="1" required aria-required="true">
+            <span class="lm-consent-check" aria-hidden="true"></span>
+            <span class="lm-consent-text">
+              Acepto el uso y tratamiento de mis datos personales conforme a la
+              <a href="/politica-de-privacidad" target="_blank" rel="noopener" class="lm-consent-link">Política de Privacidad</a>.
+            </span>
+          </label>
+          <p class="lm-consent-error" id="lmConsentError" style="display:none" role="alert">
+            Debes aceptar la política de privacidad para continuar.
+          </p>
+        </div>
+
         <button type="submit" class="lm-btn" id="lmSubmitBtn">
           <span class="lm-btn-text">Quiero mi diagnóstico gratuito →</span>
           <span class="lm-btn-loading" style="display:none" aria-hidden="true">Enviando...</span>
