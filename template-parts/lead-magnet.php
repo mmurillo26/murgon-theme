@@ -135,4 +135,90 @@
     </div>
 
   </div>
+
+  <script>
+    (function() {
+      var form = document.getElementById('leadMagnetForm');
+      if (!form) return;
+
+      // Toggle del input "¿cuál herramienta?"
+      var herramientaWrap = document.getElementById('lmHerramientaCual');
+      document.querySelectorAll('input[name="usa_herramienta"]').forEach(function(r) {
+        r.addEventListener('change', function() {
+          herramientaWrap.style.display = r.value === 'si' && r.checked ? '' : 'none';
+        });
+      });
+
+      var INDUSTRY_LABELS = {
+        clinica: 'Clínica / Estética / Salud',
+        inmobiliaria: 'Agencia Inmobiliaria',
+        ecommerce: 'E-commerce / Tienda online',
+        agencia: 'Agencia de Marketing',
+        negocio_local: 'Negocio Local / Restaurante',
+        educacion: 'Educación / Cursos',
+        otro: 'Otro'
+      };
+      var VOLUME_LABELS = {
+        '1-10': '1 a 10 mensajes/consultas al día',
+        '11-50': '11 a 50 mensajes/consultas al día',
+        '51-200': '51 a 200 mensajes/consultas al día',
+        '200+': 'Más de 200 mensajes/consultas al día'
+      };
+
+      var ENDPOINT = 'https://automation-dashboard-seven-blush.vercel.app/api/leads/web';
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        var consentBox = document.getElementById('lm-consent');
+        var consentError = document.getElementById('lmConsentError');
+        if (!consentBox.checked) {
+          consentError.style.display = '';
+          return;
+        }
+        consentError.style.display = 'none';
+
+        var fd = new FormData(form);
+        var usaHerramienta = fd.get('usa_herramienta');
+        var herramientaCual = (fd.get('herramienta_cual') || '').toString().trim();
+        var currentTool = '';
+        if (usaHerramienta === 'si') {
+          currentTool = herramientaCual || 'Sí (no especificó cuál)';
+        }
+
+        var payload = {
+          name: (fd.get('nombre') || '').toString().trim(),
+          email: (fd.get('email') || '').toString().trim(),
+          whatsapp: (fd.get('whatsapp') || '').toString().trim(),
+          industry: INDUSTRY_LABELS[fd.get('industria')] || fd.get('industria') || '',
+          volume: VOLUME_LABELS[fd.get('volumen')] || fd.get('volumen') || '',
+          currentTool: currentTool
+        };
+
+        var btn = document.getElementById('lmSubmitBtn');
+        btn.disabled = true;
+        btn.querySelector('.lm-btn-text').style.display = 'none';
+        btn.querySelector('.lm-btn-loading').style.display = '';
+
+        try {
+          var res = await fetch(ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          document.getElementById('lmStep1').style.display = 'none';
+          document.getElementById('lmStep2').style.display = '';
+          document.getElementById('lmStep2').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch (err) {
+          console.error('Lead magnet submit error:', err);
+          alert('Ocurrió un error al enviar tu solicitud. Por favor intenta de nuevo o escríbenos por WhatsApp.');
+          btn.disabled = false;
+          btn.querySelector('.lm-btn-text').style.display = '';
+          btn.querySelector('.lm-btn-loading').style.display = 'none';
+        }
+      });
+    })();
+  </script>
+
 </section>
