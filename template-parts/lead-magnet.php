@@ -165,7 +165,7 @@
         '200+': 'Más de 200 mensajes/consultas al día'
       };
 
-      var ENDPOINT = 'https://automation-dashboard-seven-blush.vercel.app/api/leads/web';
+      var ENDPOINT = 'https://vercel.murgonagency.com/api/leads/web';
 
       form.addEventListener('submit', async function(e) {
         e.preventDefault();
