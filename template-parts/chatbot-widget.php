@@ -12,7 +12,12 @@
      aria-label="Abrir chat con asistente de Murgon"
      aria-expanded="false"
      aria-controls="chatWindow">
-  <span class="chat-trigger__avatar" aria-hidden="true">M</span>
+  <img class="chat-trigger__logo"
+       src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/murgonagency_logo.png"
+       alt=""
+       width="30"
+       height="30"
+       aria-hidden="true">
   <span class="chat-trigger__dot" aria-hidden="true"></span>
 </div>
 

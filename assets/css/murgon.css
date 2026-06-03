@@ -1589,66 +1589,70 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 /* ── TASK-06: CHATBOT WIDGET ── */
 
-/* Botón circular principal — patrón Intercom/Crisp */
+/* Burbuja de chat con piquito/tail — patrón WhatsApp/iMessage */
 .chat-trigger {
   position: fixed;
   bottom: 92px; /* encima del botón flotante de WA */
   right: 24px;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+  width: 64px;
+  height: 54px;
+  border-radius: 18px 14px 14px 18px; /* derecha levemente cuadrada — origen del tail */
   background: linear-gradient(135deg, #00c853, #009688);
   border: none;
   cursor: pointer;
   z-index: 9998;
-  box-shadow: 0 4px 18px rgba(0,200,83,0.45), 0 2px 8px rgba(0,0,0,0.45);
-  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
   user-select: none;
   outline: none;
+  animation: chat-bubble-pulse 3s ease-out infinite;
+  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
 }
 
-/* Ring pulse externo — señala que está "vivo" */
-.chat-trigger::before {
-  content: '';
-  position: absolute;
-  inset: -5px;
-  border-radius: 50%;
-  border: 2px solid rgba(0,230,118,0.40);
-  animation: chat-ring-pulse 3s ease-out infinite;
-  pointer-events: none;
-}
-
-@keyframes chat-ring-pulse {
-  0%   { transform: scale(1);    opacity: 0.7; }
-  70%  { transform: scale(1.22); opacity: 0;   }
-  100% { transform: scale(1.22); opacity: 0;   }
+@keyframes chat-bubble-pulse {
+  0%   { box-shadow: 0 4px 18px rgba(0,200,83,0.45), 0 2px 8px rgba(0,0,0,0.45), 0 0 0 0   rgba(0,200,83,0.35); }
+  65%  { box-shadow: 0 4px 18px rgba(0,200,83,0.45), 0 2px 8px rgba(0,0,0,0.45), 0 0 0 14px rgba(0,200,83,0);    }
+  100% { box-shadow: 0 4px 18px rgba(0,200,83,0.45), 0 2px 8px rgba(0,0,0,0.45), 0 0 0 0   rgba(0,200,83,0);    }
 }
 
 .chat-trigger:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 26px rgba(0,200,83,0.60), 0 4px 12px rgba(0,0,0,0.40);
+  transform: scale(1.06) translateY(-1px);
+  animation: none;
+  box-shadow: 0 6px 24px rgba(0,200,83,0.60), 0 4px 12px rgba(0,0,0,0.40);
 }
 
-/* Letra M — avatar del asistente */
-.chat-trigger__avatar {
-  font-size: 21px;
-  font-weight: 800;
-  color: #000;
-  line-height: 1;
-  letter-spacing: -0.5px;
-  font-family: 'Space Mono', monospace;
+/* Piquito (tail) apuntando a la derecha */
+.chat-trigger::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -10px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 11px solid #009688;
+}
+
+/* Logo — invert(1) + screen elimina el fondo blanco, deja el ícono blanco */
+.chat-trigger__logo {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  display: block;
+  filter: invert(1);
+  mix-blend-mode: screen;
 }
 
 /* Punto verde online — esquina superior derecha */
 .chat-trigger__dot {
   position: absolute;
-  top: 3px;
-  right: 3px;
-  width: 13px;
-  height: 13px;
+  top: 5px;
+  right: 9px;
+  width: 12px;
+  height: 12px;
   background: #fff;
   border-radius: 50%;
   border: 2px solid #0a0d12;
