@@ -1622,6 +1622,33 @@ input[type="range"]::-webkit-slider-thumb:hover {
   box-shadow: 0 6px 24px rgba(0,200,83,0.60), 0 4px 12px rgba(0,0,0,0.40);
 }
 
+/* Tooltip de hover — aparece encima de la burbuja */
+.chat-trigger::before {
+  content: '¿Tienes dudas? Pregúntame 🙂';
+  position: absolute;
+  bottom: calc(100% + 12px);
+  right: 0;
+  background: rgba(15, 21, 32, 0.96);
+  color: #eef0f5;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+  white-space: nowrap;
+  padding: 7px 13px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.chat-trigger:hover::before {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Piquito (tail) apuntando a la derecha */
 /* .chat-trigger::after {
   content: '';
