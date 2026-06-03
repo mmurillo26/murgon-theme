@@ -62,18 +62,19 @@
     sessionId: getOrCreateSessionId(),
     messages: loadStoredMessages(),
     isLoading: false,
-    badgeDismissed: false,
     callConfirmed: false,
   };
 
   /* ── ELEMENTOS ── */
-  const trigger    = document.getElementById('chatTrigger');
-  const chatWindow = document.getElementById('chatWindow');
-  const messagesEl = document.getElementById('chatMessages');
-  const inputEl    = document.getElementById('chatInput');
-  const sendBtn    = document.getElementById('chatSend');
-  const closeBtn   = document.getElementById('chatX');
-  const badge      = trigger ? trigger.querySelector('.chat-trigger__badge') : null;
+  const trigger         = document.getElementById('chatTrigger');
+  const chatWindow      = document.getElementById('chatWindow');
+  const messagesEl      = document.getElementById('chatMessages');
+  const inputEl         = document.getElementById('chatInput');
+  const sendBtn         = document.getElementById('chatSend');
+  const closeBtn        = document.getElementById('chatX');
+  const greeting        = document.getElementById('chatGreeting');
+  const greetingDismiss = document.getElementById('greetingDismiss');
+  const greetingCta     = document.getElementById('greetingCta');
 
   if (!trigger || !chatWindow) return; // Widget no presente en esta página
 
@@ -98,21 +99,41 @@
     trigger.setAttribute('aria-expanded', String(state.isOpen));
 
     if (state.isOpen) {
-      if (badge && !state.badgeDismissed) {
-        badge.style.display = 'none';
-        state.badgeDismissed = true;
-      }
+      // Ocultar greeting card al abrir el chat
+      if (greeting) greeting.style.display = 'none';
       inputEl.focus();
     }
   }
 
-  if (badge) {
-    setTimeout(() => {
-      if (!state.isOpen && !state.badgeDismissed) {
-        badge.style.display = 'none';
-        state.badgeDismissed = true;
-      }
-    }, 8000);
+  /* ── GREETING CARD ── */
+  // Auto-show después de 4 s si el usuario no ha chateado antes
+  if (greeting) {
+    const alreadyGreeted = sessionStorage.getItem('murgon_chat_greeted');
+    if (!alreadyGreeted && !state.messages.length) {
+      setTimeout(() => {
+        if (!state.isOpen) {
+          greeting.style.display = 'flex';
+          greeting.removeAttribute('aria-hidden');
+          sessionStorage.setItem('murgon_chat_greeted', '1');
+        }
+      }, 4000);
+    }
+
+    // Botón X — cerrar sin abrir chat
+    if (greetingDismiss) {
+      greetingDismiss.addEventListener('click', (e) => {
+        e.stopPropagation();
+        greeting.style.display = 'none';
+      });
+    }
+
+    // CTA "Iniciar conversación →" — abrir chat directamente
+    if (greetingCta) {
+      greetingCta.addEventListener('click', () => {
+        greeting.style.display = 'none';
+        toggleChat(true);
+      });
+    }
   }
 
   /* ── ENVIAR MENSAJE ── */
