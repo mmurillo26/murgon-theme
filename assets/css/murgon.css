@@ -1595,8 +1595,8 @@ input[type="range"]::-webkit-slider-thumb:hover {
   bottom: 92px; /* encima del botón flotante de WA */
   right: 24px;
   width: 64px;
-  height: 54px;
-  border-radius: 18px 14px 14px 18px; /* derecha levemente cuadrada — origen del tail */
+  height: 64px;
+  border-radius: 50px;
   background: linear-gradient(135deg, #00c853, #009688);
   border: none;
   cursor: pointer;
@@ -1623,7 +1623,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 /* Piquito (tail) apuntando a la derecha */
-.chat-trigger::after {
+/* .chat-trigger::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -1634,12 +1634,12 @@ input[type="range"]::-webkit-slider-thumb:hover {
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
   border-left: 11px solid #009688;
-}
+} */
 
 /* Logo — invert(1) + screen elimina el fondo blanco, deja el ícono blanco */
 .chat-trigger__logo {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
   display: block;
   filter: invert(1);
@@ -1649,8 +1649,8 @@ input[type="range"]::-webkit-slider-thumb:hover {
 /* Punto verde online — esquina superior derecha */
 .chat-trigger__dot {
   position: absolute;
-  top: 5px;
-  right: 9px;
+  top: 2px;
+  right: 4px;
   width: 12px;
   height: 12px;
   background: #fff;
