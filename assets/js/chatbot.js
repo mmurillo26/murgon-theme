@@ -1,51 +1,69 @@
 /**
  * Murgon Agency — chatbot.js
- * Chatbot AI calificador en página
- * TASK-06 — CRO Sprint Mayo 2026
+ * Bot calificador en página, integrado con automation-dashboard
  *
- * Arquitectura: El frontend envía el historial a un webhook n8n.
- * n8n llama a Claude API (claude-sonnet-4-5) y devuelve la respuesta.
- * Las API keys NUNCA se exponen en el frontend.
+ * Arquitectura: el frontend envía cada mensaje + sessionId al endpoint
+ * `/api/chat/web` del dashboard. El backend mantiene el historial,
+ * califica al lead, recopila el WhatsApp, y devuelve los links de
+ * Calendly cuando llega el momento de agendar.
  *
- * Para configurar: reemplaza WEBHOOK_URL con tu endpoint de n8n.
+ * Persistencia: sessionId y mensajes guardados en localStorage para
+ * que la conversación sobreviva reloads.
  */
 
 (function () {
   'use strict';
 
   /* ── CONFIGURACIÓN ── */
-  // TODO: Reemplazar con tu URL de webhook n8n real
-  const WEBHOOK_URL = 'https://TU_N8N_INSTANCE/webhook/murgon-chatbot';
+  const API_URL = 'https://automation-dashboard-seven-blush.vercel.app/api/chat/web';
+  const STORAGE_SESSION_KEY = 'murgon_chat_session_id';
+  const STORAGE_MESSAGES_KEY = 'murgon_chat_messages';
+  const WHATSAPP_FALLBACK = 'https://wa.me/523117406927?text=Hola%2C%20tengo%20una%20pregunta%20sobre%20automatizaci%C3%B3n';
 
-  const SYSTEM_PROMPT = `Eres el asistente de ventas de Murgon Agency, una agencia de automatización con IA fundada por Mario Murillo, desarrollador full stack.
+  /* ── SESSION ID ── */
+  function getOrCreateSessionId() {
+    let id;
+    try {
+      id = localStorage.getItem(STORAGE_SESSION_KEY);
+    } catch (_e) {
+      // localStorage blocked (private mode, etc.) — fall back to in-memory
+    }
+    if (!id) {
+      id = (window.crypto && typeof window.crypto.randomUUID === 'function')
+        ? window.crypto.randomUUID()
+        : 'web-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+      try { localStorage.setItem(STORAGE_SESSION_KEY, id); } catch (_e) {}
+    }
+    return id;
+  }
 
-OBJETIVO: Calificar al prospecto y dirigirlo a agendar una consulta gratuita de 20 minutos.
+  function loadStoredMessages() {
+    try {
+      const raw = localStorage.getItem(STORAGE_MESSAGES_KEY);
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (_e) {
+      return [];
+    }
+  }
 
-PERSONALIDAD: Amigable, experto técnico, directo. No uses frases genéricas de ventas. Habla como un developer que entiende el negocio del cliente.
-
-FLUJO DE CALIFICACIÓN:
-1. Pregunta tipo de negocio e industria
-2. Pregunta cuál es el proceso que más tiempo les consume
-3. Pregunta si tienen WhatsApp Business activo
-4. Explica brevemente cómo Murgon lo resolvería (específico a su industria)
-5. Invita a agendar consulta gratuita de 20 min vía WhatsApp: wa.me/523117406927
-
-INFORMACIÓN DE PRECIOS:
-- Plan Starter: $8,500 MXN (~$420 USD) — bot WhatsApp + integración + landing
-- Sistema Completo: $18,500 MXN (~$920 USD) — todo incluyendo CRM + dashboard
-- Tiempo de implementación: 7 a 14 días
-- Enterprise: a medida, requiere llamada de descubrimiento
-
-NUNCA menciones a competidores. Si preguntan, di que Mario puede hacer una comparativa personalizada en la consulta.
-SIEMPRE responde en español. Respuestas cortas (máximo 3 párrafos). Sin markdown ni asteriscos en las respuestas.`;
+  function persistMessages(msgs) {
+    try {
+      // Keep only last 50 to avoid bloating localStorage
+      const trimmed = msgs.slice(-50);
+      localStorage.setItem(STORAGE_MESSAGES_KEY, JSON.stringify(trimmed));
+    } catch (_e) {}
+  }
 
   /* ── ESTADO ── */
   const state = {
     isOpen: false,
-    messages: [],
+    sessionId: getOrCreateSessionId(),
+    messages: loadStoredMessages(),
     isLoading: false,
-    leadEmail: null,
     badgeDismissed: false,
+    callConfirmed: false,
   };
 
   /* ── ELEMENTOS ── */
@@ -58,6 +76,11 @@ SIEMPRE responde en español. Respuestas cortas (máximo 3 párrafos). Sin markd
   const badge      = trigger ? trigger.querySelector('.chat-trigger__badge') : null;
 
   if (!trigger || !chatWindow) return; // Widget no presente en esta página
+
+  /* ── RENDER MENSAJES PERSISTIDOS ── */
+  for (const m of state.messages) {
+    addMessage(m.role === 'user' ? 'user' : 'bot', m.content, m.time);
+  }
 
   /* ── TOGGLE ── */
   trigger.addEventListener('click', () => toggleChat());
@@ -75,7 +98,6 @@ SIEMPRE responde en español. Respuestas cortas (máximo 3 párrafos). Sin markd
     trigger.setAttribute('aria-expanded', String(state.isOpen));
 
     if (state.isOpen) {
-      // Ocultar badge de notificación
       if (badge && !state.badgeDismissed) {
         badge.style.display = 'none';
         state.badgeDismissed = true;
@@ -84,7 +106,6 @@ SIEMPRE responde en español. Respuestas cortas (máximo 3 párrafos). Sin markd
     }
   }
 
-  // Badge de notificación: pulsa por 5s al cargar la página, luego desaparece si no abrieron
   if (badge) {
     setTimeout(() => {
       if (!state.isOpen && !state.badgeDismissed) {
@@ -105,95 +126,90 @@ SIEMPRE responde en español. Respuestas cortas (máximo 3 párrafos). Sin markd
 
   async function sendMessage() {
     const text = inputEl.value.trim();
-    if (!text || state.isLoading) return;
+    if (!text || state.isLoading || state.callConfirmed) return;
 
     inputEl.value = '';
-    addMessage('user', text);
-    state.messages.push({ role: 'user', content: text });
+    const userTime = nowLabel();
+    addMessage('user', text, userTime);
+    state.messages.push({ role: 'user', content: text, time: userTime });
+    persistMessages(state.messages);
 
     showTyping();
     state.isLoading = true;
 
     try {
-      const response = await fetch(WEBHOOK_URL, {
+      const response = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          messages: state.messages,
-          system: SYSTEM_PROMPT,
-          metadata: {
-            page: window.location.href,
-            timestamp: new Date().toISOString(),
-            userAgent: navigator.userAgent.substring(0, 80),
-          },
+          sessionId: state.sessionId,
+          message: text,
         }),
       });
 
-      if (!response.ok) throw new Error('HTTP ' + response.status);
-
-      const data = await response.json();
-      const reply = data.reply || data.content || data.message
-        || '¿Me contactas directo por WhatsApp? Respondo en minutos: wa.me/523117406927';
-
+      const data = await response.json().catch(() => ({}));
       hideTyping();
-      addMessage('bot', reply);
-      state.messages.push({ role: 'assistant', content: reply });
 
-      // Si n8n marca el lead como calificado, ofrecer captura de email
-      if (data.qualified && !state.leadEmail) {
-        setTimeout(() => showEmailCapture(), 1200);
+      const reply = (data && data.reply) || fallbackReply();
+      const botTime = nowLabel();
+      addMessage('bot', reply, botTime);
+      state.messages.push({ role: 'assistant', content: reply, time: botTime });
+      persistMessages(state.messages);
+
+      if (data && data.callConfirmed && !state.callConfirmed) {
+        state.callConfirmed = true;
+        // No más mensajes — la llamada ya está agendada
       }
 
+      if (!response.ok) {
+        showWhatsappFallbackLink();
+      }
     } catch (err) {
-      console.warn('[Murgon Chatbot] Error:', err.message);
+      console.warn('[Murgon Chatbot] Error:', err && err.message);
       hideTyping();
-      // Fallback graceful: siempre redirige a WhatsApp
-      addMessage('bot', 'Tuve un problema técnico 😅 ¿Me contactas directo por WhatsApp? Respondo en minutos →');
-
-      // Después del mensaje de error, mostrar link directo
-      setTimeout(() => {
-        const div = document.createElement('div');
-        div.className = 'chat-msg chat-msg--bot';
-        div.innerHTML = `
-          <div class="chat-msg__bubble">
-            <a href="https://wa.me/523117406927?text=Hola%2C%20tengo%20una%20pregunta%20sobre%20automatizaci%C3%B3n"
-               target="_blank" rel="noopener" class="chat-wa-link">
-              💬 Abrir WhatsApp →
-            </a>
-          </div>`;
-        messagesEl.appendChild(div);
-        messagesEl.scrollTop = messagesEl.scrollHeight;
-      }, 400);
+      const t = nowLabel();
+      const reply = 'Tuve un problema técnico. ¿Me contactas directo por WhatsApp? Respondo en minutos.';
+      addMessage('bot', reply, t);
+      state.messages.push({ role: 'assistant', content: reply, time: t });
+      persistMessages(state.messages);
+      showWhatsappFallbackLink();
     }
 
     state.isLoading = false;
   }
 
-  /* ── AÑADIR MENSAJE AL DOM ── */
-  function addMessage(role, text) {
+  function fallbackReply() {
+    return '¿Me contactas directo por WhatsApp? Respondo en minutos: wa.me/523117406927';
+  }
+
+  /* ── DOM HELPERS ── */
+  function nowLabel() {
+    return new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
+  }
+
+  function addMessage(role, text, timeLabel) {
     const div = document.createElement('div');
     div.className = `chat-msg chat-msg--${role}`;
 
-    // Escapar HTML básico y convertir URLs de wa.me en links
-    const safeText = text
+    const safeText = String(text)
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
+      .replace(/(https?:\/\/[^\s<]+)/g, (url) =>
+        `<a href="${url}" target="_blank" rel="noopener">${url}</a>`
+      )
       .replace(/(wa\.me\/[\w?=%&]+)/g, (url) =>
         `<a href="https://${url}" target="_blank" rel="noopener">${url}</a>`
       );
 
-    const now = new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
-
     div.innerHTML = `
       <div class="chat-msg__bubble">${safeText}</div>
-      <div class="chat-msg__time">${now}</div>
+      <div class="chat-msg__time">${timeLabel || nowLabel()}</div>
     `;
     messagesEl.appendChild(div);
     messagesEl.scrollTop = messagesEl.scrollHeight;
   }
 
-  /* ── INDICADOR DE ESCRITURA ── */
   function showTyping() {
     const div = document.createElement('div');
     div.className = 'chat-msg chat-msg--bot chat-msg--typing';
@@ -213,46 +229,20 @@ SIEMPRE responde en español. Respuestas cortas (máximo 3 párrafos). Sin markd
     if (t) t.remove();
   }
 
-  /* ── CAPTURA DE EMAIL (post-calificación) ── */
-  function showEmailCapture() {
-    const div = document.createElement('div');
-    div.className = 'chat-msg chat-msg--bot';
-    div.innerHTML = `
-      <div class="chat-msg__bubble">
-        ¿Quieres que te envíe un resumen de lo que hablamos + el plan de automatización para tu negocio?
-        <div class="chat-email-capture">
-          <input type="email" id="chatEmailInput" placeholder="tu@email.com" class="chat-capture-input" aria-label="Tu email">
-          <button id="chatEmailSend" class="chat-capture-btn">Envíame el resumen</button>
-        </div>
-      </div>
-    `;
-    messagesEl.appendChild(div);
-    messagesEl.scrollTop = messagesEl.scrollHeight;
-
-    document.getElementById('chatEmailSend').addEventListener('click', () => {
-      const emailInput = document.getElementById('chatEmailInput');
-      const email = emailInput ? emailInput.value.trim() : '';
-      if (!email || !email.includes('@')) {
-        emailInput && emailInput.focus();
-        return;
-      }
-      state.leadEmail = email;
-
-      // Enviar a n8n (fire and forget)
-      fetch(WEBHOOK_URL.replace('/murgon-chatbot', '/murgon-chatbot-email'), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email,
-          messages: state.messages,
-          source: 'chatbot-email-capture',
-          timestamp: new Date().toISOString(),
-        }),
-      }).catch(() => {});
-
-      const capture = div.querySelector('.chat-email-capture');
-      if (capture) capture.innerHTML = '<span style="color:#00e676">✓ Perfecto, te lo envío ahora mismo.</span>';
-    });
+  function showWhatsappFallbackLink() {
+    setTimeout(() => {
+      const div = document.createElement('div');
+      div.className = 'chat-msg chat-msg--bot';
+      div.innerHTML = `
+        <div class="chat-msg__bubble">
+          <a href="${WHATSAPP_FALLBACK}"
+             target="_blank" rel="noopener" class="chat-wa-link">
+            Abrir WhatsApp →
+          </a>
+        </div>`;
+      messagesEl.appendChild(div);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }, 400);
   }
 
 })();
