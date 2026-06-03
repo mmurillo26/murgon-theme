@@ -7,15 +7,31 @@
  */
 ?>
 
-<!-- CHAT WIDGET TRIGGER -->
-<div id="chatTrigger" class="chat-trigger" role="button" tabindex="0" aria-label="Hablar con AI de Murgon" aria-expanded="false" aria-controls="chatWindow">
-  <div class="chat-trigger__icon" aria-hidden="true">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-      <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.37 5.07L2 22l5.12-1.34A9.93 9.93 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" fill="currentColor"/>
+<!-- CHAT WIDGET TRIGGER — botón circular estilo Intercom/Crisp -->
+<div id="chatTrigger" class="chat-trigger" role="button" tabindex="0"
+     aria-label="Abrir chat con asistente de Murgon"
+     aria-expanded="false"
+     aria-controls="chatWindow">
+  <span class="chat-trigger__avatar" aria-hidden="true">M</span>
+  <span class="chat-trigger__dot" aria-hidden="true"></span>
+</div>
+
+<!-- GREETING CARD — aparece automáticamente e invita a chatear -->
+<div id="chatGreeting" class="chat-greeting" style="display:none" aria-hidden="true">
+  <button class="chat-greeting__dismiss" id="greetingDismiss" aria-label="Cerrar saludo">
+    <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+      <path d="M1 1l9 9M10 1L1 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
     </svg>
+  </button>
+  <div class="chat-greeting__avatar" aria-hidden="true">M</div>
+  <div class="chat-greeting__body">
+    <div class="chat-greeting__meta">
+      <span class="chat-greeting__name">Murgon AI</span>
+      <span class="chat-greeting__tag">IA</span>
+    </div>
+    <p class="chat-greeting__text">Hola 👋 ¿En qué proceso de tu negocio puedo ayudarte hoy?</p>
+    <button class="chat-greeting__cta" id="greetingCta">Iniciar conversación →</button>
   </div>
-  <span class="chat-trigger__label">¿Tienes dudas? Pregúntame</span>
-  <span class="chat-trigger__badge" aria-hidden="true">1</span>
 </div>
 
 <!-- CHAT WINDOW -->
@@ -62,7 +78,7 @@
   <div class="chat-footer-note">
     Impulsado por IA ·
     <a href="https://wa.me/523117406927" target="_blank" rel="noopener">
-      Hablar con Mario directamente →
+      Hablar por WhatsApp →
     </a>
   </div>
 </div>

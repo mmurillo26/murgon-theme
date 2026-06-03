@@ -528,6 +528,7 @@ get_header(); ?>
 
 <!-- ── WHATSAPP FLOAT BUTTON ── -->
 <a
+  style="display:none;"
   class="whatsapp-float"
   href="https://wa.me/523117406927?text=Hola%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20automatizaci%C3%B3n"
   target="_blank"
