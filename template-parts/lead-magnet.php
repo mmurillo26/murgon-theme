@@ -98,6 +98,12 @@
           <span class="lm-hint">CRM, hoja de cálculo, app de gestión, calendario — lo que sea</span>
         </div>
 
+        <!-- Honeypot — oculto para humanos, los bots lo llenan -->
+        <div class="lm-hp" aria-hidden="true">
+          <label for="lm-hp-website">Website</label>
+          <input type="text" id="lm-hp-website" name="website" tabindex="-1" autocomplete="off" value="">
+        </div>
+
         <!-- Consentimiento de datos (obligatorio) -->
         <div class="lm-consent-wrap" id="lmConsentWrap">
           <label class="lm-consent-label" for="lm-consent">
@@ -179,6 +185,14 @@
         consentError.style.display = 'none';
 
         var fd = new FormData(form);
+
+        // Honeypot — si el campo está relleno es un bot; fingir éxito para no alertar
+        if ((fd.get('website') || '').toString().trim() !== '') {
+          document.getElementById('lmStep1').style.display = 'none';
+          document.getElementById('lmStep2').style.display = '';
+          return;
+        }
+
         var usaHerramienta = fd.get('usa_herramienta');
         var herramientaCual = (fd.get('herramienta_cual') || '').toString().trim();
         var currentTool = '';
