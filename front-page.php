@@ -251,79 +251,135 @@ get_header(); ?>
       <h2>Lo que construimos, funciona</h2>
       <p class="section-sub">No prometemos — demostramos. Resultados reales de negocios que ya automatizan sus ventas.</p>
 
-      <!-- CASO PRINCIPAL: Clínica de Fisioterapia -->
-      <div class="case-wrapper">
-        <div class="case-header">
-          <div>
-            <span class="case-tag">Caso de éxito · Sistema a medida</span>
-            <h3 class="case-client-title">Clínica de Fisioterapia — Tepic, Nayarit</h3>
-            <p class="case-client-sub">Motor de ventas completo: atención 24/7, agendamiento, seguimiento y reactivación de pacientes vía WhatsApp con IA</p>
-          </div>
-          <div class="case-days">
-            <div class="case-days-label">Sistema entregado en</div>
-            <div class="case-days-value">6 sem</div>
-          </div>
-        </div>
-        <div class="case-body">
-          <div class="case-metrics">
-            <div class="cm">
-              <div class="cm-val">&lt; 10 seg</div>
-              <div class="cm-label">Tiempo de respuesta · antes 15–30 min</div>
-            </div>
-            <div class="cm">
-              <div class="cm-val">100%</div>
-              <div class="cm-label">Leads fuera de horario atendidos</div>
-            </div>
-            <div class="cm">
-              <div class="cm-val">0</div>
-              <div class="cm-label">Mensajes sin responder en 24h</div>
-            </div>
-            <div class="cm">
-              <div class="cm-val">0</div>
-              <div class="cm-label">Fricción en la adopción del equipo</div>
-            </div>
-          </div>
-          <div class="case-story">
-            <h3>El problema</h3>
-            <p>La clínica gestionaba citas y consultas manualmente — solo en horario laboral. Los prospectos que escribían fuera de ese horario no recibían respuesta. Los pacientes que dejaban de asistir nunca eran contactados de nuevo.</p>
-            <h3>La solución</h3>
-            <p>Motor de ventas integrado: atención automática 24/7 vía WhatsApp, agendamiento directo al calendario, reactivación de pacientes inactivos y seguimiento automatizado de prospectos. El equipo adoptó el sistema sin ningún cambio operativo forzado — y conserva control total ante cualquier situación fuera del flujo normal.</p>
-            <div>
-              <div class="stack-label">STACK IMPLEMENTADO</div>
-              <div class="tech-stack">
-                <span class="stack-tag">WhatsApp Business API</span>
-                <span class="stack-tag">Twilio</span>
-                <span class="stack-tag">OpenAI</span>
-                <span class="stack-tag">n8n</span>
-                <span class="stack-tag">Google Calendar</span>
-                <span class="stack-tag">Node.js</span>
+      <div class="cases-slider-wrap" id="casesSlider">
+        <div class="cases-track" id="casesTrack">
+
+          <!-- SLIDE 1: Clínica de Fisioterapia -->
+          <div class="case-slide">
+            <div class="case-wrapper">
+              <div class="case-header">
+                <div>
+                  <span class="case-tag">Caso de éxito · Sistema a medida</span>
+                  <h3 class="case-client-title">Clínica de Fisioterapia — Tepic, Nayarit</h3>
+                  <p class="case-client-sub">Motor de ventas completo: atención 24/7, agendamiento en CRM personalizado, seguimiento y reactivación de pacientes vía WhatsApp con IA</p>
+                </div>
+                <div class="case-days">
+                  <div class="case-days-label">Sistema entregado en</div>
+                  <div class="case-days-value">6 sem</div>
+                </div>
+              </div>
+              <div class="case-body">
+                <div class="case-metrics">
+                  <div class="cm">
+                    <div class="cm-val">&lt; 10 seg</div>
+                    <div class="cm-label">Tiempo de respuesta · antes 15–30 min</div>
+                  </div>
+                  <div class="cm">
+                    <div class="cm-val">100%</div>
+                    <div class="cm-label">Leads fuera de horario atendidos</div>
+                  </div>
+                  <div class="cm">
+                    <div class="cm-val">0</div>
+                    <div class="cm-label">Mensajes sin responder en 24h</div>
+                  </div>
+                  <div class="cm">
+                    <div class="cm-val">0</div>
+                    <div class="cm-label">Fricción en la adopción del equipo</div>
+                  </div>
+                </div>
+                <div class="case-story">
+                  <h3>El problema</h3>
+                  <p>La clínica gestionaba citas y consultas manualmente — solo en horario laboral. Los prospectos que escribían fuera de ese horario no recibían respuesta. Los pacientes que dejaban de asistir nunca eran contactados de nuevo.</p>
+                  <h3>La solución</h3>
+                  <p>Motor de ventas integrado: atención automática 24/7 vía WhatsApp con IA, agendamiento en CRM personalizado, reactivación de pacientes inactivos y seguimiento automatizado de prospectos. El equipo adoptó el sistema sin cambios forzados — y conserva control total ante cualquier situación fuera del flujo.</p>
+                  <div>
+                    <div class="stack-label">STACK IMPLEMENTADO</div>
+                    <div class="tech-stack">
+                      <span class="stack-tag">WhatsApp Business API</span>
+                      <span class="stack-tag">OpenAI</span>
+                      <span class="stack-tag">n8n</span>
+                      <span class="stack-tag">Node.js</span>
+                      <span class="stack-tag">CRM con agenda personalizada</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+          </div><!-- /slide 1 -->
 
-      <!-- CASO SECUNDARIO: Salón de Belleza -->
-      <div class="case-secondary">
-        <div class="case-secondary__header">
-          <span class="case-tag">También automatizado</span>
-          <h3 class="case-secondary__title">Salón de Belleza — Tepic, Nayarit</h3>
-          <span class="case-secondary__days">8 días</span>
-        </div>
-        <div class="case-secondary__body">
-          <div class="case-metrics">
-            <div class="cm"><div class="cm-val">4h→2min</div><div class="cm-label">Tiempo de respuesta</div></div>
-            <div class="cm"><div class="cm-val">+60%</div><div class="cm-label">Leads fuera de horario</div></div>
-            <div class="cm"><div class="cm-val">0</div><div class="cm-label">Sin responder en 24h</div></div>
-            <div class="cm"><div class="cm-val">100%</div><div class="cm-label">Citas confirmadas auto</div></div>
-          </div>
-          <blockquote class="case-quote">
-            "Antes perdía clientes porque no podía responder a tiempo. Ahora el sistema trabaja solo y yo me enfoco en atender a quien ya está en el salón."
-            <cite>— Rocío, Salón de Belleza</cite>
-          </blockquote>
-        </div>
-      </div>
+          <!-- SLIDE 2: Salón de Belleza -->
+          <div class="case-slide">
+            <div class="case-wrapper">
+              <div class="case-header">
+                <div>
+                  <span class="case-tag">Caso de éxito · 8 días</span>
+                  <h3 class="case-client-title">Salón de Belleza — Tepic, Nayarit</h3>
+                  <p class="case-client-sub">Atención y agendamiento automático 24/7: citas en Google Calendar, recordatorios, seguimiento post-servicio y reactivación de clientes dormidos</p>
+                </div>
+                <div class="case-days">
+                  <div class="case-days-label">Sistema entregado en</div>
+                  <div class="case-days-value">8 días</div>
+                </div>
+              </div>
+              <div class="case-body">
+                <div class="case-metrics">
+                  <div class="cm">
+                    <div class="cm-val">&lt; 30 seg</div>
+                    <div class="cm-label">Tiempo de respuesta · antes +2 horas</div>
+                  </div>
+                  <div class="cm">
+                    <div class="cm-val">100%</div>
+                    <div class="cm-label">Leads fuera de horario atendidos</div>
+                  </div>
+                  <div class="cm">
+                    <div class="cm-val">0</div>
+                    <div class="cm-label">Mensajes sin responder en 24h</div>
+                  </div>
+                  <div class="cm">
+                    <div class="cm-val">100%</div>
+                    <div class="cm-label">Citas con recordatorio automático</div>
+                  </div>
+                </div>
+                <div class="case-story">
+                  <h3>El problema</h3>
+                  <p>El salón perdía clientes porque las consultas llegaban fuera de horario y nadie podía responder. Los clientes que no regresaban no recibían ningún contacto. Las citas se confirmaban por mensaje manual — un proceso lento y propenso a olvidos.</p>
+                  <h3>La solución</h3>
+                  <p>Sistema que atiende y agenda automáticamente vía WhatsApp las 24 horas: confirma la cita directo en Google Calendar, envía recordatorios antes del servicio, da seguimiento post-visita y reactiva clientes que dejaron de asistir — todo sin intervención del equipo.</p>
+                  <div>
+                    <div class="stack-label">STACK IMPLEMENTADO</div>
+                    <div class="tech-stack">
+                      <span class="stack-tag">WhatsApp Business API</span>
+                      <span class="stack-tag">n8n</span>
+                      <span class="stack-tag">Node.js</span>
+                      <span class="stack-tag">Google Calendar</span>
+                      <span class="stack-tag">OpenAI</span>
+                    </div>
+                  </div>
+                  <blockquote class="case-quote">
+                    "Antes perdía clientes porque no podía responder a tiempo. Ahora el sistema trabaja solo y yo me enfoco en atender a quien ya está en el salón."
+                    <cite>— Rocío, Salón de Belleza</cite>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </div><!-- /slide 2 -->
 
+        </div><!-- /cases-track -->
+
+        <div class="cases-controls">
+          <button class="cases-arrow cases-prev" id="casesPrev" aria-label="Caso anterior">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="cases-dots" role="tablist">
+            <button class="cases-dot active" data-idx="0" role="tab" aria-selected="true" aria-label="Clínica de Fisioterapia"></button>
+            <button class="cases-dot" data-idx="1" role="tab" aria-selected="false" aria-label="Salón de Belleza"></button>
+          </div>
+          <button class="cases-arrow cases-next" id="casesNext" aria-label="Siguiente caso">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+
+      </div><!-- /cases-slider-wrap -->
     </div>
   </section>
 
