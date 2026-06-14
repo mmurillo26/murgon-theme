@@ -7,7 +7,13 @@
       "Bash(git -C /Users/mmurillo/Desktop/murgon-theme commit -m ' *)",
       "Bash(git -C /Users/mmurillo/Desktop/murgon-theme push origin develop)",
       "Bash(git -C /Users/mmurillo/Desktop/murgon-theme add front-page.php)",
-      "Bash(git checkout *)"
+      "Bash(git checkout *)",
+      "Bash(# Buscar si el plugin de Brevo dejó alguna función o constante en WordPress *)",
+      "Read(//Users/mmurillo/Desktop/**)",
+      "Bash(git merge --no-ff feat/privacy-checkbox -m 'merge: feat/privacy-checkbox → develop *)",
+      "Bash(git merge --no-ff feat/lead-magnet-endpoint -m 'merge: feat/lead-magnet-endpoint → develop *)",
+      "Bash(git merge --no-ff feat/remove-old-lm-handler -m 'merge: feat/remove-old-lm-handler → develop *)",
+      "Bash(git merge --no-ff feat/update-leads-endpoint -m 'merge: feat/update-leads-endpoint → develop *)"
     ]
   }
 }

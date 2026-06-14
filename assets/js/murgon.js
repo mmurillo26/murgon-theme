@@ -225,7 +225,7 @@
       const revGain       = Math.max(0, leadsRecovered * ticket);
       const hoursFreed    = hoursWeek * 4 * 0.70;
       const totalGain     = revGain + (hoursFreed * 150);
-      const payback       = totalGain > 0 ? (8500 / totalGain) : null;
+      const payback       = totalGain > 0 ? (9500 / totalGain) : null;
 
       const data = { revLost, revGain, hoursFreed, payback };
 
