@@ -101,7 +101,7 @@ add_action( 'init', 'murgon_clean_head' );
 ────────────────────────────────────────── */
 function murgon_meta_description() {
     if ( is_front_page() ) {
-        echo '<meta name="description" content="Implementamos sistemas de automatización con IA en 7–14 días: WhatsApp bot, CRM automatizado y captación de leads. Sin consultores — código real, resultados medibles. Desde $8,500 MXN.">' . "\n";
+        echo '<meta name="description" content="Convierto tu WhatsApp en una máquina que agenda, da seguimiento y reactiva clientes sola. Código real, sin consultores, en 7–14 días. Desde $9,500 MXN.">' . "\n";
         echo '<meta name="robots" content="index, follow">' . "\n";
     } elseif ( is_singular() ) {
         global $post;
@@ -121,13 +121,13 @@ function murgon_og_tags() {
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
 <meta property="og:title" content="Murgon Agency — Automatización con IA en 7–14 días | WhatsApp Bot + CRM | México">
-<meta property="og:description" content="Implementamos sistemas de automatización con IA en 7–14 días: WhatsApp bot, CRM automatizado y captación de leads. Sin consultores — código real, resultados medibles. Desde $8,500 MXN.">
+<meta property="og:description" content="Convierto tu WhatsApp en una máquina que agenda, da seguimiento y reactiva clientes sola. Código real, sin consultores, en 7–14 días. Desde $9,500 MXN.">
 <meta property="og:url" content="<?php echo esc_url( home_url('/') ); ?>">
 <meta property="og:image" content="<?php echo esc_url( get_template_directory_uri() . '/assets/images/og-image.png' ); ?>">
 <meta property="og:site_name" content="Murgon Agency">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Murgon Agency — Automatización con IA en 7–14 días">
-<meta name="twitter:description" content="WhatsApp bot, CRM automatizado y captación de leads. Sin consultores — código real, resultados medibles. Desde $8,500 MXN.">
+<meta name="twitter:description" content="Tu WhatsApp como máquina de ventas: agenda, da seguimiento y reactiva clientes sola. Código real, sin consultores. Desde $9,500 MXN.">
     <?php endif;
 }
 add_action( 'wp_head', 'murgon_og_tags' );
