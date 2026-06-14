@@ -84,7 +84,7 @@
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
     const revealTargets = document.querySelectorAll(
-      '.service-card, .pain-item, .step, .price-card, .cm, .industry-card, .faq-item, .case-wrapper'
+      '.service-card, .pain-item, .step, .price-card, .industry-card, .faq-item, .cases-slider-wrap'
     );
 
     revealTargets.forEach((el, i) => {
@@ -386,5 +386,54 @@
 
     botObs.observe(botDemo);
   }
+
+  /* ── CASE STUDY SLIDER ── */
+  (function () {
+    const sliderWrap = document.getElementById('casesSlider');
+    if (!sliderWrap) return;
+
+    const track  = document.getElementById('casesTrack');
+    const slides = track.querySelectorAll('.case-slide');
+    const dots   = sliderWrap.querySelectorAll('.cases-dot');
+    const prev   = document.getElementById('casesPrev');
+    const next   = document.getElementById('casesNext');
+
+    const total    = slides.length;
+    let current    = 0;
+    let timer      = null;
+    const INTERVAL = 5500;
+
+    function goTo(idx) {
+      current = (idx + total) % total;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((d, i) => {
+        d.classList.toggle('active', i === current);
+        d.setAttribute('aria-selected', String(i === current));
+      });
+    }
+
+    function start() { timer = setInterval(() => goTo(current + 1), INTERVAL); }
+    function stop()  { clearInterval(timer); }
+
+    if (prev) prev.addEventListener('click', () => { stop(); goTo(current - 1); start(); });
+    if (next) next.addEventListener('click', () => { stop(); goTo(current + 1); start(); });
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => { stop(); goTo(+dot.dataset.idx); start(); });
+    });
+
+    sliderWrap.addEventListener('mouseenter', stop);
+    sliderWrap.addEventListener('mouseleave', start);
+
+    let touchX = 0;
+    sliderWrap.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; stop(); }, { passive: true });
+    sliderWrap.addEventListener('touchend',   e => {
+      const diff = touchX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+      start();
+    });
+
+    start();
+  })();
 
 })();
