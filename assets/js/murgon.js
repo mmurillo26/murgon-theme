@@ -392,16 +392,13 @@
     const sliderWrap = document.getElementById('casesSlider');
     if (!sliderWrap) return;
 
-    const track  = document.getElementById('casesTrack');
-    const slides = track.querySelectorAll('.case-slide');
-    const dots   = sliderWrap.querySelectorAll('.cases-dot');
-    const prev   = document.getElementById('casesPrev');
-    const next   = document.getElementById('casesNext');
+    const track = document.getElementById('casesTrack');
+    const dots  = sliderWrap.querySelectorAll('.cases-dot');
+    const prev  = document.getElementById('casesPrev');
+    const next  = document.getElementById('casesNext');
 
-    const total    = slides.length;
-    let current    = 0;
-    let timer      = null;
-    const INTERVAL = 5500;
+    const total = track.querySelectorAll('.case-slide').length;
+    let current = 0;
 
     function goTo(idx) {
       current = (idx + total) % total;
@@ -412,28 +409,19 @@
       });
     }
 
-    function start() { timer = setInterval(() => goTo(current + 1), INTERVAL); }
-    function stop()  { clearInterval(timer); }
-
-    if (prev) prev.addEventListener('click', () => { stop(); goTo(current - 1); start(); });
-    if (next) next.addEventListener('click', () => { stop(); goTo(current + 1); start(); });
+    if (prev) prev.addEventListener('click', () => goTo(current - 1));
+    if (next) next.addEventListener('click', () => goTo(current + 1));
 
     dots.forEach(dot => {
-      dot.addEventListener('click', () => { stop(); goTo(+dot.dataset.idx); start(); });
+      dot.addEventListener('click', () => goTo(+dot.dataset.idx));
     });
-
-    sliderWrap.addEventListener('mouseenter', stop);
-    sliderWrap.addEventListener('mouseleave', start);
 
     let touchX = 0;
-    sliderWrap.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; stop(); }, { passive: true });
-    sliderWrap.addEventListener('touchend',   e => {
+    sliderWrap.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+    sliderWrap.addEventListener('touchend', e => {
       const diff = touchX - e.changedTouches[0].clientX;
       if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
-      start();
     });
-
-    start();
   })();
 
 })();
