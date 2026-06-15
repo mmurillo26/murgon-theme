@@ -201,7 +201,7 @@
 
   function fallbackReply(data) {
     if (data.suppressed || !data.reply) {
-      return; // el bot se queda en silencio
+      return ''; // el bot se queda en silencio
     }
     return '¿Me contactas directo por WhatsApp? Respondo en minutos: wa.me/523117406927';
   }
