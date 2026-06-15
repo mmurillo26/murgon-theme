@@ -12,12 +12,6 @@ get_header(); ?>
   <section id="hero" class="section-hero">
     <div class="grid-bg" aria-hidden="true"></div>
     <div class="container">
-      <div class="hero-eyebrow">
-        <span class="eyebrow-dot" aria-hidden="true"></span>
-        Sistemas de Automatización con IA
-      </div>
-
-      <!-- TASK-03: Badge diferenciador -->
       <div class="hero-badge">
         <span class="hero-badge__dot" aria-hidden="true"></span>
         Implementado por el desarrollador — no por un consultor
@@ -27,7 +21,7 @@ get_header(); ?>
         Tu negocio trabajando en <em>Piloto Automático.</em>
       </h1>
       <p class="hero-sub fade-up delay-1">
-        Implementamos sistemas reales de automatización — WhatsApp, CRM, captación de leads e IA — en 7 a 14 días. Código propio, sin middlemen, con resultados medibles.
+        Convierto tu WhatsApp en una máquina que agenda, da seguimiento y reactiva clientes sola — sin que tu equipo conteste lo mismo 50 veces al día. Integraciones reales, código propio, entregado en 7 a 14 días.
       </p>
       <div class="hero-ctas fade-up delay-2">
         <a href="https://wa.me/523117406927?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita"
@@ -81,7 +75,7 @@ get_header(); ?>
           <div class="bot-demo" id="botDemo" aria-live="polite">
             <div class="msg msg-in  msg--hidden">Hola, ¿cuánto cuesta el servicio de automatización?</div>
             <div class="msg msg-typing msg--hidden" aria-hidden="true"><span></span><span></span><span></span></div>
-            <div class="msg msg-out msg--hidden">¡Hola! Gracias por contactarnos 👋 Tenemos 3 planes desde $8,500 MXN. ¿Me dices en qué área quieres automatizar?</div>
+            <div class="msg msg-out msg--hidden">¡Hola! Gracias por contactarnos 👋 Tenemos 3 planes desde $9,500 MXN. ¿Me dices en qué área quieres automatizar?</div>
             <div class="msg msg-in  msg--hidden">En atención al cliente por WhatsApp</div>
             <div class="msg msg-typing msg--hidden" aria-hidden="true"><span></span><span></span><span></span></div>
             <div class="msg msg-out msg--hidden">Perfecto. ¿Te parece si agendamos una llamada de 20 min esta semana?</div>
@@ -116,9 +110,9 @@ get_header(); ?>
   <!-- ══ SERVICES ══ -->
   <section id="servicios">
     <div class="container">
-      <div class="section-label">Servicios</div>
-      <h2>Sistemas que trabajan por ti</h2>
-      <p class="section-sub">Diseñamos e implementamos cada solución desde cero — con código real, integraciones reales y resultados medibles.</p>
+      <div class="section-label">El Motor</div>
+      <h2>Un solo sistema. Seis piezas que trabajan juntas.</h2>
+      <p class="section-sub">Meta ya da un bot que contesta preguntas. Esto es diferente: seis componentes integrados que convierten tu negocio en una operación autónoma — desde la primera consulta hasta el cierre y el seguimiento.</p>
       <div class="services-grid">
 
         <?php
@@ -233,7 +227,7 @@ get_header(); ?>
           <div class="roi-result-card roi-payback">
             <div class="roi-result-label">Meses para recuperar la inversión</div>
             <div class="roi-result-num" id="res-payback">— </div>
-            <div class="roi-result-sub">Plan Starter desde $8,500 MXN</div>
+            <div class="roi-result-sub">Plan Starter desde $9,500 MXN</div>
           </div>
 
           <div class="roi-cta">
@@ -253,51 +247,139 @@ get_header(); ?>
   <!-- ══ CASE STUDY ══ -->
   <section id="caso" class="section-alt">
     <div class="container">
-      <div class="section-label">Caso Real</div>
-      <h2>Resultados con un cliente real</h2>
-      <p class="section-sub">No prometemos — demostramos. Aquí lo que implementamos para un Salón de Belleza local.</p>
-      <div class="case-wrapper">
-        <div class="case-header">
-          <div>
-            <span class="case-tag">Caso de éxito</span>
-            <h3 class="case-client-title">Salón de Belleza, Tepic Nayarit</h3>
-            <p class="case-client-sub">Automatización completa de atención al cliente y captación de citas vía WhatsApp</p>
-          </div>
-          <div class="case-days">
-            <div class="case-days-label">Implementación completada en</div>
-            <div class="case-days-value">8 días</div>
-          </div>
-        </div>
-        <div class="case-body">
-          <div class="case-metrics">
-            <div class="cm"><div class="cm-val">4h→2min</div><div class="cm-label">Tiempo de respuesta promedio</div></div>
-            <div class="cm"><div class="cm-val">+60%</div><div class="cm-label">Leads capturados fuera de horario</div></div>
-            <div class="cm"><div class="cm-val">0</div><div class="cm-label">Mensajes sin responder en 24h</div></div>
-            <div class="cm"><div class="cm-val">100%</div><div class="cm-label">Citas confirmadas automáticamente</div></div>
-          </div>
-          <div class="case-story">
-            <h3>El problema</h3>
-            <p>Rocío, dueña de un Salón de Belleza, respondía mensajes de Instagram y WhatsApp manualmente durante todo el día — mientras atendía clientes. Los mensajes fuera de horario quedaban sin respuesta.</p>
-            <h3>La solución</h3>
-            <p>Implementamos un bot de WhatsApp con IA que responde automáticamente, califica el tipo de servicio solicitado, y agenda citas directamente en su calendario.</p>
-            <blockquote class="case-quote">
-              "Antes perdía clientes porque no podía responder a tiempo. Ahora el sistema trabaja solo y yo me enfoco en atender a quien ya está en el salón."
-              <cite>— Rocío, Salón de Belleza</cite>
-            </blockquote>
-            <div>
-              <div class="stack-label">STACK IMPLEMENTADO</div>
-              <div class="tech-stack">
-                <span class="stack-tag">WhatsApp Business API</span>
-                <span class="stack-tag">Twilio</span>
-                <span class="stack-tag">OpenAI</span>
-                <span class="stack-tag">n8n</span>
-                <span class="stack-tag">Google Calendar</span>
-                <span class="stack-tag">Node.js</span>
+      <div class="section-label">Casos Reales</div>
+      <h2>Lo que construimos, funciona</h2>
+      <p class="section-sub">No prometemos — demostramos. Resultados reales de negocios que ya automatizan sus ventas.</p>
+
+      <div class="cases-slider-wrap" id="casesSlider">
+        <div class="cases-track" id="casesTrack">
+
+          <!-- SLIDE 1: Clínica de Fisioterapia -->
+          <div class="case-slide">
+            <div class="case-wrapper">
+              <div class="case-header">
+                <div>
+                  <span class="case-tag">Caso de éxito · Sistema a medida</span>
+                  <h3 class="case-client-title">Clínica de Fisioterapia — Tepic, Nayarit</h3>
+                  <p class="case-client-sub">Motor de ventas completo: atención 24/7, agendamiento en CRM personalizado, seguimiento y reactivación de pacientes vía WhatsApp con IA</p>
+                </div>
+                <div class="case-days">
+                  <div class="case-days-label">Sistema entregado en</div>
+                  <div class="case-days-value">6 sem</div>
+                </div>
+              </div>
+              <div class="case-body">
+                <div class="case-metrics">
+                  <div class="cm">
+                    <div class="cm-val">&lt; 10 seg</div>
+                    <div class="cm-label">Tiempo de respuesta · antes 15–30 min</div>
+                  </div>
+                  <div class="cm">
+                    <div class="cm-val">100%</div>
+                    <div class="cm-label">Leads fuera de horario atendidos</div>
+                  </div>
+                  <div class="cm">
+                    <div class="cm-val">0</div>
+                    <div class="cm-label">Mensajes sin responder en 24h</div>
+                  </div>
+                  <div class="cm">
+                    <div class="cm-val">0</div>
+                    <div class="cm-label">Fricción en la adopción del equipo</div>
+                  </div>
+                </div>
+                <div class="case-story">
+                  <h3>El problema</h3>
+                  <p>La clínica gestionaba citas y consultas manualmente — solo en horario laboral. Los prospectos que escribían fuera de ese horario no recibían respuesta. Los pacientes que dejaban de asistir nunca eran contactados de nuevo.</p>
+                  <h3>La solución</h3>
+                  <p>Motor de ventas integrado: atención automática 24/7 vía WhatsApp con IA, agendamiento en CRM personalizado, reactivación de pacientes inactivos y seguimiento automatizado de prospectos. El equipo adoptó el sistema sin cambios forzados — y conserva control total ante cualquier situación fuera del flujo.</p>
+                  <div>
+                    <div class="stack-label">STACK IMPLEMENTADO</div>
+                    <div class="tech-stack">
+                      <span class="stack-tag">WhatsApp Business API</span>
+                      <span class="stack-tag">OpenAI</span>
+                      <span class="stack-tag">n8n</span>
+                      <span class="stack-tag">Node.js</span>
+                      <span class="stack-tag">CRM con agenda personalizada</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+          </div><!-- /slide 1 -->
+
+          <!-- SLIDE 2: Salón de Belleza -->
+          <div class="case-slide">
+            <div class="case-wrapper">
+              <div class="case-header">
+                <div>
+                  <span class="case-tag">Caso de éxito · 8 días</span>
+                  <h3 class="case-client-title">Salón de Belleza — Tepic, Nayarit</h3>
+                  <p class="case-client-sub">Atención y agendamiento automático 24/7: citas en Google Calendar, recordatorios, seguimiento post-servicio y reactivación de clientes dormidos</p>
+                </div>
+                <div class="case-days">
+                  <div class="case-days-label">Sistema entregado en</div>
+                  <div class="case-days-value">8 días</div>
+                </div>
+              </div>
+              <div class="case-body">
+                <div class="case-metrics">
+                  <div class="cm">
+                    <div class="cm-val">&lt; 30 seg</div>
+                    <div class="cm-label">Tiempo de respuesta · antes +2 horas</div>
+                  </div>
+                  <div class="cm">
+                    <div class="cm-val">100%</div>
+                    <div class="cm-label">Leads fuera de horario atendidos</div>
+                  </div>
+                  <div class="cm">
+                    <div class="cm-val">0</div>
+                    <div class="cm-label">Mensajes sin responder en 24h</div>
+                  </div>
+                  <div class="cm">
+                    <div class="cm-val">100%</div>
+                    <div class="cm-label">Citas con recordatorio automático</div>
+                  </div>
+                </div>
+                <div class="case-story">
+                  <h3>El problema</h3>
+                  <p>El salón perdía clientes porque las consultas llegaban fuera de horario y nadie podía responder. Los clientes que no regresaban no recibían ningún contacto. Las citas se confirmaban por mensaje manual — un proceso lento y propenso a olvidos.</p>
+                  <h3>La solución</h3>
+                  <p>Sistema que atiende y agenda automáticamente vía WhatsApp las 24 horas: confirma la cita directo en Google Calendar, envía recordatorios antes del servicio, da seguimiento post-visita y reactiva clientes que dejaron de asistir — todo sin intervención del equipo.</p>
+                  <div>
+                    <div class="stack-label">STACK IMPLEMENTADO</div>
+                    <div class="tech-stack">
+                      <span class="stack-tag">WhatsApp Business API</span>
+                      <span class="stack-tag">n8n</span>
+                      <span class="stack-tag">Node.js</span>
+                      <span class="stack-tag">Google Calendar</span>
+                      <span class="stack-tag">OpenAI</span>
+                    </div>
+                  </div>
+                  <blockquote class="case-quote">
+                    "Antes perdía clientes porque no podía responder a tiempo. Ahora el sistema trabaja solo y yo me enfoco en atender a quien ya está en el salón."
+                    <cite>— Rocío, Salón de Belleza</cite>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </div><!-- /slide 2 -->
+
+        </div><!-- /cases-track -->
+
+        <div class="cases-controls">
+          <button class="cases-arrow cases-prev" id="casesPrev" aria-label="Caso anterior">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="cases-dots" role="tablist">
+            <button class="cases-dot active" data-idx="0" role="tab" aria-selected="true" aria-label="Clínica de Fisioterapia"></button>
+            <button class="cases-dot" data-idx="1" role="tab" aria-selected="false" aria-label="Salón de Belleza"></button>
           </div>
+          <button class="cases-arrow cases-next" id="casesNext" aria-label="Siguiente caso">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
         </div>
-      </div>
+
+      </div><!-- /cases-slider-wrap -->
     </div>
   </section>
 
@@ -381,8 +463,8 @@ get_header(); ?>
       <div class="industries-grid">
         <?php
         $industries = [
-          ['icon'=>'🏡','title'=>'Agencias Inmobiliarias','desc'=>'Calificación y seguimiento automático de compradores desde el primer contacto.'],
           ['icon'=>'🏥','title'=>'Clínicas y Estética',   'desc'=>'Agendamiento automático, recordatorios y captación de pacientes 24/7.'],
+          ['icon'=>'🏡','title'=>'Agencias Inmobiliarias','desc'=>'Calificación y seguimiento automático de compradores desde el primer contacto.'],
           ['icon'=>'🛒','title'=>'E-commerce',            'desc'=>'Automatización de consultas, pedidos, recuperación de carritos y postventa.'],
           ['icon'=>'📣','title'=>'Agencias de Marketing', 'desc'=>'Reportes automáticos, onboarding y seguimiento de clientes sin fricción.'],
           ['icon'=>'🏪','title'=>'Negocios Locales',      'desc'=>'Respuesta en WhatsApp, embudo de ventas y calificación de prospectos automática.'],
@@ -411,7 +493,7 @@ get_header(); ?>
 
         <div class="price-card">
           <div class="price-tier">STARTER</div>
-          <div class="price-amount">$8,500 <span>MXN</span> <span class="price-usd">~$420 USD</span></div>
+          <div class="price-amount">$9,500 <span>MXN</span> <span class="price-usd">~$470 USD</span></div>
           <div class="price-desc">Para negocios que quieren automatizar su primer punto de contacto.</div>
           <ul class="price-features">
             <li>Bot de WhatsApp con IA (respuestas + calificación)</li>
@@ -420,7 +502,7 @@ get_header(); ?>
             <li>Flujo de seguimiento automático</li>
             <li>Capacitación y documentación</li>
           </ul>
-          <a href="https://wa.me/523117406927?text=Hola%2C%20me%20interesa%20el%20plan%20Starter" class="price-btn" target="_blank" rel="noopener">Empezar con Starter →</a>
+          <a href="https://wa.me/523117406927?text=Hola%2C%20me%20interesa%20el%20plan%20Starter%20%249%2C500" class="price-btn" target="_blank" rel="noopener">Empezar con Starter →</a>
         </div>
 
         <div class="price-card featured">
@@ -467,8 +549,9 @@ get_header(); ?>
           ['q'=>'¿Cuánto tiempo tarda la implementación?',             'a'=>'La mayoría de proyectos quedan listos en 7 a 14 días hábiles, dependiendo de la complejidad. El plan Starter puede estar en producción en menos de una semana. Antes de empezar te entregamos un timeline exacto con fechas de entrega.'],
           ['q'=>'¿Necesito conocimientos técnicos para usar el sistema?','a'=>'No. Diseñamos los sistemas para que cualquier persona pueda operarlos sin saber programación. Incluimos capacitación en video y documentación escrita.'],
           ['q'=>'¿Qué diferencia a Murgon de otras agencias de "IA"?',  'a'=>'La mayoría vende consultoría — te dicen qué hacer pero no lo construyen. Nosotros somos desarrolladores: implementamos, integramos APIs reales, escribimos el código y lo ponemos en producción.'],
-          ['q'=>'¿La automatización reemplaza a mi equipo?',            'a'=>'No. Automatiza las tareas repetitivas para que tu equipo se enfoque en cerrar ventas y atender bien a los clientes. Los sistemas se encargan de responder, filtrar y organizar.'],
-          ['q'=>'¿Puedo ver el sistema antes de pagar?',               'a'=>'Sí. Antes de que pagues un peso, tendrás una consulta gratuita donde mostramos ejemplos reales funcionando — incluyendo el caso del Salón de Belleza.'],
+          ['q'=>'¿En qué se diferencia esto del bot nativo de WhatsApp de Meta?', 'a'=>'Meta te da un bot que contesta preguntas frecuentes dentro de WhatsApp Business. Útil, pero limitado. Lo que construimos va mucho más allá: conectamos WhatsApp con tu CRM, agenda, seguimiento y reactivación de prospectos para que todo opere coordinado. No solo contestamos mensajes — automatizamos el ciclo completo desde la primera consulta hasta el cierre.'],
+          ['q'=>'¿La automatización reemplaza a mi equipo?',            'a'=>'No. Automatiza las tareas repetitivas para que tu equipo se enfoque en cerrar ventas y atender bien a los clientes. Los sistemas se encargan de responder, filtrar y organizar — y siempre se prioriza el control humano ante cualquier situación fuera de lo normal.'],
+          ['q'=>'¿Puedo ver el sistema antes de pagar?',               'a'=>'Sí. Antes de que pagues un peso, tendrás una consulta gratuita donde mostramos ejemplos reales funcionando — incluyendo casos de clínicas y negocios locales.'],
           ['q'=>'¿Qué pasa después de la implementación?',             'a'=>'Incluimos 7–30 días de soporte post-lanzamiento según el plan. Monitoreamos que todo funcione, ajustamos lo necesario y entregamos documentación completa.'],
         ];
         foreach ( $faqs as $i => $faq ) : ?>
