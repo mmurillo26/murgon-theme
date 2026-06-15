@@ -171,7 +171,7 @@
       const data = await response.json().catch(() => ({}));
       hideTyping();
 
-      const reply = (data && data.reply) || fallbackReply();
+      const reply = (data && data.reply) || fallbackReply(data);
       const botTime = nowLabel();
       addMessage('bot', reply, botTime);
       state.messages.push({ role: 'assistant', content: reply, time: botTime });
@@ -199,7 +199,10 @@
     state.isLoading = false;
   }
 
-  function fallbackReply() {
+  function fallbackReply(data) {
+    if (data.suppressed || !data.reply) {
+      return; // el bot se queda en silencio
+    }
     return '¿Me contactas directo por WhatsApp? Respondo en minutos: wa.me/523117406927';
   }
 
