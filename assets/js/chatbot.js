@@ -171,39 +171,35 @@
       const data = await response.json().catch(() => ({}));
       hideTyping();
 
-      const reply = (data && data.reply) || fallbackReply(data);
-      const botTime = nowLabel();
-      addMessage('bot', reply, botTime);
-      state.messages.push({ role: 'assistant', content: reply, time: botTime });
-      persistMessages(state.messages);
+      // Si el backend suprime la respuesta (despedida, silencio), el bot no contesta
+      const reply = data && data.reply;
+      if (reply) {
+        const botTime = nowLabel();
+        addMessage('bot', reply, botTime);
+        state.messages.push({ role: 'assistant', content: reply, time: botTime });
+        persistMessages(state.messages);
+      }
 
       if (data && data.callConfirmed && !state.callConfirmed) {
         state.callConfirmed = true;
-        // No más mensajes — la llamada ya está agendada
       }
 
       if (!response.ok) {
         showWhatsappFallbackLink();
       }
     } catch (err) {
+      // Solo aquí (error de red / sistema) mostramos mensaje de fallback
       console.warn('[Murgon Chatbot] Error:', err && err.message);
       hideTyping();
       const t = nowLabel();
-      const reply = 'Tuve un problema técnico. ¿Me contactas directo por WhatsApp? Respondo en minutos.';
-      addMessage('bot', reply, t);
-      state.messages.push({ role: 'assistant', content: reply, time: t });
+      const errReply = 'Tuve un problema técnico. ¿Me contactas directo por WhatsApp? Respondo en minutos.';
+      addMessage('bot', errReply, t);
+      state.messages.push({ role: 'assistant', content: errReply, time: t });
       persistMessages(state.messages);
       showWhatsappFallbackLink();
     }
 
     state.isLoading = false;
-  }
-
-  function fallbackReply(data) {
-    if (data.suppressed || !data.reply) {
-      return; // el bot se queda en silencio
-    }
-    return '¿Me contactas directo por WhatsApp? Respondo en minutos: wa.me/523117406927';
   }
 
   /* ── DOM HELPERS ── */
