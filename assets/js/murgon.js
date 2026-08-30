@@ -359,14 +359,32 @@
       { index: 9, delay: 7300 },
     ];
 
+    function focusMessage(el) {
+      const targetTop = Math.max(
+        0,
+        el.offsetTop + el.offsetHeight - botDemo.clientHeight + 18
+      );
+
+      botDemo.scrollTo({
+        top: targetTop,
+        behavior: 'smooth',
+      });
+    }
+
     function show(el) {
       el.classList.remove('msg--hidden');
+      el.classList.remove('msg--leaving');
+      el.classList.add('msg--revealing');
       requestAnimationFrame(() => {
-        botDemo.scrollTop = botDemo.scrollHeight;
+        focusMessage(el);
       });
     }
     function hide(el) {
-      el.classList.add('msg--hidden');
+      el.classList.add('msg--leaving');
+      setTimeout(() => {
+        el.classList.add('msg--hidden');
+        el.classList.remove('msg--leaving', 'msg--revealing');
+      }, 180);
     }
 
     function runBotAnimation() {

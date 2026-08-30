@@ -692,6 +692,7 @@ section { padding: 96px 0; position: relative; overflow: hidden; }
 .wa-body {
   flex: 1;
   overflow-y: auto;
+  scroll-behavior: smooth;
   padding: 10px 8px;
   display: flex;
   flex-direction: column;
@@ -815,9 +816,21 @@ section { padding: 96px 0; position: relative; overflow: hidden; }
 
 /* Bot demo — animación de conversación */
 .msg--hidden {
+  display: none;
+}
+
+.msg--revealing {
+  animation: msgIn .32s ease forwards;
+}
+
+.msg--leaving {
   opacity: 0;
-  transform: translateY(6px);
   pointer-events: none;
+}
+
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
 }
 
 @keyframes typingBounce {
