@@ -125,34 +125,62 @@ if ( ! function_exists( 'murgon_whatsapp_icon' ) ) {
           </div>
         </div>
 
-        <div class="whatsapp-mockup">
-          <div class="wa-phone-bar">
-            <span>9:41</span>
-            <span>LTE 86%</span>
-          </div>
-          <div class="wa-chat-header">
-            <div class="wa-avatar"><?php echo murgon_whatsapp_icon(); ?></div>
-            <div>
-              <strong>Murgon Assistant</strong>
-              <span>en línea · responde por WhatsApp</span>
+        <div class="phone-wrap whatsapp-mockup">
+          <div class="live-badge">DEMO WHATSAPP</div>
+          <div class="phone">
+            <div class="phone-di"></div>
+            <div class="phone-screen">
+              <div class="wa-screen">
+                <div class="sb-dark">
+                  <span class="sb-time">21:40</span>
+                  <div class="sb-icons">
+                    <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><rect x="0" y="8" width="3.5" height="4" rx=".6"/><rect x="4.5" y="5.5" width="3.5" height="6.5" rx=".6"/><rect x="9" y="2.5" width="3.5" height="9.5" rx=".6"/><rect x="13.5" y="0" width="3.5" height="12" rx=".6" opacity=".25"/></svg>
+                    <svg width="16" height="11" viewBox="0 0 16 11" fill="currentColor"><circle cx="8" cy="10" r="1.5"/><path d="M5 7.5a4.2 4.2 0 016 0" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M2 4.5a9 9 0 0112 0" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" opacity=".6"/></svg>
+                    <span class="sb-battery"><span></span></span>
+                  </div>
+                </div>
+                <div class="wa-header">
+                  <span class="wa-back">‹</span>
+                  <div class="wa-avatar">M<div class="wa-online"></div></div>
+                  <div class="wa-info">
+                    <div class="wa-name">Murgon Assistant</div>
+                    <div class="wa-status">en línea</div>
+                  </div>
+                </div>
+                <div class="wa-body bot-demo" id="botDemo" aria-live="polite">
+                  <div class="dc msg msg--hidden">Hoy</div>
+                  <div class="bw r msg msg--hidden"><div class="b r">Hola, ¿tienen disponibilidad esta semana?<span class="bt">21:40</span></div></div>
+                  <div class="bw s msg msg-typing msg--hidden" aria-hidden="true"><div class="b s typ"><span></span><span></span><span></span></div></div>
+                  <div class="bw s msg msg--hidden"><div class="b s">¡Hola! Sí, puedo ayudarte a encontrar un horario disponible.<span class="bt">21:40</span></div></div>
+                  <div class="bw s msg msg--hidden">
+                    <div class="wa-slots">
+                      <div class="wa-slots-header">Horarios disponibles</div>
+                      <div class="wa-slots-grid">
+                        <div class="wa-slot available">Mar<br>11:30</div>
+                        <div class="wa-slot selected">Jue<br>5:00</div>
+                        <div class="wa-slot full">Vie<br>Full</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bw r msg msg--hidden"><div class="b r">Jueves a las 5:00 está perfecto.<span class="bt">21:41</span></div></div>
+                  <div class="bw s msg msg-typing msg--hidden" aria-hidden="true"><div class="b s typ"><span></span><span></span><span></span></div></div>
+                  <div class="bw s msg msg--hidden">
+                    <div class="wa-confirm">
+                      <div class="wa-confirm-top">
+                        <span class="wa-confirm-check">✓</span>
+                        <div class="wa-confirm-title">CITA CONFIRMADA</div>
+                      </div>
+                      <div class="wa-confirm-body">
+                        <div class="wa-confirm-row"><span>📅</span><span>Jueves · 5:00 pm</span></div>
+                        <div class="wa-confirm-row"><span>🔔</span><span>Recordatorio automático 24 h antes</span></div>
+                      </div>
+                      <div class="wa-confirm-footer">Guardado en calendario y CRM</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="wa-input"><input class="wa-input-field" placeholder="Escribe un mensaje…" readonly></div>
+              </div>
             </div>
-          </div>
-          <div class="bot-demo" id="botDemo" aria-live="polite">
-            <div class="msg msg-in msg--hidden"><span>Hola, quiero saber si tienen disponibilidad esta semana.</span><small>9:41</small></div>
-            <div class="msg msg-typing msg--hidden" aria-hidden="true"><span></span><span></span><span></span></div>
-            <div class="msg msg-out msg--hidden"><span>¡Hola! Claro. Tengo espacios el martes a las 11:30 o jueves a las 5:00. ¿Cuál te funciona mejor?</span><small>9:41 ✓✓</small></div>
-            <div class="msg msg-in msg--hidden"><span>Jueves a las 5 está perfecto.</span><small>9:42</small></div>
-            <div class="msg msg-typing msg--hidden" aria-hidden="true"><span></span><span></span><span></span></div>
-            <div class="msg msg-out msg--hidden"><span>Listo, quedó agendado. Te envié la confirmación y un recordatorio saldrá automáticamente 24 h antes.</span><small>9:42 ✓✓</small></div>
-          </div>
-          <div class="wa-quick-replies">
-            <span>Agendar cita</span>
-            <span>Ver servicios</span>
-            <span>Hablar con asesor</span>
-          </div>
-          <div class="wa-compose">
-            <span>Mensaje</span>
-            <button type="button" tabindex="-1">Enviar</button>
           </div>
         </div>
       </div>

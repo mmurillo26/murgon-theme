@@ -345,14 +345,16 @@
   const botDemo = document.getElementById('botDemo');
   if (botDemo && 'IntersectionObserver' in window) {
     // Secuencia: [índice del elemento, delay en ms desde el inicio]
-    // Orden: msg-in → typing → msg-out → msg-in → typing → msg-out
+    // Orden: fecha → cliente → typing → bot → horarios → cliente → typing → confirmación
     const sequence = [
-      { index: 0, delay: 300  },   // msg-in  #1
-      { index: 1, delay: 900  },   // typing  #1 aparece
-      { index: 2, delay: 1800 },   // msg-out #1 + typing #1 desaparece
-      { index: 3, delay: 2500 },   // msg-in  #2
-      { index: 4, delay: 3100 },   // typing  #2 aparece
-      { index: 5, delay: 4000 },   // msg-out #2 + typing #2 desaparece
+      { index: 0, delay: 200  },
+      { index: 1, delay: 520  },
+      { index: 2, delay: 1100 },
+      { index: 3, delay: 2050 },
+      { index: 4, delay: 2700 },
+      { index: 5, delay: 3450 },
+      { index: 6, delay: 4100 },
+      { index: 7, delay: 5150 },
     ];
 
     function show(el) {
