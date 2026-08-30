@@ -264,10 +264,13 @@
           </form>
         </div>
       `;
-      resultsEl.appendChild(calcGateEl);
+      // resultsEl.appendChild(calcGateEl); *** CalcGate Pausado
+      const roiGateForm = document.getElementById('roiGateForm');
+      const roiGateSkip = document.getElementById('roiGateSkip');
+      if (!roiGateForm || !roiGateSkip) return;
 
       // Submit: guardar email y revelar
-      document.getElementById('roiGateForm').addEventListener('submit', function (e) {
+      roiGateForm.addEventListener('submit', function (e) {
         e.preventDefault();
         const email  = this.querySelector('[name="email"]').value.trim();
         const nombre = this.querySelector('[name="nombre"]').value.trim();
@@ -302,7 +305,7 @@
       });
 
       // Skip
-      document.getElementById('roiGateSkip').addEventListener('click', () => {
+      roiGateSkip.addEventListener('click', () => {
         sessionStorage.setItem('murgon_calc_revealed', '1');
         calcRevealed = true;
         removeGate();

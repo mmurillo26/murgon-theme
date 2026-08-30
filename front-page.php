@@ -12,11 +12,6 @@ get_header(); ?>
   <section id="hero" class="section-hero">
     <div class="grid-bg" aria-hidden="true"></div>
     <div class="container">
-      <div class="hero-badge">
-        <span class="hero-badge__dot" aria-hidden="true"></span>
-        Implementado por el desarrollador — no por un consultor
-      </div>
-
       <h1 class="fade-up">
         Tu negocio trabajando en <em>Piloto Automático.</em>
       </h1>
