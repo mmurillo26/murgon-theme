@@ -33,7 +33,7 @@ if ( ! function_exists( 'murgon_whatsapp_icon' ) ) {
            rel="noopener noreferrer">
           <?php echo murgon_whatsapp_icon(); ?> Agendar consulta gratuita
         </a>
-        <a href="#caso" class="btn-secondary">Ver caso real →</a>
+        <a href="#industrias" class="btn-secondary">Ver demo →</a>
       </div>
 
       <!-- Stats bar -->
@@ -326,121 +326,145 @@ if ( ! function_exists( 'murgon_whatsapp_icon' ) ) {
   <section id="caso" class="section-alt">
     <div class="container">
       <div class="section-label">Casos Reales</div>
-      <h2>Lo que construimos, funciona</h2>
-      <p class="section-sub">No prometemos — demostramos. Resultados reales de negocios que ya automatizan sus ventas.</p>
+      <h2>Así se ve un sistema cuando aterriza en un negocio real</h2>
+      <p class="section-sub">Cada caso parte de una operación distinta: agenda, WhatsApp, equipo, clientes dormidos y seguimiento. No mostramos plantillas; mostramos problemas concretos convertidos en flujos que sí se pueden operar.</p>
 
       <div class="cases-slider-wrap" id="casesSlider">
         <div class="cases-track" id="casesTrack">
-
-          <!-- SLIDE 1: Clínica de Fisioterapia -->
-          <div class="case-slide">
-            <div class="case-wrapper">
-              <div class="case-header">
-                <div>
-                  <span class="case-tag">Caso de éxito · Sistema a medida</span>
-                  <h3 class="case-client-title">Clínica de Fisioterapia — Tepic, Nayarit</h3>
-                  <p class="case-client-sub">Motor de ventas completo: atención 24/7, agendamiento en CRM personalizado, seguimiento y reactivación de pacientes vía WhatsApp con IA</p>
-                </div>
-                <div class="case-days">
-                  <div class="case-days-label">Sistema entregado en</div>
-                  <div class="case-days-value">6 sem</div>
-                </div>
-              </div>
-              <div class="case-body">
-                <div class="case-metrics">
-                  <div class="cm">
-                    <div class="cm-val">&lt; 10 seg</div>
-                    <div class="cm-label">Tiempo de respuesta · antes 15–30 min</div>
-                  </div>
-                  <div class="cm">
-                    <div class="cm-val">100%</div>
-                    <div class="cm-label">Leads fuera de horario atendidos</div>
-                  </div>
-                  <div class="cm">
-                    <div class="cm-val">0</div>
-                    <div class="cm-label">Mensajes sin responder en 24h</div>
-                  </div>
-                  <div class="cm">
-                    <div class="cm-val">0</div>
-                    <div class="cm-label">Fricción en la adopción del equipo</div>
-                  </div>
-                </div>
-                <div class="case-story">
-                  <h3>El problema</h3>
-                  <p>La clínica gestionaba citas y consultas manualmente — solo en horario laboral. Los prospectos que escribían fuera de ese horario no recibían respuesta. Los pacientes que dejaban de asistir nunca eran contactados de nuevo.</p>
-                  <h3>La solución</h3>
-                  <p>Motor de ventas integrado: atención automática 24/7 vía WhatsApp con IA, agendamiento en CRM personalizado, reactivación de pacientes inactivos y seguimiento automatizado de prospectos. El equipo adoptó el sistema sin cambios forzados — y conserva control total ante cualquier situación fuera del flujo.</p>
+          <?php
+          $cases = [
+            [
+              'kicker' => 'Caso real · Sistema a medida',
+              'title' => 'Clínica de Fisioterapia — Tepic, Nayarit',
+              'subtitle' => 'Atención 24/7, agendamiento en CRM, seguimiento y reactivación de pacientes por WhatsApp.',
+              'timeline' => '6 sem',
+              'privacy' => '',
+              'metrics' => [
+                ['value' => '< 10 seg', 'label' => 'respuesta inicial'],
+                ['value' => '24/7', 'label' => 'leads atendidos'],
+                ['value' => '0', 'label' => 'mensajes sin revisar'],
+              ],
+              'diagnosis' => [
+                'Las consultas llegaban por WhatsApp y se atendían manualmente solo en horario laboral.',
+                'Los pacientes inactivos no tenían seguimiento ni campaña de reactivación.',
+                'El equipo necesitaba conservar control cuando la conversación salía del flujo normal.',
+              ],
+              'solution' => [
+                'Bot de WhatsApp con IA para calificar, responder y escalar conversaciones.',
+                'CRM con agenda personalizada y pipeline de seguimiento.',
+                'Flujos de reactivación para pacientes que dejaron de asistir.',
+              ],
+              'stack' => ['WhatsApp Business API','OpenAI','n8n','Node.js','CRM personalizado'],
+            ],
+            [
+              'kicker' => 'Caso real · 2 semanas',
+              'title' => 'SPA — CDMX',
+              'subtitle' => 'Agenda automática, recordatorios, seguimiento post-servicio y reactivación de clientes dormidos.',
+              'timeline' => '14 días',
+              'privacy' => '',
+              'metrics' => [
+                ['value' => '< 30 seg', 'label' => 'respuesta automática'],
+                ['value' => '100%', 'label' => 'citas con recordatorio'],
+                ['value' => '24/7', 'label' => 'agenda abierta'],
+              ],
+              'diagnosis' => [
+                'Las consultas fuera de horario quedaban pendientes y muchas no regresaban.',
+                'Las citas se confirmaban manualmente por mensaje, con riesgo de olvidos.',
+                'No existía flujo para invitar a clientes anteriores a volver.',
+              ],
+              'solution' => [
+                'WhatsApp automatizado para responder preguntas frecuentes y proponer horarios.',
+                'Confirmación directa en Google Calendar con recordatorios previos.',
+                'Seguimiento post-servicio y mensajes de reactivación segmentados.',
+              ],
+              'stack' => ['WhatsApp Business API','n8n','Node.js','Google Calendar','OpenAI'],
+            ],
+            [
+              'kicker' => 'Caso real · 2 semanas',
+              'title' => 'Clínica Dental — Guadalajara, Jalisco',
+              'subtitle' => 'Sistema para reducir no-shows, ordenar agenda, atender WhatsApp 24/7 y reactivar una base histórica de pacientes.',
+              'timeline' => '14 días',
+              'privacy' => '',
+              'metrics' => [
+                ['value' => '45', 'label' => 'pacientes por semana'],
+                ['value' => '20-30%', 'label' => 'citas perdidas sin aviso'],
+                ['value' => '7,500', 'label' => 'expedientes por reactivar'],
+              ],
+              'diagnosis' => [
+                'La agenda vivía en papel y no se podía consultar ni actualizar en tiempo real.',
+                'La asistente era el único punto administrativo mientras también apoyaba tareas clínicas.',
+                'WhatsApp se atendía desde números personales y fuera de horario no había respuesta constante.',
+                'La clínica tenía pocas reseñas públicas pese a contar con años de pacientes atendidos.',
+              ],
+              'solution' => [
+                'WhatsApp oficial para responder nuevas consultas, pedir nombre, motivo y horario preferido.',
+                'Confirmaciones automáticas 24 h antes para bajar inasistencias y liberar carga operativa.',
+                'CRM simple con agenda digital, pacientes activos, pendientes y seguimiento post-tratamiento.',
+                'Campañas de reactivación por antigüedad del expediente y solicitud automática de reseñas.',
+              ],
+              'stack' => ['WhatsApp Business API','CRM ligero','Google Calendar','n8n','OpenAI','Google Reviews'],
+            ],
+          ];
+          foreach ( $cases as $idx => $case ) : ?>
+            <div class="case-slide">
+              <article class="case-dossier">
+                <header class="case-dossier__hero">
                   <div>
-                    <div class="stack-label">STACK IMPLEMENTADO</div>
-                    <div class="tech-stack">
-                      <span class="stack-tag">WhatsApp Business API</span>
-                      <span class="stack-tag">OpenAI</span>
-                      <span class="stack-tag">n8n</span>
-                      <span class="stack-tag">Node.js</span>
-                      <span class="stack-tag">CRM con agenda personalizada</span>
-                    </div>
+                    <span class="case-tag"><?php echo esc_html( $case['kicker'] ); ?></span>
+                    <h3 class="case-client-title"><?php echo esc_html( $case['title'] ); ?></h3>
+                    <p class="case-client-sub"><?php echo esc_html( $case['subtitle'] ); ?></p>
+                    <?php if ( ! empty( $case['privacy'] ) ) : ?>
+                      <p class="case-privacy"><?php echo esc_html( $case['privacy'] ); ?></p>
+                    <?php endif; ?>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div><!-- /slide 1 -->
+                  <div class="case-days">
+                    <div class="case-days-label">Sprint estimado</div>
+                    <div class="case-days-value"><?php echo esc_html( $case['timeline'] ); ?></div>
+                  </div>
+                </header>
 
-          <!-- SLIDE 2: Salón de Belleza -->
-          <div class="case-slide">
-            <div class="case-wrapper">
-              <div class="case-header">
-                <div>
-                  <span class="case-tag">Caso de éxito · 8 días</span>
-                  <h3 class="case-client-title">Salón de Belleza — Tepic, Nayarit</h3>
-                  <p class="case-client-sub">Atención y agendamiento automático 24/7: citas en Google Calendar, recordatorios, seguimiento post-servicio y reactivación de clientes dormidos</p>
-                </div>
-                <div class="case-days">
-                  <div class="case-days-label">Sistema entregado en</div>
-                  <div class="case-days-value">8 días</div>
-                </div>
-              </div>
-              <div class="case-body">
-                <div class="case-metrics">
-                  <div class="cm">
-                    <div class="cm-val">&lt; 30 seg</div>
-                    <div class="cm-label">Tiempo de respuesta · antes +2 horas</div>
-                  </div>
-                  <div class="cm">
-                    <div class="cm-val">100%</div>
-                    <div class="cm-label">Leads fuera de horario atendidos</div>
-                  </div>
-                  <div class="cm">
-                    <div class="cm-val">0</div>
-                    <div class="cm-label">Mensajes sin responder en 24h</div>
-                  </div>
-                  <div class="cm">
-                    <div class="cm-val">100%</div>
-                    <div class="cm-label">Citas con recordatorio automático</div>
-                  </div>
-                </div>
-                <div class="case-story">
-                  <h3>El problema</h3>
-                  <p>El salón perdía clientes porque las consultas llegaban fuera de horario y nadie podía responder. Los clientes que no regresaban no recibían ningún contacto. Las citas se confirmaban por mensaje manual — un proceso lento y propenso a olvidos.</p>
-                  <h3>La solución</h3>
-                  <p>Sistema que atiende y agenda automáticamente vía WhatsApp las 24 horas: confirma la cita directo en Google Calendar, envía recordatorios antes del servicio, da seguimiento post-visita y reactiva clientes que dejaron de asistir — todo sin intervención del equipo.</p>
-                  <div>
-                    <div class="stack-label">STACK IMPLEMENTADO</div>
-                    <div class="tech-stack">
-                      <span class="stack-tag">WhatsApp Business API</span>
-                      <span class="stack-tag">n8n</span>
-                      <span class="stack-tag">Node.js</span>
-                      <span class="stack-tag">Google Calendar</span>
-                      <span class="stack-tag">OpenAI</span>
+                <div class="case-proof-strip">
+                  <?php foreach ( $case['metrics'] as $metric ) : ?>
+                    <div class="case-proof">
+                      <strong><?php echo esc_html( $metric['value'] ); ?></strong>
+                      <span><?php echo esc_html( $metric['label'] ); ?></span>
                     </div>
-                  </div>
-                  <blockquote class="case-quote">
-                    "Antes perdía clientes porque no podía responder a tiempo. Ahora el sistema trabaja solo y yo me enfoco en atender a quien ya está en el salón."
-                    <cite>— Rocío, Salón de Belleza</cite>
-                  </blockquote>
+                  <?php endforeach; ?>
                 </div>
-              </div>
+
+                <div class="case-dossier__body">
+                  <div class="case-column case-column--diagnosis">
+                    <span class="case-column-label">Diagnóstico</span>
+                    <h4>Lo que estaba frenando la operación</h4>
+                    <ul class="case-list">
+                      <?php foreach ( $case['diagnosis'] as $item ) : ?>
+                        <li><?php echo esc_html( $item ); ?></li>
+                      <?php endforeach; ?>
+                    </ul>
+                  </div>
+
+                  <div class="case-column case-column--solution">
+                    <span class="case-column-label">Sistema propuesto</span>
+                    <h4>Qué se automatizó</h4>
+                    <ul class="case-list">
+                      <?php foreach ( $case['solution'] as $item ) : ?>
+                        <li><?php echo esc_html( $item ); ?></li>
+                      <?php endforeach; ?>
+                    </ul>
+                  </div>
+                </div>
+
+                <footer class="case-dossier__footer">
+                  <span class="stack-label">STACK / FLUJOS</span>
+                  <div class="tech-stack">
+                    <?php foreach ( $case['stack'] as $tag ) : ?>
+                      <span class="stack-tag"><?php echo esc_html( $tag ); ?></span>
+                    <?php endforeach; ?>
+                  </div>
+                </footer>
+              </article>
             </div>
-          </div><!-- /slide 2 -->
+          <?php endforeach; ?>
 
         </div><!-- /cases-track -->
 
@@ -449,8 +473,9 @@ if ( ! function_exists( 'murgon_whatsapp_icon' ) ) {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="cases-dots" role="tablist">
-            <button class="cases-dot active" data-idx="0" role="tab" aria-selected="true" aria-label="Clínica de Fisioterapia"></button>
-            <button class="cases-dot" data-idx="1" role="tab" aria-selected="false" aria-label="Salón de Belleza"></button>
+            <?php foreach ( $cases as $idx => $case ) : ?>
+              <button class="cases-dot<?php echo 0 === $idx ? ' active' : ''; ?>" data-idx="<?php echo esc_attr( $idx ); ?>" role="tab" aria-selected="<?php echo 0 === $idx ? 'true' : 'false'; ?>" aria-label="<?php echo esc_attr( $case['title'] ); ?>"></button>
+            <?php endforeach; ?>
           </div>
           <button class="cases-arrow cases-next" id="casesNext" aria-label="Siguiente caso">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -541,11 +566,11 @@ if ( ! function_exists( 'murgon_whatsapp_icon' ) ) {
       <div class="industries-grid">
         <?php
         $industries = [
-          ['icon'=>'🏥','title'=>'Clínicas',   'desc'=>'Agendamiento automático, recordatorios y captación de pacientes 24/7.', 'demo_url'=>'https://demo.murgonagency.com/demo-clinica'],
-          ['icon'=>'🏡','title'=>'Agencias Inmobiliarias','desc'=>'Calificación y seguimiento automático de compradores desde el primer contacto.', 'demo_url'=>'https://demo.murgonagency.com/demo-inmobiliaria'],
+          ['icon'=>'🏥','title'=>'Clínicas', 'desc'=>'Agendamiento automático, recordatorios y captación de pacientes 24/7.', 'demo_url'=>'https://demo.murgonagency.com/demo-clinica'],
+          ['icon'=>'🏡','title'=>'Agencias Inmobiliarias', 'desc'=>'Calificación y seguimiento automático de compradores desde el primer contacto.', 'demo_url'=>'https://demo.murgonagency.com/demo-inmobiliaria'],
           ['icon'=>'📣','title'=>'Agencias de Marketing', 'desc'=>'Reportes automáticos, onboarding y seguimiento de clientes sin fricción.', 'demo_url'=>'https://demo.murgonagency.com/demo-marketing'],
-          ['icon'=>'💇🏻‍♀️🧖🏼‍♀️','title'=>'Salones de Belleza y SPA',      'desc'=>'Agendamiento automático, recordatorios y reactivación de clientes dormidos/perdidos.', 'demo_url'=>'https://demo.murgonagency.com/demo-beauty'],
-          ['icon'=>'🛒','title'=>'E-commerce',            'desc'=>'Automatización de consultas, pedidos, recuperación de carritos y postventa.'],
+          ['icon'=>'💇🏻‍♀️ 🧖🏼‍♀️','title'=>'Salones de Belleza y SPA', 'desc'=>'Agendamiento automático, recordatorios y reactivación de clientes dormidos/perdidos.', 'demo_url'=>'https://demo.murgonagency.com/demo-beauty'],
+          ['icon'=>'🛒','title'=>'E-commerce', 'desc'=>'Automatización de consultas, pedidos, recuperación de carritos y postventa.', 'demo_url'=>'https://demo.murgonagency.com/demo-ecommerce'],
         ];
         foreach ( $industries as $ind ) : ?>
         <div class="service-card industry-card">

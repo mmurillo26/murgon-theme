@@ -935,11 +935,6 @@ section { padding: 96px 0; position: relative; overflow: hidden; }
   min-width: 0;
 }
 
-.case-slide .case-wrapper {
-  margin-top: 0;
-  border-radius: 0;
-}
-
 .cases-controls {
   display: flex;
   align-items: center;
@@ -988,22 +983,26 @@ section { padding: 96px 0; position: relative; overflow: hidden; }
 }
 
 /* ── CASE STUDY ── */
-.case-wrapper {
-  border: 1px solid rgba(0,200,255,.2);
-  border-radius: 16px;
+.case-dossier {
+  border: 1px solid rgba(0,200,255,.16);
+  border-radius: 18px;
   overflow: hidden;
-  margin-top: 52px;
+  background:
+    linear-gradient(135deg, rgba(0,200,255,.07), transparent 42%),
+    var(--bg2);
+  box-shadow: var(--shadow);
 }
-.case-header {
-  background: rgba(0,200,255,.04);
-  padding: 24px 36px;
+
+.case-dossier__hero {
+  padding: 30px 34px 26px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(0,200,255,.1);
+  border-bottom: 1px solid var(--border);
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 24px;
 }
+
 .case-tag {
   display: inline-block;
   font-size: .7rem; letter-spacing: .15em; text-transform: uppercase;
@@ -1014,50 +1013,149 @@ section { padding: 96px 0; position: relative; overflow: hidden; }
   font-family: var(--font-display);
   margin-bottom: 10px;
 }
-.case-client-title { font-size: 1.35rem; margin-top: 8px; }
-.case-client-sub   { font-size: .875rem; color: var(--muted); margin-top: 6px; }
-.case-days-label   { font-size: .75rem; color: var(--muted); text-align: right; }
-.case-days-value   { font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; color: var(--accent); }
 
-.case-body {
-  padding: 36px;
+.case-client-title {
+  font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+  margin-top: 8px;
+  max-width: 680px;
+}
+
+.case-client-sub {
+  font-size: .92rem;
+  color: var(--muted);
+  margin-top: 8px;
+  max-width: 720px;
+}
+
+.case-privacy {
+  margin-top: 12px;
+  color: rgba(232,234,242,.72);
+  font-size: .78rem;
+}
+
+.case-days {
+  min-width: 128px;
+  text-align: right;
+}
+
+.case-days-label {
+  font-size: .72rem;
+  color: var(--muted);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.case-days-value {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--accent);
+  margin-top: 4px;
+}
+
+.case-proof-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,.025);
+}
+
+.case-proof {
+  padding: 18px 22px;
+  border-right: 1px solid var(--border);
+}
+
+.case-proof:last-child { border-right: 0; }
+
+.case-proof strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--text);
+}
+
+.case-proof span {
+  display: block;
+  color: var(--muted);
+  font-size: .76rem;
+  margin-top: 6px;
+}
+
+.case-dossier__body {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  gap: 1px;
+  background: var(--border);
 }
-.case-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-content: start; }
-.cm {
+
+.case-column {
   background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px 20px;
+  padding: 28px 30px;
 }
-.cm-val   { font-family: var(--font-display); font-size: 1.8rem; font-weight: 800; color: var(--accent); }
-.cm-label { font-size: .78rem; color: var(--muted); margin-top: 4px; }
 
-.case-story h3 { margin-bottom: 12px; }
-.case-story h3 + h3 { margin-top: 20px; }
-.case-story p  { font-size: .9rem; margin-bottom: 10px; }
+.case-column--diagnosis { border-top: 2px solid rgba(255,77,109,.65); }
+.case-column--solution  { border-top: 2px solid rgba(0,229,160,.65); }
 
-.case-quote {
-  border-left: 3px solid var(--accent);
-  padding: 12px 20px;
-  margin: 20px 0;
-  background: rgba(0,200,255,.04);
-  border-radius: 0 8px 8px 0;
-  font-style: italic;
-  color: var(--text);
-  font-size: .9rem;
-}
-.case-quote cite {
+.case-column-label {
   display: block;
-  font-style: normal;
-  color: var(--muted);
-  font-size: .8rem;
-  margin-top: 8px;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: .7rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
-.stack-label { font-size: .72rem; color: var(--muted); letter-spacing: .1em; margin-bottom: 10px; }
+.case-column h4 {
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  margin-bottom: 18px;
+}
+
+.case-list {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.case-list li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: .9rem;
+  line-height: 1.6;
+}
+
+.case-list li::before {
+  content: '';
+  position: absolute;
+  top: .65em;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.case-column--diagnosis .case-list li::before { background: var(--red); }
+.case-column--solution .case-list li::before  { background: var(--green); }
+
+.case-dossier__footer {
+  padding: 22px 30px 28px;
+  background: rgba(255,255,255,.018);
+}
+
+.stack-label {
+  display: block;
+  color: var(--muted);
+  font-size: .72rem;
+  letter-spacing: .1em;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
 .tech-stack  { display: flex; flex-wrap: wrap; gap: 8px; }
 .stack-tag {
   font-size: .75rem;
@@ -1544,7 +1642,9 @@ input[type="range"]::-webkit-slider-thumb:hover {
   .hero-visual { grid-template-columns: 1fr; }
   .whatsapp-mockup { justify-self: center; }
 
-  .case-body { grid-template-columns: 1fr; overflow: auto; }
+  .case-dossier__hero { flex-direction: column; }
+  .case-dossier__body { grid-template-columns: 1fr; }
+  .case-days { text-align: left; }
   .about-grid { grid-template-columns: 1fr; }
   .about-photo { aspect-ratio: 4/3; }
   .steps { grid-template-columns: 1fr; }
@@ -1565,7 +1665,15 @@ input[type="range"]::-webkit-slider-thumb:hover {
   .pipeline-row { grid-template-columns: 92px minmax(0, 1fr) 24px; }
   .whatsapp-mockup { border-radius: 22px; }
   .bot-demo { min-height: 300px; }
-  .case-metrics { grid-template-columns: 1fr 1fr; }
+  .case-dossier__hero { padding: 24px 22px; }
+  .case-proof-strip { grid-template-columns: 1fr; }
+  .case-proof {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .case-proof:last-child { border-bottom: 0; }
+  .case-column,
+  .case-dossier__footer { padding: 24px 22px; }
 }
 
 /* ── ACADEMY TEASER ── */
