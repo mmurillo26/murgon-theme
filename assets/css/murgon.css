@@ -709,10 +709,34 @@ section { padding: 96px 0; position: relative; overflow: hidden; }
   gap: 16px;
   margin-top: 48px;
 }
-.industry-card { padding: 22px; }
+.industry-card {
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+}
 .industry-icon { font-size: 1.7rem; margin-bottom: 12px; }
 .industry-card h3 { font-size: .95rem; }
 .industry-card p  { font-size: .82rem; margin-top: 8px; }
+.industry-demo-btn {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 9px 14px;
+  border: 1px solid rgba(0,200,255,.22);
+  border-radius: 8px;
+  background: rgba(0,200,255,.08);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  transition: background var(--transition), border-color var(--transition), color var(--transition), transform var(--transition);
+}
+.industry-demo-btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(0,200,255,.42);
+  background: rgba(0,200,255,.14);
+  color: var(--text);
+}
 
 /* ── PRICING ── */
 .pricing-grid {

@@ -463,17 +463,20 @@ get_header(); ?>
       <div class="industries-grid">
         <?php
         $industries = [
-          ['icon'=>'🏥','title'=>'Clínicas y Estética',   'desc'=>'Agendamiento automático, recordatorios y captación de pacientes 24/7.'],
-          ['icon'=>'🏡','title'=>'Agencias Inmobiliarias','desc'=>'Calificación y seguimiento automático de compradores desde el primer contacto.'],
+          ['icon'=>'🏥','title'=>'Clínicas',   'desc'=>'Agendamiento automático, recordatorios y captación de pacientes 24/7.', 'demo_url'=>'https://demo.murgonagency.com/demo-beauty'],
+          ['icon'=>'🏡','title'=>'Agencias Inmobiliarias','desc'=>'Calificación y seguimiento automático de compradores desde el primer contacto.', 'demo_url'=>'https://demo.murgonagency.com/demo-inmobiliaria'],
+          ['icon'=>'📣','title'=>'Agencias de Marketing', 'desc'=>'Reportes automáticos, onboarding y seguimiento de clientes sin fricción.', 'demo_url'=>'https://demo.murgonagency.com/demo-marketing'],
+          ['icon'=>'💇🏻‍♀️🧖🏼‍♀️','title'=>'Salones de Belleza y SPA',      'desc'=>'Agendamiento automático, recordatorios y reactivación de clientes dormidos/perdidos.', 'demo_url'=>'https://demo.murgonagency.com/demo-beauty'],
           ['icon'=>'🛒','title'=>'E-commerce',            'desc'=>'Automatización de consultas, pedidos, recuperación de carritos y postventa.'],
-          ['icon'=>'📣','title'=>'Agencias de Marketing', 'desc'=>'Reportes automáticos, onboarding y seguimiento de clientes sin fricción.'],
-          ['icon'=>'🏪','title'=>'Negocios Locales',      'desc'=>'Respuesta en WhatsApp, embudo de ventas y calificación de prospectos automática.'],
         ];
         foreach ( $industries as $ind ) : ?>
         <div class="service-card industry-card">
           <div class="industry-icon" aria-hidden="true"><?php echo esc_html( $ind['icon'] ); ?></div>
           <h3><?php echo esc_html( $ind['title'] ); ?></h3>
           <p><?php echo esc_html( $ind['desc'] ); ?></p>
+          <?php if ( ! empty( $ind['demo_url'] ) ) : ?>
+            <a class="industry-demo-btn" href="<?php echo esc_url( $ind['demo_url'] ); ?>" target="_blank" rel="noopener noreferrer">Ver demo</a>
+          <?php endif; ?>
         </div>
         <?php endforeach; ?>
       </div>
