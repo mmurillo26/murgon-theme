@@ -1470,7 +1470,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
   flex-direction: column;
   gap: 16px;
   position: sticky;
-  top: 88px;
 }
 .roi-result-card {
   border-radius: var(--radius);
