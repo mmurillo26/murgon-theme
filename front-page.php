@@ -6,17 +6,20 @@
  */
 get_header(); ?>
 
+<?php
+if ( ! function_exists( 'murgon_whatsapp_icon' ) ) {
+  function murgon_whatsapp_icon() {
+    return '<svg class="whatsapp-icon" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="#ffffff" d="M22.29 18.89c-.34-.17-2.04-1-2.35-1.12-.32-.11-.55-.17-.78.17-.23.35-.89 1.12-1.09 1.35-.2.23-.4.26-.74.09-.35-.17-1.45-.54-2.77-1.71-1.02-.91-1.71-2.04-1.91-2.38-.2-.35-.02-.53.15-.7.15-.16.34-.4.52-.6.17-.2.23-.35.34-.57.12-.23.06-.43-.03-.6-.08-.17-.77-1.87-1.06-2.56-.28-.67-.56-.58-.78-.59l-.66-.01c-.23 0-.6.09-.92.43-.31.35-1.2 1.18-1.2 2.87 0 1.69 1.23 3.33 1.4 3.56.18.23 2.43 3.71 5.89 5.2.82.36 1.47.57 1.97.73.82.26 1.57.23 2.17.14.66-.1 2.03-.83 2.32-1.63.29-.81.29-1.49.2-1.64-.09-.14-.32-.23-.67-.4ZM16.03 5.33c-5.9 0-10.7 4.8-10.7 10.7 0 2.02.57 3.92 1.55 5.54L5.33 27l5.59-1.47a10.66 10.66 0 0 0 5.11 1.3c5.9 0 10.7-4.8 10.7-10.7s-4.8-10.8-10.7-10.8Zm0 19.67c-1.73 0-3.34-.5-4.7-1.36l-.34-.21-3.31.87.89-3.23-.22-.35a8.87 8.87 0 0 1-1.35-4.69c0-4.98 4.05-9.03 9.03-9.03 2.41 0 4.67.94 6.38 2.65a8.96 8.96 0 0 1 2.65 6.38c0 4.92-4.05 8.97-9.03 8.97Z"/></svg>';
+  }
+}
+?>
+
 <main id="main-content">
 
   <!-- ══ HERO ══ -->
   <section id="hero" class="section-hero">
     <div class="grid-bg" aria-hidden="true"></div>
     <div class="container">
-      <div class="hero-badge">
-        <span class="hero-badge__dot" aria-hidden="true"></span>
-        Implementado por el desarrollador — no por un consultor
-      </div>
-
       <h1 class="fade-up">
         Tu negocio trabajando en <em>Piloto Automático.</em>
       </h1>
@@ -28,7 +31,7 @@ get_header(); ?>
            class="btn-primary"
            target="_blank"
            rel="noopener noreferrer">
-          <span aria-hidden="true">💬</span> Agendar consulta gratuita
+          <?php echo murgon_whatsapp_icon(); ?> Agendar consulta gratuita
         </a>
         <a href="#caso" class="btn-secondary">Ver caso real →</a>
       </div>
@@ -55,36 +58,111 @@ get_header(); ?>
 
       <!-- Dashboard mockup -->
       <div class="hero-visual fade-up delay-3" aria-hidden="true">
-        <div class="metric-card">
-          <div class="metric-label">Leads capturados hoy</div>
-          <div class="metric-value">34</div>
-          <div class="metric-delta">↑ +18% vs ayer</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-label">Tiempo de respuesta</div>
-          <div class="metric-value">&lt; 1 min</div>
-          <div class="metric-delta">Automático 24/7</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-label">Tasa de conversión</div>
-          <div class="metric-value">28.4%</div>
-          <div class="metric-delta">↑ +11% vs manual</div>
-        </div>
-        <div class="metric-card metric-wide">
-          <div class="metric-label">Bot WhatsApp — Conversación activa</div>
-          <div class="bot-demo" id="botDemo" aria-live="polite">
-            <div class="msg msg-in  msg--hidden">Hola, ¿cuánto cuesta el servicio de automatización?</div>
-            <div class="msg msg-typing msg--hidden" aria-hidden="true"><span></span><span></span><span></span></div>
-            <div class="msg msg-out msg--hidden">¡Hola! Gracias por contactarnos 👋 Tenemos 3 planes desde $9,500 MXN. ¿Me dices en qué área quieres automatizar?</div>
-            <div class="msg msg-in  msg--hidden">En atención al cliente por WhatsApp</div>
-            <div class="msg msg-typing msg--hidden" aria-hidden="true"><span></span><span></span><span></span></div>
-            <div class="msg msg-out msg--hidden">Perfecto. ¿Te parece si agendamos una llamada de 20 min esta semana?</div>
+        <div class="hero-dashboard">
+          <div class="dashboard-topbar">
+            <div>
+              <span class="dashboard-eyebrow">Panel de automatización</span>
+              <strong>WhatsApp conectado a tu operación</strong>
+            </div>
+            <span class="dashboard-status">En vivo</span>
+          </div>
+
+          <div class="dashboard-metrics">
+            <div class="metric-card">
+              <div class="metric-label">Conversaciones hoy</div>
+              <div class="metric-value">34</div>
+              <div class="metric-delta">12 listas para seguimiento</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Respuesta inicial</div>
+              <div class="metric-value">18 seg</div>
+              <div class="metric-delta">Sin esperar a tu equipo</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Citas agendadas</div>
+              <div class="metric-value">8</div>
+              <div class="metric-delta">Confirmadas en calendario</div>
+            </div>
+          </div>
+
+          <div class="pipeline-panel">
+            <div class="pipeline-head">
+              <span>Pipeline de hoy</span>
+              <small>Actualizado hace 1 min</small>
+            </div>
+            <div class="pipeline-row">
+              <span>Nuevo lead</span>
+              <div class="pipeline-bar"><span style="width:72%"></span></div>
+              <strong>18</strong>
+            </div>
+            <div class="pipeline-row">
+              <span>Calificado</span>
+              <div class="pipeline-bar"><span style="width:48%"></span></div>
+              <strong>12</strong>
+            </div>
+            <div class="pipeline-row">
+              <span>Cita enviada</span>
+              <div class="pipeline-bar"><span style="width:32%"></span></div>
+              <strong>8</strong>
+            </div>
+          </div>
+
+          <div class="next-actions">
+            <div class="action-item">
+              <span class="action-dot"></span>
+              <div>
+                <strong>Juan</strong>
+                <small>Cita programada para jueves 5:00 pm</small>
+              </div>
+            </div>
+            <div class="action-item">
+              <span class="action-dot action-dot--soft"></span>
+              <div>
+                <strong>Carlos G.</strong>
+                <small>Enviar recordatorio automático en 24 h</small>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="metric-card">
-          <div class="metric-label">Prospectos calificados</div>
-          <div class="metric-value">127</div>
-          <div class="metric-delta">Este mes</div>
+
+        <div class="phone-wrap whatsapp-mockup">
+          <div class="live-badge">DEMO WHATSAPP</div>
+          <div class="phone">
+            <div class="phone-di"></div>
+            <div class="phone-screen">
+              <div class="wa-screen">
+                <div class="sb-dark">
+                  <span class="sb-time">21:40</span>
+                  <div class="sb-icons">
+                    <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><rect x="0" y="8" width="3.5" height="4" rx=".6"/><rect x="4.5" y="5.5" width="3.5" height="6.5" rx=".6"/><rect x="9" y="2.5" width="3.5" height="9.5" rx=".6"/><rect x="13.5" y="0" width="3.5" height="12" rx=".6" opacity=".25"/></svg>
+                    <svg width="16" height="11" viewBox="0 0 16 11" fill="currentColor"><circle cx="8" cy="10" r="1.5"/><path d="M5 7.5a4.2 4.2 0 016 0" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M2 4.5a9 9 0 0112 0" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" opacity=".6"/></svg>
+                    <span class="sb-battery"><span></span></span>
+                  </div>
+                </div>
+                <div class="wa-header">
+                  <span class="wa-back">‹</span>
+                  <div class="wa-avatar">M<div class="wa-online"></div></div>
+                  <div class="wa-info">
+                    <div class="wa-name">Murgon Assistant</div>
+                    <div class="wa-status">en línea</div>
+                  </div>
+                </div>
+                <div class="wa-body bot-demo" id="botDemo" aria-live="polite">
+                  <div class="dc msg msg--hidden">Hoy</div>
+                  <div class="bw r msg msg--hidden"><div class="b r">Hola, ¿tienen disponibilidad esta semana?<span class="bt">21:40</span></div></div>
+                  <div class="bw s msg msg-typing msg--hidden" aria-hidden="true"><div class="b s typ"><span></span><span></span><span></span></div></div>
+                  <div class="bw s msg msg--hidden"><div class="b s">¡Hola! Sí, tenemos estos horarios disponibles:<br><br>Martes 11:30 am<br>Jueves 5:00 pm<br>Viernes de 9:00 am a 3:00 pm<span class="bt">21:40</span></div></div>
+                  <div class="bw r msg msg--hidden"><div class="b r">Jueves a las 5:00 está perfecto.<span class="bt">21:41</span></div></div>
+                  <div class="bw s msg msg-typing msg--hidden" aria-hidden="true"><div class="b s typ"><span></span><span></span><span></span></div></div>
+                  <div class="bw s msg msg--hidden"><div class="b s">Perfecto. ¿A nombre de quién programo la cita?<span class="bt">21:41</span></div></div>
+                  <div class="bw r msg msg--hidden"><div class="b r">A nombre de Juan.<span class="bt">21:42</span></div></div>
+                  <div class="bw s msg msg-typing msg--hidden" aria-hidden="true"><div class="b s typ"><span></span><span></span><span></span></div></div>
+                  <div class="bw s msg msg--hidden"><div class="b s">✅ CITA PROGRAMADA<br><br>👤 Juan<br>🗓️ Jueves<br>⏰ 5:00 pm<br><br>Te enviaremos un recordatorio 24 h antes.<span class="bt">21:42</span></div></div>
+                </div>
+                <div class="wa-input"><input class="wa-input-field" placeholder="Escribe un mensaje…" readonly></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -234,7 +312,7 @@ get_header(); ?>
             <p>Estos números son tuyos. La automatización no es un gasto — es la diferencia entre crecer o seguir igual.</p>
             <a href="https://wa.me/523117406927?text=Hola%2C%20vi%20la%20calculadora%20de%20ROI%20y%20quiero%20una%20consulta%20gratuita"
                class="btn-primary" target="_blank" rel="noopener noreferrer">
-              <span aria-hidden="true">💬</span> Quiero estos resultados
+              <?php echo murgon_whatsapp_icon(); ?> Quiero estos resultados
             </a>
           </div>
 
@@ -410,7 +488,7 @@ get_header(); ?>
         <a href="https://wa.me/523117406927?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita"
            class="btn-primary"
            target="_blank" rel="noopener noreferrer">
-          Empieza el proceso →
+          <?php echo murgon_whatsapp_icon(); ?> Empieza el proceso →
         </a>
       </div>
     </div>
@@ -432,11 +510,11 @@ get_header(); ?>
           </div>
         </div>
         <div class="about-content">
-          <h2>No soy un consultor.<br>Soy el que construye.</h2>
-          <p>Soy desarrollador full stack con 6 años de experiencia en desarrollo de software y comercio digital. Construí Murgon Agency porque vi que muchos negocios pagaban por "consultoría de IA" a personas que nunca habían escrito una línea de código.</p>
-          <p>La diferencia: yo implemento. Cada sistema que propongo, lo construyo yo mismo — con herramientas reales, integraciones funcionales y código que puedes auditar.</p>
+          <h2>Estrategia clara.<br>Implementación real.</h2>
+          <p>Soy desarrollador full stack con 6 años de experiencia en desarrollo de software y comercio digital. Construí Murgon Agency para ayudar a negocios a convertir ideas de automatización en sistemas concretos, medibles y listos para operar.</p>
+          <p>Mi diferenciador es que acompaño la estrategia con ejecución técnica: diseño el flujo, conecto las herramientas, construyo el sistema y dejo integraciones funcionales que puedes revisar, usar y mejorar con el tiempo.</p>
           <div class="credentials">
-            <div class="cred"><span class="cred-icon" aria-hidden="true">⚡</span>Full Stack Developer (Node.js, JS)</div>
+            <div class="cred"><span class="cred-icon" aria-hidden="true">⚡</span>Full Stack Developer (Backend, Frontend)</div>
             <div class="cred"><span class="cred-icon" aria-hidden="true">🤖</span>AI Systems Builder</div>
             <div class="cred"><span class="cred-icon" aria-hidden="true">🔗</span>Automation Architect</div>
             <div class="cred"><span class="cred-icon" aria-hidden="true">📦</span>E-commerce &amp; SFCC Dev</div>
@@ -463,17 +541,20 @@ get_header(); ?>
       <div class="industries-grid">
         <?php
         $industries = [
-          ['icon'=>'🏥','title'=>'Clínicas y Estética',   'desc'=>'Agendamiento automático, recordatorios y captación de pacientes 24/7.'],
-          ['icon'=>'🏡','title'=>'Agencias Inmobiliarias','desc'=>'Calificación y seguimiento automático de compradores desde el primer contacto.'],
+          ['icon'=>'🏥','title'=>'Clínicas',   'desc'=>'Agendamiento automático, recordatorios y captación de pacientes 24/7.', 'demo_url'=>'https://demo.murgonagency.com/demo-clinica'],
+          ['icon'=>'🏡','title'=>'Agencias Inmobiliarias','desc'=>'Calificación y seguimiento automático de compradores desde el primer contacto.', 'demo_url'=>'https://demo.murgonagency.com/demo-inmobiliaria'],
+          ['icon'=>'📣','title'=>'Agencias de Marketing', 'desc'=>'Reportes automáticos, onboarding y seguimiento de clientes sin fricción.', 'demo_url'=>'https://demo.murgonagency.com/demo-marketing'],
+          ['icon'=>'💇🏻‍♀️🧖🏼‍♀️','title'=>'Salones de Belleza y SPA',      'desc'=>'Agendamiento automático, recordatorios y reactivación de clientes dormidos/perdidos.', 'demo_url'=>'https://demo.murgonagency.com/demo-beauty'],
           ['icon'=>'🛒','title'=>'E-commerce',            'desc'=>'Automatización de consultas, pedidos, recuperación de carritos y postventa.'],
-          ['icon'=>'📣','title'=>'Agencias de Marketing', 'desc'=>'Reportes automáticos, onboarding y seguimiento de clientes sin fricción.'],
-          ['icon'=>'🏪','title'=>'Negocios Locales',      'desc'=>'Respuesta en WhatsApp, embudo de ventas y calificación de prospectos automática.'],
         ];
         foreach ( $industries as $ind ) : ?>
         <div class="service-card industry-card">
           <div class="industry-icon" aria-hidden="true"><?php echo esc_html( $ind['icon'] ); ?></div>
           <h3><?php echo esc_html( $ind['title'] ); ?></h3>
           <p><?php echo esc_html( $ind['desc'] ); ?></p>
+          <?php if ( ! empty( $ind['demo_url'] ) ) : ?>
+            <a class="industry-demo-btn" href="<?php echo esc_url( $ind['demo_url'] ); ?>" target="_blank" rel="noopener noreferrer">Ver demo</a>
+          <?php endif; ?>
         </div>
         <?php endforeach; ?>
       </div>
@@ -502,7 +583,7 @@ get_header(); ?>
             <li>Flujo de seguimiento automático</li>
             <li>Capacitación y documentación</li>
           </ul>
-          <a href="https://wa.me/523117406927?text=Hola%2C%20me%20interesa%20el%20plan%20Starter%20%249%2C500" class="price-btn" target="_blank" rel="noopener">Empezar con Starter →</a>
+          <a href="https://wa.me/523117406927?text=Hola%2C%20me%20interesa%20el%20plan%20Starter%20%249%2C500" class="price-btn" target="_blank" rel="noopener"><?php echo murgon_whatsapp_icon(); ?> Empezar con Starter →</a>
         </div>
 
         <div class="price-card featured">
@@ -517,7 +598,7 @@ get_header(); ?>
             <li>Automatizaciones de seguimiento multi-canal</li>
             <li>30 días de soporte post-lanzamiento</li>
           </ul>
-          <a href="https://wa.me/523117406927?text=Hola%2C%20me%20interesa%20el%20plan%20Sistema%20Completo" class="price-btn" target="_blank" rel="noopener">El más popular →</a>
+          <a href="https://wa.me/523117406927?text=Hola%2C%20me%20interesa%20el%20plan%20Sistema%20Completo" class="price-btn" target="_blank" rel="noopener"><?php echo murgon_whatsapp_icon(); ?> El más popular →</a>
         </div>
 
         <div class="price-card">
@@ -531,7 +612,7 @@ get_header(); ?>
             <li>Equipo dedicado de desarrollo</li>
             <li>Mantenimiento y evolución continua</li>
           </ul>
-          <a href="https://wa.me/523117406927?text=Hola%2C%20quiero%20informaci%C3%B3n%20del%20plan%20Enterprise" class="price-btn" target="_blank" rel="noopener">Agendar llamada →</a>
+          <a href="https://wa.me/523117406927?text=Hola%2C%20quiero%20informaci%C3%B3n%20del%20plan%20Enterprise" class="price-btn" target="_blank" rel="noopener"><?php echo murgon_whatsapp_icon(); ?> Agendar llamada →</a>
         </div>
 
       </div>
@@ -548,7 +629,7 @@ get_header(); ?>
         $faqs = [
           ['q'=>'¿Cuánto tiempo tarda la implementación?',             'a'=>'La mayoría de proyectos quedan listos en 7 a 14 días hábiles, dependiendo de la complejidad. El plan Starter puede estar en producción en menos de una semana. Antes de empezar te entregamos un timeline exacto con fechas de entrega.'],
           ['q'=>'¿Necesito conocimientos técnicos para usar el sistema?','a'=>'No. Diseñamos los sistemas para que cualquier persona pueda operarlos sin saber programación. Incluimos capacitación en video y documentación escrita.'],
-          ['q'=>'¿Qué diferencia a Murgon de otras agencias de "IA"?',  'a'=>'La mayoría vende consultoría — te dicen qué hacer pero no lo construyen. Nosotros somos desarrolladores: implementamos, integramos APIs reales, escribimos el código y lo ponemos en producción.'],
+          ['q'=>'¿Qué diferencia a Murgon de otras agencias de "IA"?',  'a'=>'Nuestro enfoque une diagnóstico, estrategia e implementación técnica. Diseñamos los flujos contigo, integramos APIs reales, escribimos el código necesario y dejamos el sistema funcionando en producción.'],
           ['q'=>'¿En qué se diferencia esto del bot nativo de WhatsApp de Meta?', 'a'=>'Meta te da un bot que contesta preguntas frecuentes dentro de WhatsApp Business. Útil, pero limitado. Lo que construimos va mucho más allá: conectamos WhatsApp con tu CRM, agenda, seguimiento y reactivación de prospectos para que todo opere coordinado. No solo contestamos mensajes — automatizamos el ciclo completo desde la primera consulta hasta el cierre.'],
           ['q'=>'¿La automatización reemplaza a mi equipo?',            'a'=>'No. Automatiza las tareas repetitivas para que tu equipo se enfoque en cerrar ventas y atender bien a los clientes. Los sistemas se encargan de responder, filtrar y organizar — y siempre se prioriza el control humano ante cualquier situación fuera de lo normal.'],
           ['q'=>'¿Puedo ver el sistema antes de pagar?',               'a'=>'Sí. Antes de que pagues un peso, tendrás una consulta gratuita donde mostramos ejemplos reales funcionando — incluyendo casos de clínicas y negocios locales.'],
@@ -598,7 +679,7 @@ get_header(); ?>
         <a href="https://wa.me/523117406927?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita"
            class="btn-primary"
            target="_blank" rel="noopener noreferrer">
-          <span aria-hidden="true">💬</span> Agendar consulta gratuita
+          <?php echo murgon_whatsapp_icon(); ?> Agendar consulta gratuita
         </a>
         <a href="mailto:contacto@murgonagency.com" class="btn-secondary">
           ✉ contacto@murgonagency.com
@@ -618,7 +699,7 @@ get_header(); ?>
   rel="noopener"
   aria-label="Chatea con nosotros por WhatsApp"
 >
-  <span class="whatsapp-float__bubble">¿Hablamos? 💬</span>
+  <span class="whatsapp-float__bubble">¿Hablamos?</span>
   <span class="whatsapp-float__btn">
     <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fill="#fff" d="M16 2C8.268 2 2 8.268 2 16c0 2.47.664 4.785 1.82 6.775L2 30l7.418-1.793A13.927 13.927 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.5a11.44 11.44 0 01-5.83-1.594l-.418-.248-4.402 1.064 1.1-4.285-.272-.44A11.46 11.46 0 014.5 16C4.5 9.648 9.648 4.5 16 4.5S27.5 9.648 27.5 16 22.352 27.5 16 27.5zm6.29-8.61c-.344-.172-2.035-1.003-2.35-1.118-.316-.115-.546-.172-.776.172-.23.344-.89 1.118-1.09 1.348-.2.23-.4.258-.744.086-.344-.172-1.452-.535-2.767-1.707-1.022-.912-1.712-2.038-1.912-2.382-.2-.344-.021-.53.15-.701.155-.155.344-.4.516-.602.172-.2.23-.344.344-.573.115-.23.058-.43-.029-.602-.086-.172-.776-1.87-1.063-2.562-.28-.672-.564-.58-.776-.59l-.66-.012c-.23 0-.602.086-.917.43s-1.205 1.176-1.205 2.867 1.234 3.325 1.406 3.555c.172.23 2.43 3.71 5.888 5.204.823.355 1.465.567 1.966.726.826.263 1.578.226 2.172.137.663-.1 2.035-.831 2.322-1.634.287-.803.287-1.49.2-1.634-.086-.143-.315-.23-.66-.4z"/>

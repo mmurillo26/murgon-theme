@@ -264,10 +264,13 @@
           </form>
         </div>
       `;
-      resultsEl.appendChild(calcGateEl);
+      // resultsEl.appendChild(calcGateEl); *** CalcGate Pausado
+      const roiGateForm = document.getElementById('roiGateForm');
+      const roiGateSkip = document.getElementById('roiGateSkip');
+      if (!roiGateForm || !roiGateSkip) return;
 
       // Submit: guardar email y revelar
-      document.getElementById('roiGateForm').addEventListener('submit', function (e) {
+      roiGateForm.addEventListener('submit', function (e) {
         e.preventDefault();
         const email  = this.querySelector('[name="email"]').value.trim();
         const nombre = this.querySelector('[name="nombre"]').value.trim();
@@ -302,7 +305,7 @@
       });
 
       // Skip
-      document.getElementById('roiGateSkip').addEventListener('click', () => {
+      roiGateSkip.addEventListener('click', () => {
         sessionStorage.setItem('murgon_calc_revealed', '1');
         calcRevealed = true;
         removeGate();
@@ -342,21 +345,46 @@
   const botDemo = document.getElementById('botDemo');
   if (botDemo && 'IntersectionObserver' in window) {
     // Secuencia: [índice del elemento, delay en ms desde el inicio]
-    // Orden: msg-in → typing → msg-out → msg-in → typing → msg-out
+    // Orden: fecha → cliente → typing → horarios → cliente → typing → nombre → cliente → typing → confirmación
     const sequence = [
-      { index: 0, delay: 300  },   // msg-in  #1
-      { index: 1, delay: 900  },   // typing  #1 aparece
-      { index: 2, delay: 1800 },   // msg-out #1 + typing #1 desaparece
-      { index: 3, delay: 2500 },   // msg-in  #2
-      { index: 4, delay: 3100 },   // typing  #2 aparece
-      { index: 5, delay: 4000 },   // msg-out #2 + typing #2 desaparece
+      { index: 0, delay: 200  },
+      { index: 1, delay: 520  },
+      { index: 2, delay: 1100 },
+      { index: 3, delay: 2100 },
+      { index: 4, delay: 3100 },
+      { index: 5, delay: 3750 },
+      { index: 6, delay: 4700 },
+      { index: 7, delay: 5550 },
+      { index: 8, delay: 6200 },
+      { index: 9, delay: 7300 },
     ];
+
+    function focusMessage(el) {
+      const targetTop = Math.max(
+        0,
+        el.offsetTop + el.offsetHeight - botDemo.clientHeight + 18
+      );
+
+      botDemo.scrollTo({
+        top: targetTop,
+        behavior: 'smooth',
+      });
+    }
 
     function show(el) {
       el.classList.remove('msg--hidden');
+      el.classList.remove('msg--leaving');
+      el.classList.add('msg--revealing');
+      requestAnimationFrame(() => {
+        focusMessage(el);
+      });
     }
     function hide(el) {
-      el.classList.add('msg--hidden');
+      el.classList.add('msg--leaving');
+      setTimeout(() => {
+        el.classList.add('msg--hidden');
+        el.classList.remove('msg--leaving', 'msg--revealing');
+      }, 180);
     }
 
     function runBotAnimation() {
