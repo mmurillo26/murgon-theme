@@ -541,11 +541,11 @@ if ( ! function_exists( 'murgon_whatsapp_icon' ) ) {
       <div class="industries-grid">
         <?php
         $industries = [
-          ['icon'=>'🏥','title'=>'Clínicas',   'desc'=>'Agendamiento automático, recordatorios y captación de pacientes 24/7.', 'demo_url'=>'https://demo.murgonagency.com/demo-clinica'],
-          ['icon'=>'🏡','title'=>'Agencias Inmobiliarias','desc'=>'Calificación y seguimiento automático de compradores desde el primer contacto.', 'demo_url'=>'https://demo.murgonagency.com/demo-inmobiliaria'],
+          ['icon'=>'🏥','title'=>'Clínicas', 'desc'=>'Agendamiento automático, recordatorios y captación de pacientes 24/7.', 'demo_url'=>'https://demo.murgonagency.com/demo-clinica'],
+          ['icon'=>'🏡','title'=>'Agencias Inmobiliarias', 'desc'=>'Calificación y seguimiento automático de compradores desde el primer contacto.', 'demo_url'=>'https://demo.murgonagency.com/demo-inmobiliaria'],
           ['icon'=>'📣','title'=>'Agencias de Marketing', 'desc'=>'Reportes automáticos, onboarding y seguimiento de clientes sin fricción.', 'demo_url'=>'https://demo.murgonagency.com/demo-marketing'],
-          ['icon'=>'💇🏻‍♀️🧖🏼‍♀️','title'=>'Salones de Belleza y SPA',      'desc'=>'Agendamiento automático, recordatorios y reactivación de clientes dormidos/perdidos.', 'demo_url'=>'https://demo.murgonagency.com/demo-beauty'],
-          ['icon'=>'🛒','title'=>'E-commerce',            'desc'=>'Automatización de consultas, pedidos, recuperación de carritos y postventa.'],
+          ['icon'=>'💇🏻‍♀️ 🧖🏼‍♀️','title'=>'Salones de Belleza y SPA', 'desc'=>'Agendamiento automático, recordatorios y reactivación de clientes dormidos/perdidos.', 'demo_url'=>'https://demo.murgonagency.com/demo-beauty'],
+          ['icon'=>'🛒','title'=>'E-commerce', 'desc'=>'Automatización de consultas, pedidos, recuperación de carritos y postventa.', 'demo_url'=>'https://demo.murgonagency.com/demo-ecommerce'],
         ];
         foreach ( $industries as $ind ) : ?>
         <div class="service-card industry-card">
