@@ -33,7 +33,7 @@ if ( ! function_exists( 'murgon_whatsapp_icon' ) ) {
            rel="noopener noreferrer">
           <?php echo murgon_whatsapp_icon(); ?> Agendar consulta gratuita
         </a>
-        <a href="#caso" class="btn-secondary">Ver caso real →</a>
+        <a href="#industrias" class="btn-secondary">Ver demo →</a>
       </div>
 
       <!-- Stats bar -->
