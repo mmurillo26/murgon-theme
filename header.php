@@ -28,6 +28,7 @@
       <a href="#servicios">Servicios</a>
       <a href="#caso">Caso Real</a>
       <a href="#como-funciona">Cómo Funciona</a>
+      <a href="#industrias">Demo</a>
       <a href="#nosotros">Nosotros</a>
       <a href="#precios">Precios</a>
     </div>
