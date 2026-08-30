@@ -345,20 +345,25 @@
   const botDemo = document.getElementById('botDemo');
   if (botDemo && 'IntersectionObserver' in window) {
     // Secuencia: [índice del elemento, delay en ms desde el inicio]
-    // Orden: fecha → cliente → typing → bot → horarios → cliente → typing → confirmación
+    // Orden: fecha → cliente → typing → horarios → cliente → typing → nombre → cliente → typing → confirmación
     const sequence = [
       { index: 0, delay: 200  },
       { index: 1, delay: 520  },
       { index: 2, delay: 1100 },
-      { index: 3, delay: 2050 },
-      { index: 4, delay: 2700 },
-      { index: 5, delay: 3450 },
-      { index: 6, delay: 4100 },
-      { index: 7, delay: 5150 },
+      { index: 3, delay: 2100 },
+      { index: 4, delay: 3100 },
+      { index: 5, delay: 3750 },
+      { index: 6, delay: 4700 },
+      { index: 7, delay: 5550 },
+      { index: 8, delay: 6200 },
+      { index: 9, delay: 7300 },
     ];
 
     function show(el) {
       el.classList.remove('msg--hidden');
+      requestAnimationFrame(() => {
+        botDemo.scrollTop = botDemo.scrollHeight;
+      });
     }
     function hide(el) {
       el.classList.add('msg--hidden');

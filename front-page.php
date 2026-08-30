@@ -111,8 +111,8 @@ if ( ! function_exists( 'murgon_whatsapp_icon' ) ) {
             <div class="action-item">
               <span class="action-dot"></span>
               <div>
-                <strong>Mariana R.</strong>
-                <small>Cita confirmada para jueves 5:00 pm</small>
+                <strong>Juan</strong>
+                <small>Cita programada para jueves 5:00 pm</small>
               </div>
             </div>
             <div class="action-item">
@@ -151,32 +151,13 @@ if ( ! function_exists( 'murgon_whatsapp_icon' ) ) {
                   <div class="dc msg msg--hidden">Hoy</div>
                   <div class="bw r msg msg--hidden"><div class="b r">Hola, ¿tienen disponibilidad esta semana?<span class="bt">21:40</span></div></div>
                   <div class="bw s msg msg-typing msg--hidden" aria-hidden="true"><div class="b s typ"><span></span><span></span><span></span></div></div>
-                  <div class="bw s msg msg--hidden"><div class="b s">¡Hola! Sí, puedo ayudarte a encontrar un horario disponible.<span class="bt">21:40</span></div></div>
-                  <div class="bw s msg msg--hidden">
-                    <div class="wa-slots">
-                      <div class="wa-slots-header">Horarios disponibles</div>
-                      <div class="wa-slots-grid">
-                        <div class="wa-slot available">Mar<br>11:30</div>
-                        <div class="wa-slot selected">Jue<br>5:00</div>
-                        <div class="wa-slot full">Vie<br>Full</div>
-                      </div>
-                    </div>
-                  </div>
+                  <div class="bw s msg msg--hidden"><div class="b s">¡Hola! Sí, tenemos estos horarios disponibles:<br><br>Martes 11:30 am<br>Jueves 5:00 pm<br>Viernes de 9:00 am a 3:00 pm<span class="bt">21:40</span></div></div>
                   <div class="bw r msg msg--hidden"><div class="b r">Jueves a las 5:00 está perfecto.<span class="bt">21:41</span></div></div>
                   <div class="bw s msg msg-typing msg--hidden" aria-hidden="true"><div class="b s typ"><span></span><span></span><span></span></div></div>
-                  <div class="bw s msg msg--hidden">
-                    <div class="wa-confirm">
-                      <div class="wa-confirm-top">
-                        <span class="wa-confirm-check">✓</span>
-                        <div class="wa-confirm-title">CITA CONFIRMADA</div>
-                      </div>
-                      <div class="wa-confirm-body">
-                        <div class="wa-confirm-row"><span>📅</span><span>Jueves · 5:00 pm</span></div>
-                        <div class="wa-confirm-row"><span>🔔</span><span>Recordatorio automático 24 h antes</span></div>
-                      </div>
-                      <div class="wa-confirm-footer">Guardado en calendario y CRM</div>
-                    </div>
-                  </div>
+                  <div class="bw s msg msg--hidden"><div class="b s">Perfecto. ¿A nombre de quién programo la cita?<span class="bt">21:41</span></div></div>
+                  <div class="bw r msg msg--hidden"><div class="b r">A nombre de Juan.<span class="bt">21:42</span></div></div>
+                  <div class="bw s msg msg-typing msg--hidden" aria-hidden="true"><div class="b s typ"><span></span><span></span><span></span></div></div>
+                  <div class="bw s msg msg--hidden"><div class="b s">✓ CITA PROGRAMADA<br><br>Nombre: Juan<br>Fecha: Jueves<br>Hora: 5:00 pm<br><br>Te enviaremos un recordatorio 24 h antes.<span class="bt">21:42</span></div></div>
                 </div>
                 <div class="wa-input"><input class="wa-input-field" placeholder="Escribe un mensaje…" readonly></div>
               </div>
