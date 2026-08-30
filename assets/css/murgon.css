@@ -209,6 +209,10 @@ section { padding: 96px 0; position: relative; overflow: hidden; }
   box-shadow: 0 12px 32px rgba(0,200,255,.28);
   color: var(--bg);
 }
+.whatsapp-icon {
+  flex: 0 0 auto;
+  display: block;
+}
 
 .btn-secondary {
   display: inline-flex;
@@ -782,7 +786,7 @@ section { padding: 96px 0; position: relative; overflow: hidden; }
 .price-features li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
 
 .price-btn {
-  display: block; text-align: center;
+  display: flex; align-items: center; justify-content: center; gap: 8px; text-align: center;
   border: 1px solid var(--border);
   border-radius: 8px; padding: 12px;
   font-family: var(--font-display);

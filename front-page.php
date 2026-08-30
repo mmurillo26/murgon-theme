@@ -6,6 +6,14 @@
  */
 get_header(); ?>
 
+<?php
+if ( ! function_exists( 'murgon_whatsapp_icon' ) ) {
+  function murgon_whatsapp_icon() {
+    return '<svg class="whatsapp-icon" width="18" height="18" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="#25D366" d="M16 2.667c-7.364 0-13.333 5.969-13.333 13.333 0 2.352.632 4.557 1.733 6.452L2.667 29.333l7.064-1.708A13.263 13.263 0 0 0 16 29.333c7.364 0 13.333-5.969 13.333-13.333S23.364 2.667 16 2.667Z"/><path fill="#fff" d="M23.077 19.377c-.327-.163-1.938-.955-2.238-1.065-.301-.109-.52-.163-.738.164-.219.327-.848 1.064-1.038 1.283-.191.218-.382.245-.71.081-.327-.163-1.383-.509-2.635-1.625-.974-.869-1.631-1.942-1.822-2.269-.191-.328-.02-.505.143-.668.148-.148.328-.382.491-.574.164-.19.219-.327.328-.546.109-.218.055-.409-.027-.573-.082-.163-.738-1.78-1.011-2.438-.267-.64-.538-.552-.738-.562l-.629-.012c-.218 0-.573.082-.874.409-.3.328-1.147 1.12-1.147 2.733 0 1.61 1.175 3.17 1.338 3.388.164.219 2.315 3.534 5.609 4.958.784.338 1.396.54 1.873.692.787.251 1.504.215 2.07.13.632-.095 1.939-.792 2.212-1.557.273-.766.273-1.42.191-1.556-.081-.137-.3-.219-.628-.382Z"/></svg>';
+  }
+}
+?>
+
 <main id="main-content">
 
   <!-- ══ HERO ══ -->
@@ -23,7 +31,7 @@ get_header(); ?>
            class="btn-primary"
            target="_blank"
            rel="noopener noreferrer">
-          <span aria-hidden="true">💬</span> Agendar consulta gratuita
+          <?php echo murgon_whatsapp_icon(); ?> Agendar consulta gratuita
         </a>
         <a href="#caso" class="btn-secondary">Ver caso real →</a>
       </div>
@@ -229,7 +237,7 @@ get_header(); ?>
             <p>Estos números son tuyos. La automatización no es un gasto — es la diferencia entre crecer o seguir igual.</p>
             <a href="https://wa.me/523117406927?text=Hola%2C%20vi%20la%20calculadora%20de%20ROI%20y%20quiero%20una%20consulta%20gratuita"
                class="btn-primary" target="_blank" rel="noopener noreferrer">
-              <span aria-hidden="true">💬</span> Quiero estos resultados
+              <?php echo murgon_whatsapp_icon(); ?> Quiero estos resultados
             </a>
           </div>
 
@@ -405,7 +413,7 @@ get_header(); ?>
         <a href="https://wa.me/523117406927?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita"
            class="btn-primary"
            target="_blank" rel="noopener noreferrer">
-          Empieza el proceso →
+          <?php echo murgon_whatsapp_icon(); ?> Empieza el proceso →
         </a>
       </div>
     </div>
@@ -427,11 +435,11 @@ get_header(); ?>
           </div>
         </div>
         <div class="about-content">
-          <h2>No soy un consultor.<br>Soy el que construye.</h2>
-          <p>Soy desarrollador full stack con 6 años de experiencia en desarrollo de software y comercio digital. Construí Murgon Agency porque vi que muchos negocios pagaban por "consultoría de IA" a personas que nunca habían escrito una línea de código.</p>
-          <p>La diferencia: yo implemento. Cada sistema que propongo, lo construyo yo mismo — con herramientas reales, integraciones funcionales y código que puedes auditar.</p>
+          <h2>Estrategia clara.<br>Implementación real.</h2>
+          <p>Soy desarrollador full stack con 6 años de experiencia en desarrollo de software y comercio digital. Construí Murgon Agency para ayudar a negocios a convertir ideas de automatización en sistemas concretos, medibles y listos para operar.</p>
+          <p>Mi diferenciador es que acompaño la estrategia con ejecución técnica: diseño el flujo, conecto las herramientas, construyo el sistema y dejo integraciones funcionales que puedes revisar, usar y mejorar con el tiempo.</p>
           <div class="credentials">
-            <div class="cred"><span class="cred-icon" aria-hidden="true">⚡</span>Full Stack Developer (Node.js, JS)</div>
+            <div class="cred"><span class="cred-icon" aria-hidden="true">⚡</span>Full Stack Developer (Backend, Frontend)</div>
             <div class="cred"><span class="cred-icon" aria-hidden="true">🤖</span>AI Systems Builder</div>
             <div class="cred"><span class="cred-icon" aria-hidden="true">🔗</span>Automation Architect</div>
             <div class="cred"><span class="cred-icon" aria-hidden="true">📦</span>E-commerce &amp; SFCC Dev</div>
@@ -458,7 +466,7 @@ get_header(); ?>
       <div class="industries-grid">
         <?php
         $industries = [
-          ['icon'=>'🏥','title'=>'Clínicas',   'desc'=>'Agendamiento automático, recordatorios y captación de pacientes 24/7.', 'demo_url'=>'https://demo.murgonagency.com/demo-beauty'],
+          ['icon'=>'🏥','title'=>'Clínicas',   'desc'=>'Agendamiento automático, recordatorios y captación de pacientes 24/7.', 'demo_url'=>'https://demo.murgonagency.com/demo-clinica'],
           ['icon'=>'🏡','title'=>'Agencias Inmobiliarias','desc'=>'Calificación y seguimiento automático de compradores desde el primer contacto.', 'demo_url'=>'https://demo.murgonagency.com/demo-inmobiliaria'],
           ['icon'=>'📣','title'=>'Agencias de Marketing', 'desc'=>'Reportes automáticos, onboarding y seguimiento de clientes sin fricción.', 'demo_url'=>'https://demo.murgonagency.com/demo-marketing'],
           ['icon'=>'💇🏻‍♀️🧖🏼‍♀️','title'=>'Salones de Belleza y SPA',      'desc'=>'Agendamiento automático, recordatorios y reactivación de clientes dormidos/perdidos.', 'demo_url'=>'https://demo.murgonagency.com/demo-beauty'],
@@ -500,7 +508,7 @@ get_header(); ?>
             <li>Flujo de seguimiento automático</li>
             <li>Capacitación y documentación</li>
           </ul>
-          <a href="https://wa.me/523117406927?text=Hola%2C%20me%20interesa%20el%20plan%20Starter%20%249%2C500" class="price-btn" target="_blank" rel="noopener">Empezar con Starter →</a>
+          <a href="https://wa.me/523117406927?text=Hola%2C%20me%20interesa%20el%20plan%20Starter%20%249%2C500" class="price-btn" target="_blank" rel="noopener"><?php echo murgon_whatsapp_icon(); ?> Empezar con Starter →</a>
         </div>
 
         <div class="price-card featured">
@@ -515,7 +523,7 @@ get_header(); ?>
             <li>Automatizaciones de seguimiento multi-canal</li>
             <li>30 días de soporte post-lanzamiento</li>
           </ul>
-          <a href="https://wa.me/523117406927?text=Hola%2C%20me%20interesa%20el%20plan%20Sistema%20Completo" class="price-btn" target="_blank" rel="noopener">El más popular →</a>
+          <a href="https://wa.me/523117406927?text=Hola%2C%20me%20interesa%20el%20plan%20Sistema%20Completo" class="price-btn" target="_blank" rel="noopener"><?php echo murgon_whatsapp_icon(); ?> El más popular →</a>
         </div>
 
         <div class="price-card">
@@ -529,7 +537,7 @@ get_header(); ?>
             <li>Equipo dedicado de desarrollo</li>
             <li>Mantenimiento y evolución continua</li>
           </ul>
-          <a href="https://wa.me/523117406927?text=Hola%2C%20quiero%20informaci%C3%B3n%20del%20plan%20Enterprise" class="price-btn" target="_blank" rel="noopener">Agendar llamada →</a>
+          <a href="https://wa.me/523117406927?text=Hola%2C%20quiero%20informaci%C3%B3n%20del%20plan%20Enterprise" class="price-btn" target="_blank" rel="noopener"><?php echo murgon_whatsapp_icon(); ?> Agendar llamada →</a>
         </div>
 
       </div>
@@ -546,7 +554,7 @@ get_header(); ?>
         $faqs = [
           ['q'=>'¿Cuánto tiempo tarda la implementación?',             'a'=>'La mayoría de proyectos quedan listos en 7 a 14 días hábiles, dependiendo de la complejidad. El plan Starter puede estar en producción en menos de una semana. Antes de empezar te entregamos un timeline exacto con fechas de entrega.'],
           ['q'=>'¿Necesito conocimientos técnicos para usar el sistema?','a'=>'No. Diseñamos los sistemas para que cualquier persona pueda operarlos sin saber programación. Incluimos capacitación en video y documentación escrita.'],
-          ['q'=>'¿Qué diferencia a Murgon de otras agencias de "IA"?',  'a'=>'La mayoría vende consultoría — te dicen qué hacer pero no lo construyen. Nosotros somos desarrolladores: implementamos, integramos APIs reales, escribimos el código y lo ponemos en producción.'],
+          ['q'=>'¿Qué diferencia a Murgon de otras agencias de "IA"?',  'a'=>'Nuestro enfoque une diagnóstico, estrategia e implementación técnica. Diseñamos los flujos contigo, integramos APIs reales, escribimos el código necesario y dejamos el sistema funcionando en producción.'],
           ['q'=>'¿En qué se diferencia esto del bot nativo de WhatsApp de Meta?', 'a'=>'Meta te da un bot que contesta preguntas frecuentes dentro de WhatsApp Business. Útil, pero limitado. Lo que construimos va mucho más allá: conectamos WhatsApp con tu CRM, agenda, seguimiento y reactivación de prospectos para que todo opere coordinado. No solo contestamos mensajes — automatizamos el ciclo completo desde la primera consulta hasta el cierre.'],
           ['q'=>'¿La automatización reemplaza a mi equipo?',            'a'=>'No. Automatiza las tareas repetitivas para que tu equipo se enfoque en cerrar ventas y atender bien a los clientes. Los sistemas se encargan de responder, filtrar y organizar — y siempre se prioriza el control humano ante cualquier situación fuera de lo normal.'],
           ['q'=>'¿Puedo ver el sistema antes de pagar?',               'a'=>'Sí. Antes de que pagues un peso, tendrás una consulta gratuita donde mostramos ejemplos reales funcionando — incluyendo casos de clínicas y negocios locales.'],
@@ -596,7 +604,7 @@ get_header(); ?>
         <a href="https://wa.me/523117406927?text=Hola%2C%20quiero%20una%20consultor%C3%ADa%20gratuita"
            class="btn-primary"
            target="_blank" rel="noopener noreferrer">
-          <span aria-hidden="true">💬</span> Agendar consulta gratuita
+          <?php echo murgon_whatsapp_icon(); ?> Agendar consulta gratuita
         </a>
         <a href="mailto:contacto@murgonagency.com" class="btn-secondary">
           ✉ contacto@murgonagency.com
@@ -616,7 +624,7 @@ get_header(); ?>
   rel="noopener"
   aria-label="Chatea con nosotros por WhatsApp"
 >
-  <span class="whatsapp-float__bubble">¿Hablamos? 💬</span>
+  <span class="whatsapp-float__bubble">¿Hablamos?</span>
   <span class="whatsapp-float__btn">
     <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fill="#fff" d="M16 2C8.268 2 2 8.268 2 16c0 2.47.664 4.785 1.82 6.775L2 30l7.418-1.793A13.927 13.927 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.5a11.44 11.44 0 01-5.83-1.594l-.418-.248-4.402 1.064 1.1-4.285-.272-.44A11.46 11.46 0 014.5 16C4.5 9.648 9.648 4.5 16 4.5S27.5 9.648 27.5 16 22.352 27.5 16 27.5zm6.29-8.61c-.344-.172-2.035-1.003-2.35-1.118-.316-.115-.546-.172-.776.172-.23.344-.89 1.118-1.09 1.348-.2.23-.4.258-.744.086-.344-.172-1.452-.535-2.767-1.707-1.022-.912-1.712-2.038-1.912-2.382-.2-.344-.021-.53.15-.701.155-.155.344-.4.516-.602.172-.2.23-.344.344-.573.115-.23.058-.43-.029-.602-.086-.172-.776-1.87-1.063-2.562-.28-.672-.564-.58-.776-.59l-.66-.012c-.23 0-.602.086-.917.43s-1.205 1.176-1.205 2.867 1.234 3.325 1.406 3.555c.172.23 2.43 3.71 5.888 5.204.823.355 1.465.567 1.966.726.826.263 1.578.226 2.172.137.663-.1 2.035-.831 2.322-1.634.287-.803.287-1.49.2-1.634-.086-.143-.315-.23-.66-.4z"/>
