@@ -157,7 +157,7 @@ if ( ! function_exists( 'murgon_whatsapp_icon' ) ) {
                   <div class="bw s msg msg--hidden"><div class="b s">Perfecto. ¿A nombre de quién programo la cita?<span class="bt">21:41</span></div></div>
                   <div class="bw r msg msg--hidden"><div class="b r">A nombre de Juan.<span class="bt">21:42</span></div></div>
                   <div class="bw s msg msg-typing msg--hidden" aria-hidden="true"><div class="b s typ"><span></span><span></span><span></span></div></div>
-                  <div class="bw s msg msg--hidden"><div class="b s">✅ CITA PROGRAMADA<br><br>Nombre: Juan<br>Fecha: Jueves<br>Hora: 5:00 pm<br><br>Te enviaremos un recordatorio 24 h antes.<span class="bt">21:42</span></div></div>
+                  <div class="bw s msg msg--hidden"><div class="b s">✅ CITA PROGRAMADA<br><br>👤 Juan<br>🗓️ Jueves<br>⏰ 5:00 pm<br><br>Te enviaremos un recordatorio 24 h antes.<span class="bt">21:42</span></div></div>
                 </div>
                 <div class="wa-input"><input class="wa-input-field" placeholder="Escribe un mensaje…" readonly></div>
               </div>
