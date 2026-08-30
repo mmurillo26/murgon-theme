@@ -9,7 +9,7 @@ get_header(); ?>
 <?php
 if ( ! function_exists( 'murgon_whatsapp_icon' ) ) {
   function murgon_whatsapp_icon() {
-    return '<svg class="whatsapp-icon" width="18" height="18" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="#25D366" d="M16 2.667c-7.364 0-13.333 5.969-13.333 13.333 0 2.352.632 4.557 1.733 6.452L2.667 29.333l7.064-1.708A13.263 13.263 0 0 0 16 29.333c7.364 0 13.333-5.969 13.333-13.333S23.364 2.667 16 2.667Z"/><path fill="#fff" d="M23.077 19.377c-.327-.163-1.938-.955-2.238-1.065-.301-.109-.52-.163-.738.164-.219.327-.848 1.064-1.038 1.283-.191.218-.382.245-.71.081-.327-.163-1.383-.509-2.635-1.625-.974-.869-1.631-1.942-1.822-2.269-.191-.328-.02-.505.143-.668.148-.148.328-.382.491-.574.164-.19.219-.327.328-.546.109-.218.055-.409-.027-.573-.082-.163-.738-1.78-1.011-2.438-.267-.64-.538-.552-.738-.562l-.629-.012c-.218 0-.573.082-.874.409-.3.328-1.147 1.12-1.147 2.733 0 1.61 1.175 3.17 1.338 3.388.164.219 2.315 3.534 5.609 4.958.784.338 1.396.54 1.873.692.787.251 1.504.215 2.07.13.632-.095 1.939-.792 2.212-1.557.273-.766.273-1.42.191-1.556-.081-.137-.3-.219-.628-.382Z"/></svg>';
+    return '<svg class="whatsapp-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.946L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>';
   }
 }
 ?>
@@ -58,36 +58,102 @@ if ( ! function_exists( 'murgon_whatsapp_icon' ) ) {
 
       <!-- Dashboard mockup -->
       <div class="hero-visual fade-up delay-3" aria-hidden="true">
-        <div class="metric-card">
-          <div class="metric-label">Leads capturados hoy</div>
-          <div class="metric-value">34</div>
-          <div class="metric-delta">↑ +18% vs ayer</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-label">Tiempo de respuesta</div>
-          <div class="metric-value">&lt; 1 min</div>
-          <div class="metric-delta">Automático 24/7</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-label">Tasa de conversión</div>
-          <div class="metric-value">28.4%</div>
-          <div class="metric-delta">↑ +11% vs manual</div>
-        </div>
-        <div class="metric-card metric-wide">
-          <div class="metric-label">Bot WhatsApp — Conversación activa</div>
-          <div class="bot-demo" id="botDemo" aria-live="polite">
-            <div class="msg msg-in  msg--hidden">Hola, ¿cuánto cuesta el servicio de automatización?</div>
-            <div class="msg msg-typing msg--hidden" aria-hidden="true"><span></span><span></span><span></span></div>
-            <div class="msg msg-out msg--hidden">¡Hola! Gracias por contactarnos 👋 Tenemos 3 planes desde $9,500 MXN. ¿Me dices en qué área quieres automatizar?</div>
-            <div class="msg msg-in  msg--hidden">En atención al cliente por WhatsApp</div>
-            <div class="msg msg-typing msg--hidden" aria-hidden="true"><span></span><span></span><span></span></div>
-            <div class="msg msg-out msg--hidden">Perfecto. ¿Te parece si agendamos una llamada de 20 min esta semana?</div>
+        <div class="hero-dashboard">
+          <div class="dashboard-topbar">
+            <div>
+              <span class="dashboard-eyebrow">Panel de automatización</span>
+              <strong>WhatsApp conectado a tu operación</strong>
+            </div>
+            <span class="dashboard-status">En vivo</span>
+          </div>
+
+          <div class="dashboard-metrics">
+            <div class="metric-card">
+              <div class="metric-label">Conversaciones hoy</div>
+              <div class="metric-value">34</div>
+              <div class="metric-delta">12 listas para seguimiento</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Respuesta inicial</div>
+              <div class="metric-value">18 seg</div>
+              <div class="metric-delta">Sin esperar a tu equipo</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Citas agendadas</div>
+              <div class="metric-value">8</div>
+              <div class="metric-delta">Confirmadas en calendario</div>
+            </div>
+          </div>
+
+          <div class="pipeline-panel">
+            <div class="pipeline-head">
+              <span>Pipeline de hoy</span>
+              <small>Actualizado hace 1 min</small>
+            </div>
+            <div class="pipeline-row">
+              <span>Nuevo lead</span>
+              <div class="pipeline-bar"><span style="width:72%"></span></div>
+              <strong>18</strong>
+            </div>
+            <div class="pipeline-row">
+              <span>Calificado</span>
+              <div class="pipeline-bar"><span style="width:48%"></span></div>
+              <strong>12</strong>
+            </div>
+            <div class="pipeline-row">
+              <span>Cita enviada</span>
+              <div class="pipeline-bar"><span style="width:32%"></span></div>
+              <strong>8</strong>
+            </div>
+          </div>
+
+          <div class="next-actions">
+            <div class="action-item">
+              <span class="action-dot"></span>
+              <div>
+                <strong>Mariana R.</strong>
+                <small>Cita confirmada para jueves 5:00 pm</small>
+              </div>
+            </div>
+            <div class="action-item">
+              <span class="action-dot action-dot--soft"></span>
+              <div>
+                <strong>Carlos G.</strong>
+                <small>Enviar recordatorio automático en 24 h</small>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="metric-card">
-          <div class="metric-label">Prospectos calificados</div>
-          <div class="metric-value">127</div>
-          <div class="metric-delta">Este mes</div>
+
+        <div class="whatsapp-mockup">
+          <div class="wa-phone-bar">
+            <span>9:41</span>
+            <span>LTE 86%</span>
+          </div>
+          <div class="wa-chat-header">
+            <div class="wa-avatar"><?php echo murgon_whatsapp_icon(); ?></div>
+            <div>
+              <strong>Murgon Assistant</strong>
+              <span>en línea · responde por WhatsApp</span>
+            </div>
+          </div>
+          <div class="bot-demo" id="botDemo" aria-live="polite">
+            <div class="msg msg-in msg--hidden"><span>Hola, quiero saber si tienen disponibilidad esta semana.</span><small>9:41</small></div>
+            <div class="msg msg-typing msg--hidden" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="msg msg-out msg--hidden"><span>¡Hola! Claro. Tengo espacios el martes a las 11:30 o jueves a las 5:00. ¿Cuál te funciona mejor?</span><small>9:41 ✓✓</small></div>
+            <div class="msg msg-in msg--hidden"><span>Jueves a las 5 está perfecto.</span><small>9:42</small></div>
+            <div class="msg msg-typing msg--hidden" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="msg msg-out msg--hidden"><span>Listo, quedó agendado. Te envié la confirmación y un recordatorio saldrá automáticamente 24 h antes.</span><small>9:42 ✓✓</small></div>
+          </div>
+          <div class="wa-quick-replies">
+            <span>Agendar cita</span>
+            <span>Ver servicios</span>
+            <span>Hablar con asesor</span>
+          </div>
+          <div class="wa-compose">
+            <span>Mensaje</span>
+            <button type="button" tabindex="-1">Enviar</button>
+          </div>
         </div>
       </div>
     </div>
